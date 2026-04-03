@@ -809,3 +809,18 @@ body {
     font-size: 2rem;
   }
 }
+
+/* App.css - Blue Theme */
+:root {
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --primary-light: #3e8ef7;
+  --secondary-color: #6c757d;
+  --gradient-start: #667eea;
+  --gradient-end: #764ba2;
+  --dark-bg: #0a0a0a;
+  --dark-card: #1a1a1a;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --text-gray: #666666;
+}

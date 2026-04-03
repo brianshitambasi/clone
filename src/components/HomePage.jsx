@@ -1,19 +1,88 @@
 // components/HomePage.jsx
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Container, Row, Col, Carousel, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaCode, FaChartLine, FaMobile, FaLightbulb, FaRobot } from 'react-icons/fa';
 
 const HomePage = () => {
-  const services = [
+  const [services] = useState([
     { title: 'Digital transformation', description: 'We guide companies through their digital transformation journeys, providing tailored strategies and software solutions that improve efficiency and automation.' },
     { title: 'Artificial intelligence', description: 'AI solutions for global enterprises, including predictive BI, machine learning models, and intelligent automation.' },
     { title: 'Data & BI', description: 'Comprehensive data management, visualization and analytics solutions for data-driven decision making.' },
     { title: 'Application services', description: 'End-to-end application development, maintenance, and support services.' },
     { title: 'Technology advisory', description: 'Expert technology consulting to help you make the right strategic decisions.' }
-  ];
+  ]);
 
   const serviceIcons = [<FaCode />, <FaRobot />, <FaChartLine />, <FaMobile />, <FaLightbulb />];
+
+  // Counter animation state
+  const [counters, setCounters] = useState({
+    clients: 0,
+    engineers: 0,
+    years: 0,
+    countries: 0
+  });
+
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const statsRef = useRef(null);
+
+  const targetValues = {
+    clients: 800,
+    engineers: 3000,
+    years: 25,
+    countries: 40
+  };
+
+  const animateNumbers = useCallback(() => {
+    const duration = 2000; // 2 seconds
+    const frameDuration = 1000 / 60; // 60fps
+    const totalFrames = Math.round(duration / frameDuration);
+    
+    let frame = 0;
+    
+    const timer = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      const easeOutQuad = 1 - (1 - progress) * (1 - progress);
+      
+      setCounters({
+        clients: Math.floor(easeOutQuad * targetValues.clients),
+        engineers: Math.floor(easeOutQuad * targetValues.engineers),
+        years: Math.floor(easeOutQuad * targetValues.years),
+        countries: Math.floor(easeOutQuad * targetValues.countries)
+      });
+      
+      if (frame === totalFrames) {
+        setCounters(targetValues);
+        clearInterval(timer);
+      }
+    }, frameDuration);
+  }, [targetValues.clients, targetValues.engineers, targetValues.years, targetValues.countries]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          animateNumbers();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const currentRef = statsRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [hasAnimated, animateNumbers]);
 
   return (
     <>
@@ -64,31 +133,39 @@ const HomePage = () => {
         </Container>
       </section>
 
-      {/* Stats Section */}
-      <section className="stats-section">
+      {/* Stats Section with Dynamic Counters */}
+      <section className="stats-section" ref={statsRef}>
         <Container>
           <Row>
             <Col md={3} sm={6}>
               <div className="stat-card">
-                <div className="stat-number">800+</div>
+                <div className="stat-number">
+                  {counters.clients.toLocaleString()}+
+                </div>
                 <div className="stat-label">Clients Served</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card">
-                <div className="stat-number">3000+</div>
+                <div className="stat-number">
+                  {counters.engineers.toLocaleString()}+
+                </div>
                 <div className="stat-label">Engineers</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card">
-                <div className="stat-number">25+</div>
+                <div className="stat-number">
+                  {counters.years}+
+                </div>
                 <div className="stat-label">Years Experience</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card">
-                <div className="stat-number">40</div>
+                <div className="stat-number">
+                  {counters.countries}
+                </div>
                 <div className="stat-label">Countries</div>
               </div>
             </Col>
