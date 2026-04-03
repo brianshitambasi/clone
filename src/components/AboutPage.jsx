@@ -1,4 +1,4 @@
-// components/AboutPage.js
+// components/AboutPage.jsx
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaShieldAlt, FaNetworkWired, FaChartLine } from 'react-icons/fa';
@@ -6,7 +6,6 @@ import { FaShieldAlt, FaNetworkWired, FaChartLine } from 'react-icons/fa';
 const AboutPage = () => {
   return (
     <div style={{ paddingTop: '80px', backgroundColor: '#0a0a0a', minHeight: '100vh', color: 'white' }}>
-      {/* Hero Section */}
       <section style={{ padding: '80px 0', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
         <Container>
           <Row>
@@ -22,7 +21,6 @@ const AboutPage = () => {
         </Container>
       </section>
 
-      {/* Genesis Section */}
       <section style={{ padding: '80px 0' }}>
         <Container>
           <Row>
@@ -43,7 +41,6 @@ const AboutPage = () => {
         </Container>
       </section>
 
-      {/* Value Proposition */}
       <section style={{ padding: '80px 0', backgroundColor: '#111' }}>
         <Container>
           <h2 className="text-center" style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '50px', color: '#667eea' }}>
@@ -70,35 +67,6 @@ const AboutPage = () => {
                 <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>Fiscal Sovereignty</h3>
                 <p style={{ color: '#aaa' }}>Treat cloud spend as an engineering metric, applying rigorous FinOps to ensure every cent drives measurable ROI.</p>
               </Card>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
-      {/* Our DNA */}
-      <section style={{ padding: '80px 0' }}>
-        <Container>
-          <h2 className="text-center" style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '50px', color: '#667eea' }}>
-            Our DNA
-          </h2>
-          <Row>
-            <Col md={4}>
-              <div className="text-center">
-                <div style={{ fontSize: '3rem', fontWeight: 'bold', color: '#667eea', marginBottom: '15px' }}>01</div>
-                <h4>Platform Neutrality</h4>
-              </div>
-            </Col>
-            <Col md={4}>
-              <div className="text-center">
-                <div style={{ fontSize: '3rem', fontWeight: 'bold', color: '#667eea', marginBottom: '15px' }}>02</div>
-                <h4>Agentic Pioneers</h4>
-              </div>
-            </Col>
-            <Col md={4}>
-              <div className="text-center">
-                <div style={{ fontSize: '3rem', fontWeight: 'bold', color: '#667eea', marginBottom: '15px' }}>03</div>
-                <h4>Fiscal Sovereignty</h4>
-              </div>
             </Col>
           </Row>
         </Container>

@@ -1,39 +1,17 @@
 // components/HomePage.jsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, Row, Col, Carousel, Button } from 'react-bootstrap';
-import { FaCode, FaChartLine, FaDatabase, FaMobile, FaLightbulb, FaRobot } from 'react-icons/fa';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { FaCode, FaChartLine, FaMobile, FaLightbulb, FaRobot } from 'react-icons/fa';
 
 const HomePage = () => {
-  const [services, setServices] = useState([]);
-
-  useEffect(() => {
-    fetchServices();
-  }, []);
-
-  const fetchServices = async () => {
-    try {
-      const response = await axios.get('http://localhost:3004/api/services');
-      if (response.data.length > 0) {
-        setServices(response.data);
-      } else {
-        setServices([
-          { title: 'Digital transformation', description: 'We guide companies through their digital transformation journeys, providing tailored strategies and software solutions that improve efficiency and automation.' },
-          { title: 'Artificial intelligence', description: 'AI solutions for global enterprises, including predictive BI, machine learning models, and intelligent automation.' },
-          { title: 'Data & BI', description: 'Comprehensive data management, visualization and analytics solutions for data-driven decision making.' },
-          { title: 'Application services', description: 'End-to-end application development, maintenance, and support services.' },
-          { title: 'Technology advisory', description: 'Expert technology consulting to help you make the right strategic decisions.' }
-        ]);
-      }
-    } catch (error) {
-      console.error('Error fetching services:', error);
-      setServices([
-        { title: 'Digital transformation', description: 'We guide companies through their digital transformation journeys.' },
-        { title: 'Artificial intelligence', description: 'AI solutions for global enterprises.' },
-        { title: 'Data & BI', description: 'Comprehensive data management and analytics solutions.' }
-      ]);
-    }
-  };
+  const services = [
+    { title: 'Digital transformation', description: 'We guide companies through their digital transformation journeys, providing tailored strategies and software solutions that improve efficiency and automation.' },
+    { title: 'Artificial intelligence', description: 'AI solutions for global enterprises, including predictive BI, machine learning models, and intelligent automation.' },
+    { title: 'Data & BI', description: 'Comprehensive data management, visualization and analytics solutions for data-driven decision making.' },
+    { title: 'Application services', description: 'End-to-end application development, maintenance, and support services.' },
+    { title: 'Technology advisory', description: 'Expert technology consulting to help you make the right strategic decisions.' }
+  ];
 
   const serviceIcons = [<FaCode />, <FaRobot />, <FaChartLine />, <FaMobile />, <FaLightbulb />];
 
@@ -43,7 +21,6 @@ const HomePage = () => {
       <div className="video-background">
         <video autoPlay loop muted playsInline>
           <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-world-map-32873-large.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
       <div className="overlay"></div>
@@ -57,8 +34,8 @@ const HomePage = () => {
                 <h1>MJ & Roberts Consulting</h1>
                 <p>Digital Innovation That Drives Growth</p>
                 <div className="hero-buttons">
-                  <Button href="/contact" className="btn-primary-custom">Get Started</Button>
-                  <Button href="/services" className="btn-outline-custom">Our Services</Button>
+                  <Button as={Link} to="/contact" className="btn-primary-custom">Get Started</Button>
+                  <Button as={Link} to="/services" className="btn-outline-custom">Our Services</Button>
                 </div>
               </div>
             </Col>
@@ -70,7 +47,7 @@ const HomePage = () => {
       <section className="services-carousel-section">
         <Container>
           <h2 className="section-title">Our Services</h2>
-          <Carousel interval={4000} indicators={true} controls={true}>
+          <Carousel interval={4000} indicators controls>
             {services.map((service, index) => (
               <Carousel.Item key={index}>
                 <div className="service-card">
@@ -79,7 +56,7 @@ const HomePage = () => {
                   </div>
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
-                  <Button variant="link" className="btn-learn">Learn more →</Button>
+                  <Button as={Link} to="/services" variant="link" className="btn-learn">Learn more →</Button>
                 </div>
               </Carousel.Item>
             ))}
@@ -152,33 +129,6 @@ const HomePage = () => {
         </Container>
       </section>
 
-      {/* Case Studies Section */}
-      <section className="case-studies-section">
-        <Container>
-          <h2 className="section-title">Success Stories</h2>
-          <Row>
-            <Col md={6}>
-              <div className="case-card">
-                <div className="case-content">
-                  <h3>A shoppable video platform for AiBUY</h3>
-                  <p>Find out how MJ & Roberts Consulting's dedicated team helped AiBUY release their innovative machine learning-driven shoppable video platform.</p>
-                  <a href="#" className="btn-learn">Learn more →</a>
-                </div>
-              </div>
-            </Col>
-            <Col md={6}>
-              <div className="case-card">
-                <div className="case-content">
-                  <h3>Investment Portfolio Management Platform</h3>
-                  <p>We developed a suite of investment portfolio management tools and custom algorithms now used by thousands of investors.</p>
-                  <a href="#" className="btn-learn">Learn more →</a>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
       {/* Footer */}
       <footer className="footer">
         <Container>
@@ -187,18 +137,18 @@ const HomePage = () => {
               <h5>MJ & Roberts Consulting</h5>
               <p>Digital innovation that drives growth. We help businesses transform through cutting-edge technology solutions.</p>
               <div className="social-icons">
-                <a href="#"><i className="fab fa-linkedin"></i></a>
-                <a href="#"><i className="fab fa-twitter"></i></a>
-                <a href="#"><i className="fab fa-facebook"></i></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
               </div>
             </Col>
             <Col md={2}>
               <h5>Quick Links</h5>
-              <p><a href="/about">About Us</a></p>
-              <p><a href="/services">Services</a></p>
-              <p><a href="/solutions">Solutions</a></p>
-              <p><a href="/technologies">Technologies</a></p>
-              <p><a href="/case-studies">Case Studies</a></p>
+              <p><Link to="/about">About Us</Link></p>
+              <p><Link to="/services">Services</Link></p>
+              <p><Link to="/solutions">Solutions</Link></p>
+              <p><Link to="/technologies">Technologies</Link></p>
+              <p><Link to="/case-studies">Case Studies</Link></p>
             </Col>
             <Col md={3}>
               <h5>Contact Info</h5>

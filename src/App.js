@@ -26,17 +26,11 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/:id" element={<ServicesPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
-          <Route path="/solutions/:id" element={<SolutionsPage />} />
           <Route path="/technologies" element={<TechnologiesPage />} />
-          <Route path="/tech/:id" element={<TechnologiesPage />} />
           <Route path="/industries" element={<IndustriesPage />} />
-          <Route path="/industries/:industry" element={<IndustriesPage />} />
           <Route path="/insights" element={<InsightsPage />} />
-          <Route path="/insights/:type" element={<InsightsPage />} />
           <Route path="/company" element={<CompanyPage />} />
-          <Route path="/company/:section" element={<CompanyPage />} />
           <Route path="/case-studies" element={<CaseStudiesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/jobs" element={<JobsPage />} />

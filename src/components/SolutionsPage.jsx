@@ -1,4 +1,4 @@
-// components/SolutionsPage.js
+// components/SolutionsPage.jsx
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaUsers, FaBuilding, FaShoppingCart, FaChartBar, FaRobot, FaVrCardboard } from 'react-icons/fa';

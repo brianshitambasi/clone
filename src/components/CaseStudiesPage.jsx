@@ -1,7 +1,7 @@
-// components/CaseStudiesPage.js
+// components/CaseStudiesPage.jsx
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { FaShoppingCart, FaServer, FaCloud, FaChartLine } from 'react-icons/fa';
+import { FaShoppingCart, FaServer, FaCloud } from 'react-icons/fa';
 
 const CaseStudiesPage = () => {
   const caseStudies = [
