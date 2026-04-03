@@ -1,4 +1,4 @@
-// components/IndustriesPage.js
+// components/IndustriesPage.jsx
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaHeartbeat, FaUniversity, FaIndustry, FaLaptopCode, FaBriefcase } from 'react-icons/fa';

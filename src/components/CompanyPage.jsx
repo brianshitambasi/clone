@@ -1,4 +1,4 @@
-// components/CompanyPage.js
+// components/CompanyPage.jsx
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaRocket, FaCheckCircle, FaHandshake, FaUsers } from 'react-icons/fa';

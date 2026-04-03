@@ -1,4 +1,4 @@
-// components/InsightsPage.js
+// components/InsightsPage.jsx
 import React from 'react';
 import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 

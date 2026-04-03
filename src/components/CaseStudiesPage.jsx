@@ -1,31 +1,14 @@
 // components/CaseStudiesPage.jsx
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaServer, FaCloud } from 'react-icons/fa';
 
 const CaseStudiesPage = () => {
   const caseStudies = [
-    {
-      icon: <FaShoppingCart />,
-      title: 'Zero-Copy Revolution',
-      subtitle: 'Retail Data Federation',
-      desc: 'Implemented zero-copy data integration for a major retailer, reducing data duplication by 95% and accelerating analytics by 10x.',
-      results: ['95% reduction in data duplication', '10x faster analytics', '$2M annual savings']
-    },
-    {
-      icon: <FaServer />,
-      title: 'Project Titan',
-      subtitle: '2,000-Server Migration',
-      desc: 'Executed a zero-downtime migration of 2,000 servers to AWS, transforming legacy infrastructure into a modern cloud architecture.',
-      results: ['Zero downtime migration', '40% cost reduction', '99.99% availability achieved']
-    },
-    {
-      icon: <FaCloud />,
-      title: 'Mission Impact',
-      subtitle: 'Salesforce Nonprofit Cloud',
-      desc: 'Scaled global nonprofit operations across 50 countries using Salesforce Nonprofit Cloud and AI-driven donor insights.',
-      results: ['300% increase in donor engagement', '50-country rollout', 'Real-time impact reporting']
-    }
+    { icon: <FaShoppingCart />, title: 'Zero-Copy Revolution', subtitle: 'Retail Data Federation', desc: 'Implemented zero-copy data integration for a major retailer, reducing data duplication by 95% and accelerating analytics by 10x.', results: ['95% reduction in data duplication', '10x faster analytics', '$2M annual savings'] },
+    { icon: <FaServer />, title: 'Project Titan', subtitle: '2,000-Server Migration', desc: 'Executed a zero-downtime migration of 2,000 servers to AWS, transforming legacy infrastructure into a modern cloud architecture.', results: ['Zero downtime migration', '40% cost reduction', '99.99% availability achieved'] },
+    { icon: <FaCloud />, title: 'Mission Impact', subtitle: 'Salesforce Nonprofit Cloud', desc: 'Scaled global nonprofit operations across 50 countries using Salesforce Nonprofit Cloud and AI-driven donor insights.', results: ['300% increase in donor engagement', '50-country rollout', 'Real-time impact reporting'] }
   ];
 
   return (
@@ -51,11 +34,9 @@ const CaseStudiesPage = () => {
                   <p style={{ color: '#ccc', fontSize: '1.1rem', marginBottom: '20px' }}>{study.desc}</p>
                   <h4 style={{ marginBottom: '15px', fontSize: '1.1rem' }}>Key Results:</h4>
                   <ul style={{ color: '#aaa', marginBottom: '20px' }}>
-                    {study.results.map((result, i) => (
-                      <li key={i}>{result}</li>
-                    ))}
+                    {study.results.map((result, i) => (<li key={i}>{result}</li>))}
                   </ul>
-                  <Button variant="outline-primary">Read Full Case Study →</Button>
+                  <Button as={Link} to="/contact" variant="outline-primary">Read Full Case Study →</Button>
                 </Card.Body>
               </Col>
             </Row>
