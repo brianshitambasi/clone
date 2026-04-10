@@ -37,7 +37,7 @@ const ContactPage = () => {
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <FaMapMarkerAlt style={{ fontSize: '1.5rem', color: '#007bff', marginRight: '15px' }} />
-                <div><h5 style={{ margin: 0 }}>Visit Us</h5><p style={{ color: '#666', margin: 0 }}>123 Business Ave, Suite 100<br />Nairobi, NY 10001</p></div>
+                <div><h5 style={{ margin: 0 }}>Visit Us</h5><p style={{ color: '#666', margin: 0 }}>123 Business Ave, Suite 100<br />Nairobi, Kenya</p></div>
               </div>
             </div>
           </Col>
@@ -48,9 +48,18 @@ const ContactPage = () => {
               {submitted && <Alert variant="success">Message sent successfully! We'll get back to you soon.</Alert>}
               
               <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3"><Form.Label>Full Name</Form.Label><Form.Control type="text" name="name" value={formData.name} onChange={handleChange} required style={{ padding: '12px', borderRadius: '8px' }} /></Form.Group>
-                <Form.Group className="mb-3"><Form.Label>Email Address</Form.Label><Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required style={{ padding: '12px', borderRadius: '8px' }} /></Form.Group>
-                <Form.Group className="mb-4"><Form.Label>Message</Form.Label><Form.Control as="textarea" name="message" value={formData.message} onChange={handleChange} required rows={5} style={{ padding: '12px', borderRadius: '8px' }} /></Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Full Name</Form.Label>
+                  <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} required style={{ padding: '12px', borderRadius: '8px' }} />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Email Address</Form.Label>
+                  <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required style={{ padding: '12px', borderRadius: '8px' }} />
+                </Form.Group>
+                <Form.Group className="mb-4">
+                  <Form.Label>Message</Form.Label>
+                  <Form.Control as="textarea" name="message" value={formData.message} onChange={handleChange} required rows={5} style={{ padding: '12px', borderRadius: '8px' }} />
+                </Form.Group>
                 <Button type="submit" variant="primary" style={{ width: '100%', padding: '12px', borderRadius: '8px', fontWeight: '600' }}>Send Message</Button>
               </Form>
             </div>
