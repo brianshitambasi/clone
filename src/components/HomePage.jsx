@@ -56,7 +56,7 @@ const HomePage = () => {
         clearInterval(timer);
       }
     }, frameDuration);
-  }, []);
+  }, [targetValues.clients, targetValues.engineers, targetValues.years, targetValues.countries]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
