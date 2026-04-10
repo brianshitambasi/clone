@@ -10,7 +10,7 @@ const HomePage = () => {
     { id: 'software-engineering', title: 'Artificial intelligence', description: 'AI solutions for global enterprises, including predictive BI, machine learning models, and intelligent automation.' },
     { id: 'data-analytics', title: 'Data & BI', description: 'Comprehensive data management, visualization and analytics solutions for data-driven decision making.' },
     { id: 'managed-it', title: 'Application services', description: 'End-to-end application development, maintenance, and support services.' },
-    { id: 'it-consulting', title: 'Technology advisory', description: 'Expert technology consulting to help you make the right strategic decisions.' }
+    { id: 'technology-advisory', title: 'Technology advisory', description: 'Expert technology consulting to help you make the right strategic decisions.' }
   ]);
 
   const serviceIcons = [<FaCode key="1" />, <FaRobot key="2" />, <FaChartLine key="3" />, <FaMobile key="4" />, <FaLightbulb key="5" />];
@@ -56,7 +56,7 @@ const HomePage = () => {
         clearInterval(timer);
       }
     }, frameDuration);
-  }, [targetValues.clients, targetValues.engineers, targetValues.years, targetValues.countries]);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
