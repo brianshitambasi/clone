@@ -33,11 +33,11 @@ const ContactPage = () => {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
                 <FaPhone style={{ fontSize: '1.5rem', color: '#007bff', marginRight: '15px' }} />
-                <div><h5 style={{ margin: 0 }}>Call Us</h5><p style={{ color: '#666', margin: 0 }}>+1 (555) 123-4567</p></div>
+                <div><h5 style={{ margin: 0 }}>Call Us</h5><p style={{ color: '#666', margin: 0 }}>+254723156066</p></div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <FaMapMarkerAlt style={{ fontSize: '1.5rem', color: '#007bff', marginRight: '15px' }} />
-                <div><h5 style={{ margin: 0 }}>Visit Us</h5><p style={{ color: '#666', margin: 0 }}>123 Business Ave, Suite 100<br />New York, NY 10001</p></div>
+                <div><h5 style={{ margin: 0 }}>Visit Us</h5><p style={{ color: '#666', margin: 0 }}>123 Business Ave, Suite 100<br />Nairobi, NY 10001</p></div>
               </div>
             </div>
           </Col>
