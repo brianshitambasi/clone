@@ -6,16 +6,15 @@ import { FaCode, FaChartLine, FaMobile, FaLightbulb, FaRobot } from 'react-icons
 
 const HomePage = () => {
   const [services] = useState([
-    { title: 'Digital transformation', description: 'We guide companies through their digital transformation journeys, providing tailored strategies and software solutions that improve efficiency and automation.' },
-    { title: 'Artificial intelligence', description: 'AI solutions for global enterprises, including predictive BI, machine learning models, and intelligent automation.' },
-    { title: 'Data & BI', description: 'Comprehensive data management, visualization and analytics solutions for data-driven decision making.' },
-    { title: 'Application services', description: 'End-to-end application development, maintenance, and support services.' },
-    { title: 'Technology advisory', description: 'Expert technology consulting to help you make the right strategic decisions.' }
+    { id: 'it-consulting', title: 'Digital transformation', description: 'We guide companies through their digital transformation journeys, providing tailored strategies and software solutions that improve efficiency and automation.' },
+    { id: 'software-engineering', title: 'Artificial intelligence', description: 'AI solutions for global enterprises, including predictive BI, machine learning models, and intelligent automation.' },
+    { id: 'data-analytics', title: 'Data & BI', description: 'Comprehensive data management, visualization and analytics solutions for data-driven decision making.' },
+    { id: 'managed-it', title: 'Application services', description: 'End-to-end application development, maintenance, and support services.' },
+    { id: 'it-consulting', title: 'Technology advisory', description: 'Expert technology consulting to help you make the right strategic decisions.' }
   ]);
 
-  const serviceIcons = [<FaCode />, <FaRobot />, <FaChartLine />, <FaMobile />, <FaLightbulb />];
+  const serviceIcons = [<FaCode key="1" />, <FaRobot key="2" />, <FaChartLine key="3" />, <FaMobile key="4" />, <FaLightbulb key="5" />];
 
-  // Counter animation state
   const [counters, setCounters] = useState({
     clients: 0,
     engineers: 0,
@@ -34,8 +33,8 @@ const HomePage = () => {
   };
 
   const animateNumbers = useCallback(() => {
-    const duration = 2000; // 2 seconds
-    const frameDuration = 1000 / 60; // 60fps
+    const duration = 2000;
+    const frameDuration = 1000 / 60;
     const totalFrames = Math.round(duration / frameDuration);
     
     let frame = 0;
@@ -125,7 +124,7 @@ const HomePage = () => {
                   </div>
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
-                  <Button as={Link} to="/services" variant="link" className="btn-learn">Learn more →</Button>
+                  <Button as={Link} to={`/services/${service.id}`} variant="link" className="btn-learn">Learn more →</Button>
                 </div>
               </Carousel.Item>
             ))}
@@ -133,39 +132,31 @@ const HomePage = () => {
         </Container>
       </section>
 
-      {/* Stats Section with Dynamic Counters */}
+      {/* Stats Section */}
       <section className="stats-section" ref={statsRef}>
         <Container>
           <Row>
             <Col md={3} sm={6}>
               <div className="stat-card">
-                <div className="stat-number">
-                  {counters.clients.toLocaleString()}+
-                </div>
+                <div className="stat-number">{counters.clients.toLocaleString()}+</div>
                 <div className="stat-label">Clients Served</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card">
-                <div className="stat-number">
-                  {counters.engineers.toLocaleString()}+
-                </div>
+                <div className="stat-number">{counters.engineers.toLocaleString()}+</div>
                 <div className="stat-label">Engineers</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card">
-                <div className="stat-number">
-                  {counters.years}+
-                </div>
+                <div className="stat-number">{counters.years}+</div>
                 <div className="stat-label">Years Experience</div>
               </div>
             </Col>
             <Col md={3} sm={6}>
               <div className="stat-card">
-                <div className="stat-number">
-                  {counters.countries}
-                </div>
+                <div className="stat-number">{counters.countries}</div>
                 <div className="stat-label">Countries</div>
               </div>
             </Col>
