@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +8,7 @@ import ServicesPage from './components/ServicesPage';
 import SolutionsPage from './components/SolutionsPage';
 import TechnologiesPage from './components/TechnologiesPage';
 import IndustriesPage from './components/IndustriesPage';
+import IndustryDetail from './components/IndustryDetail';  // ADD THIS IMPORT
 import InsightsPage from './components/InsightsPage';
 import CompanyPage from './components/CompanyPage';
 import CaseStudiesPage from './components/CaseStudiesPage';
@@ -29,6 +29,7 @@ function App() {
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/technologies" element={<TechnologiesPage />} />
           <Route path="/industries" element={<IndustriesPage />} />
+          <Route path="/industries/:id" element={<IndustryDetail />} />  {/* ADD THIS ROUTE */}
           <Route path="/insights" element={<InsightsPage />} />
           <Route path="/company" element={<CompanyPage />} />
           <Route path="/case-studies" element={<CaseStudiesPage />} />
