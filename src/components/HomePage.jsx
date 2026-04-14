@@ -25,13 +25,15 @@ const HomePage = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const statsRef = useRef(null);
 
-  const targetValues = {
+  // FIXED: Wrap targetValues in useMemo to prevent recreation on every render
+  const targetValues = React.useMemo(() => ({
     clients: 800,
     engineers: 3000,
     years: 25,
     countries: 40
-  };
+  }), []);
 
+  // FIXED: Move targetValues inside the useCallback or keep as dependency with useMemo
   const animateNumbers = useCallback(() => {
     const duration = 2000;
     const frameDuration = 1000 / 60;
@@ -56,7 +58,7 @@ const HomePage = () => {
         clearInterval(timer);
       }
     }, frameDuration);
-  }, [targetValues.clients, targetValues.engineers, targetValues.years, targetValues.countries]);
+  }, [targetValues]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
