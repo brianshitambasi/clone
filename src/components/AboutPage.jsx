@@ -4,16 +4,41 @@ const { useEffect, useRef, useState, useMemo } = React;
 const { Container, Row, Col, Button } = require('react-bootstrap');
 const { Link } = require('react-router-dom');
 const { FaRocket, FaArrowRight } = require('react-icons/fa');
-const gsap = require('gsap');
-const ScrollTrigger = require('gsap/ScrollTrigger');
 
-// Register GSAP plugin
-gsap.registerPlugin(ScrollTrigger);
+// Safe GSAP import with error handling
+let gsap;
+let ScrollTrigger;
+
+try {
+  const gsapModule = require('gsap');
+  const ScrollTriggerModule = require('gsap/ScrollTrigger');
+  
+  gsap = gsapModule.default || gsapModule;
+  ScrollTrigger = ScrollTriggerModule.default || ScrollTriggerModule;
+  
+  // Only register if both are available
+  if (gsap && ScrollTrigger && typeof gsap.registerPlugin === 'function') {
+    gsap.registerPlugin(ScrollTrigger);
+    console.log('GSAP initialized successfully');
+  } else {
+    console.warn('GSAP or ScrollTrigger not available properly');
+  }
+} catch (e) {
+  console.warn('GSAP failed to load:', e.message);
+  // Create dummy objects to prevent errors
+  gsap = {
+    from: function() { return this; },
+    context: function(fn) { fn(); return { revert: function() {} }; },
+    registerPlugin: function() {}
+  };
+  ScrollTrigger = {
+    create: function() { return {}; }
+  };
+}
 
 const AboutPage = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const heroRef = useRef(null);
-  // REMOVED: valueCardsRef was never used
   const timelineRef = useRef(null);
   const statsRef = useRef(null);
 
@@ -79,50 +104,69 @@ const AboutPage = () => {
     return function() { observer.disconnect(); };
   }, [targetStats]);
 
-  // GSAP animations
+  // GSAP animations with safety checks
   useEffect(function() {
-    var ctx = gsap.context(function() {
-      gsap.from('.hero-title', {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power3.out'
-      });
-      
-      gsap.from('.hero-subtitle', {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out'
-      });
-      
-      gsap.from('.hero-button', {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.8,
-        delay: 0.6,
-        ease: 'back.out(1.7)'
-      });
+    // Skip if GSAP is not available
+    if (!gsap || typeof gsap.context !== 'function') {
+      console.log('GSAP not available, skipping animations');
+      return;
+    }
+    
+    try {
+      var ctx = gsap.context(function() {
+        // Safe animations only if elements exist
+        var heroTitle = document.querySelector('.hero-title');
+        var heroSubtitle = document.querySelector('.hero-subtitle');
+        var heroButton = document.querySelector('.hero-button');
+        
+        if (heroTitle && gsap.from) {
+          gsap.from(heroTitle, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: 'power3.out'
+          });
+        }
+        
+        if (heroSubtitle && gsap.from) {
+          gsap.from(heroSubtitle, {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.3,
+            ease: 'power3.out'
+          });
+        }
+        
+        if (heroButton && gsap.from) {
+          gsap.from(heroButton, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.8,
+            delay: 0.6,
+            ease: 'back.out(1.7)'
+          });
+        }
 
-      // Timeline animation
-      if (timelineRef.current) {
-        gsap.from(timelineRef.current, {
-          scrollTrigger: {
-            trigger: timelineRef.current,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse'
-          },
-          opacity: 0,
-          x: -50,
-          duration: 1,
-          ease: 'power3.out'
-        });
-      }
-    }, heroRef);
+        // Timeline animation
+        if (timelineRef.current && gsap.from) {
+          gsap.from(timelineRef.current, {
+            opacity: 0,
+            x: -50,
+            duration: 1,
+            ease: 'power3.out'
+          });
+        }
+      }, heroRef);
 
-    return function() { ctx.revert(); };
+      return function() { 
+        if (ctx && typeof ctx.revert === 'function') {
+          ctx.revert(); 
+        }
+      };
+    } catch (error) {
+      console.log('GSAP animation error:', error);
+    }
   }, []);
 
   return React.createElement(
