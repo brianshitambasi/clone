@@ -1,4 +1,4 @@
-// components/HomePage.jsx
+cat > src/components/HomePage.jsx << 'EOF'
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Container, Row, Col, Carousel, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,6 @@ const HomePage = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const statsRef = useRef(null);
 
-  // FIXED: Wrap targetValues in useMemo to prevent recreation on every render
   const targetValues = React.useMemo(() => ({
     clients: 800,
     engineers: 3000,
@@ -33,7 +32,6 @@ const HomePage = () => {
     countries: 40
   }), []);
 
-  // FIXED: Move targetValues inside the useCallback or keep as dependency with useMemo
   const animateNumbers = useCallback(() => {
     const duration = 2000;
     const frameDuration = 1000 / 60;
@@ -87,7 +85,6 @@ const HomePage = () => {
 
   return (
     <>
-      {/* Video Background */}
       <div className="video-background">
         <video autoPlay loop muted playsInline>
           <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-world-map-32873-large.mp4" type="video/mp4" />
@@ -95,7 +92,6 @@ const HomePage = () => {
       </div>
       <div className="overlay"></div>
 
-      {/* Hero Section */}
       <section className="hero-section">
         <Container>
           <Row>
@@ -113,7 +109,6 @@ const HomePage = () => {
         </Container>
       </section>
 
-      {/* Services Carousel Section */}
       <section className="services-carousel-section">
         <Container>
           <h2 className="section-title">Our Services</h2>
@@ -134,7 +129,6 @@ const HomePage = () => {
         </Container>
       </section>
 
-      {/* Stats Section */}
       <section className="stats-section" ref={statsRef}>
         <Container>
           <Row>
@@ -166,7 +160,6 @@ const HomePage = () => {
         </Container>
       </section>
 
-      {/* Industries Section */}
       <section className="industries-section">
         <Container>
           <h2 className="section-title">Industries We Serve</h2>
@@ -199,7 +192,6 @@ const HomePage = () => {
         </Container>
       </section>
 
-      {/* Footer */}
       <footer className="footer">
         <Container>
           <Row>
@@ -244,3 +236,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+EOF
