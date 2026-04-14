@@ -1,4 +1,3 @@
-// components/IndustriesPage.jsx
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -15,7 +14,7 @@ const IndustriesPage = () => {
       title: 'Healthcare', 
       desc: 'HIPAA-compliant cloud and AI diagnostics',
       color: '#e74c3c',
-      fullDesc: 'Our healthcare solutions include HIPAA-compliant cloud infrastructure, AI-powered diagnostic tools, electronic health records integration, telemedicine platforms, and real-time patient monitoring systems. We ensure data security while enabling cutting-edge medical technology.',
+      fullDesc: 'Our healthcare solutions include HIPAA-compliant cloud infrastructure, AI-powered diagnostic tools, electronic health records integration, telemedicine platforms, and real-time patient monitoring systems.',
       features: ['HIPAA Compliant Cloud', 'AI Diagnostics', 'EHR Integration', 'Telemedicine', 'Patient Monitoring']
     },
     { 
@@ -24,7 +23,7 @@ const IndustriesPage = () => {
       title: 'Finance & Insurance', 
       desc: 'Hardened security for Fintech and fraud detection',
       color: '#f39c12',
-      fullDesc: 'We provide enterprise-grade security solutions for financial institutions, including fraud detection algorithms, blockchain integration, secure payment gateways, and regulatory compliance tools for fintech and insurance companies.',
+      fullDesc: 'We provide enterprise-grade security solutions for financial institutions, including fraud detection algorithms, blockchain integration, secure payment gateways, and regulatory compliance tools.',
       features: ['Fraud Detection', 'Blockchain Integration', 'Secure Payments', 'Regulatory Compliance', 'Risk Assessment']
     },
     { 
@@ -33,7 +32,7 @@ const IndustriesPage = () => {
       title: 'Manufacturing & Retail', 
       desc: 'IoT integration and hyper-personalized supply chains',
       color: '#3498db',
-      fullDesc: 'Transform your manufacturing and retail operations with IoT sensors, real-time inventory tracking, predictive maintenance, automated warehouses, and hyper-personalized customer experiences powered by AI.',
+      fullDesc: 'Transform your manufacturing and retail operations with IoT sensors, real-time inventory tracking, predictive maintenance, automated warehouses, and hyper-personalized customer experiences.',
       features: ['IoT Integration', 'Supply Chain Optimization', 'Predictive Maintenance', 'Automated Warehouses', 'Personalized Retail']
     },
     { 
@@ -42,7 +41,7 @@ const IndustriesPage = () => {
       title: 'Software & Hi-Tech', 
       desc: 'Scaling SaaS infrastructure and optimizing COGS',
       color: '#2ecc71',
-      fullDesc: 'Scale your SaaS platform efficiently with our cloud-native solutions, microservices architecture, cost optimization strategies, and performance monitoring tools that help reduce COGS while maintaining high availability.',
+      fullDesc: 'Scale your SaaS platform efficiently with our cloud-native solutions, microservices architecture, cost optimization strategies, and performance monitoring tools.',
       features: ['Cloud-Native Architecture', 'Microservices', 'Cost Optimization', 'Performance Monitoring', 'Auto-scaling']
     },
     { 
@@ -51,7 +50,7 @@ const IndustriesPage = () => {
       title: 'Professional Services', 
       desc: 'Automating project lifecycles and billable utilization',
       color: '#9b59b6',
-      fullDesc: 'Streamline your professional services with automated project management, resource allocation, time tracking, billing systems, and utilization analytics to maximize profitability and efficiency.',
+      fullDesc: 'Streamline your professional services with automated project management, resource allocation, time tracking, billing systems, and utilization analytics.',
       features: ['Project Automation', 'Resource Management', 'Time Tracking', 'Automated Billing', 'Utilization Analytics']
     }
   ];
@@ -74,15 +73,11 @@ const IndustriesPage = () => {
         <Row>
           {industries.map((industry, index) => (
             <Col md={6} lg={4} key={index} className="mb-4">
-              <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', padding: '30px', textAlign: 'center', height: '100%', transition: 'transform 0.3s' }}>
+              <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', padding: '30px', textAlign: 'center', height: '100%' }}>
                 <div style={{ fontSize: '3rem', color: industry.color, marginBottom: '20px' }}>{industry.icon}</div>
                 <h3 style={{ marginBottom: '15px' }}>{industry.title}</h3>
                 <p style={{ color: '#aaa', marginBottom: '20px' }}>{industry.desc}</p>
-                <Button 
-                  onClick={() => handleLearnMore(industry)} 
-                  variant="outline-primary" 
-                  style={{ borderRadius: '50px' }}
-                >
+                <Button onClick={() => handleLearnMore(industry)} variant="outline-primary" style={{ borderRadius: '50px' }}>
                   Learn More →
                 </Button>
               </Card>
@@ -91,7 +86,6 @@ const IndustriesPage = () => {
         </Row>
       </Container>
 
-      {/* Modal for detailed information */}
       <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
         <Modal.Header style={{ backgroundColor: selectedIndustry?.color || '#667eea', borderBottom: 'none' }}>
           <Modal.Title style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -123,9 +117,7 @@ const IndustriesPage = () => {
           </Row>
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: '#1a1a1a', borderTop: '1px solid #333' }}>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
           <Button as={Link} to="/contact" style={{ backgroundColor: selectedIndustry?.color, border: 'none' }}>
             Request Consultation →
           </Button>
