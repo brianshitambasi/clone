@@ -5,36 +5,7 @@ const { Container, Row, Col, Button } = require('react-bootstrap');
 const { Link } = require('react-router-dom');
 const { FaRocket, FaArrowRight } = require('react-icons/fa');
 
-// Safe GSAP import with error handling
-let gsap;
-let ScrollTrigger;
-
-try {
-  const gsapModule = require('gsap');
-  const ScrollTriggerModule = require('gsap/ScrollTrigger');
-  
-  gsap = gsapModule.default || gsapModule;
-  ScrollTrigger = ScrollTriggerModule.default || ScrollTriggerModule;
-  
-  // Only register if both are available
-  if (gsap && ScrollTrigger && typeof gsap.registerPlugin === 'function') {
-    gsap.registerPlugin(ScrollTrigger);
-    console.log('GSAP initialized successfully');
-  } else {
-    console.warn('GSAP or ScrollTrigger not available properly');
-  }
-} catch (e) {
-  console.warn('GSAP failed to load:', e.message);
-  // Create dummy objects to prevent errors
-  gsap = {
-    from: function() { return this; },
-    context: function(fn) { fn(); return { revert: function() {} }; },
-    registerPlugin: function() {}
-  };
-  ScrollTrigger = {
-    create: function() { return {}; }
-  };
-}
+// NO GSAP - using simple CSS animations instead
 
 const AboutPage = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -50,7 +21,6 @@ const AboutPage = () => {
     uptime: 0
   });
 
-  // Wrap targetStats in useMemo
   const targetStats = useMemo(function() {
     return {
       projects: 500,
@@ -104,69 +74,47 @@ const AboutPage = () => {
     return function() { observer.disconnect(); };
   }, [targetStats]);
 
-  // GSAP animations with safety checks
+  // Simple CSS-based animations (no GSAP)
   useEffect(function() {
-    // Skip if GSAP is not available
-    if (!gsap || typeof gsap.context !== 'function') {
-      console.log('GSAP not available, skipping animations');
-      return;
-    }
+    // Add CSS for fade-in animations
+    var style = document.createElement('style');
+    style.textContent = `
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(10px); }
+      }
+      @keyframes scroll {
+        0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      }
+    `;
+    document.head.appendChild(style);
     
-    try {
-      var ctx = gsap.context(function() {
-        // Safe animations only if elements exist
-        var heroTitle = document.querySelector('.hero-title');
-        var heroSubtitle = document.querySelector('.hero-subtitle');
-        var heroButton = document.querySelector('.hero-button');
-        
-        if (heroTitle && gsap.from) {
-          gsap.from(heroTitle, {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: 'power3.out'
-          });
-        }
-        
-        if (heroSubtitle && gsap.from) {
-          gsap.from(heroSubtitle, {
-            opacity: 0,
-            y: 30,
-            duration: 1,
-            delay: 0.3,
-            ease: 'power3.out'
-          });
-        }
-        
-        if (heroButton && gsap.from) {
-          gsap.from(heroButton, {
-            opacity: 0,
-            scale: 0.9,
-            duration: 0.8,
-            delay: 0.6,
-            ease: 'back.out(1.7)'
-          });
-        }
-
-        // Timeline animation
-        if (timelineRef.current && gsap.from) {
-          gsap.from(timelineRef.current, {
-            opacity: 0,
-            x: -50,
-            duration: 1,
-            ease: 'power3.out'
-          });
-        }
-      }, heroRef);
-
-      return function() { 
-        if (ctx && typeof ctx.revert === 'function') {
-          ctx.revert(); 
-        }
-      };
-    } catch (error) {
-      console.log('GSAP animation error:', error);
-    }
+    // Add classes for animations
+    var heroTitle = document.querySelector('.hero-title');
+    var heroSubtitle = document.querySelector('.hero-subtitle');
+    var heroButton = document.querySelector('.hero-button');
+    
+    if (heroTitle) heroTitle.classList.add('fade-in-up');
+    if (heroSubtitle) heroSubtitle.classList.add('fade-in-up');
+    if (heroButton) heroButton.classList.add('fade-in-up');
+    
+    return function() {
+      document.head.removeChild(style);
+    };
   }, []);
 
   return React.createElement(
