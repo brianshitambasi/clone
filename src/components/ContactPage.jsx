@@ -1,11 +1,17 @@
 // components/ContactPage.jsx
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+
+  // WhatsApp configuration
+  const whatsappNumber = '254723156066'; // Kenya number without '+'
+  const whatsappMessage = encodeURIComponent('Hello! I would like to get more information about your services.');
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const whatsappCallLink = `https://wa.me/${whatsappNumber}`;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,10 +41,62 @@ const ContactPage = () => {
                 <FaPhone style={{ fontSize: '1.5rem', color: '#007bff', marginRight: '15px' }} />
                 <div><h5 style={{ margin: 0 }}>Call Us</h5><p style={{ color: '#666', margin: 0 }}>+254723156066</p></div>
               </div>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+                <FaWhatsapp style={{ fontSize: '1.5rem', color: '#25D366', marginRight: '15px' }} />
+                <div>
+                  <h5 style={{ margin: 0 }}>WhatsApp Support</h5>
+                  <p style={{ color: '#666', margin: 0 }}>Chat with our support team instantly</p>
+                </div>
+              </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <FaMapMarkerAlt style={{ fontSize: '1.5rem', color: '#007bff', marginRight: '15px' }} />
                 <div><h5 style={{ margin: 0 }}>Visit Us</h5><p style={{ color: '#666', margin: 0 }}>123 Business Ave, Suite 100<br />Nairobi, Kenya</p></div>
               </div>
+            </div>
+
+            {/* WhatsApp Action Buttons */}
+            <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+              <a 
+                href={whatsappLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                <Button 
+                  style={{ 
+                    backgroundColor: '#25D366', 
+                    border: 'none', 
+                    padding: '12px 24px',
+                    borderRadius: '50px',
+                    fontWeight: '600',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }}
+                >
+                  <FaWhatsapp size={20} /> Chat on WhatsApp
+                </Button>
+              </a>
+              <a 
+                href={whatsappCallLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                <Button 
+                  variant="outline-success"
+                  style={{ 
+                    padding: '12px 24px',
+                    borderRadius: '50px',
+                    fontWeight: '600',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }}
+                >
+                  <FaPhone size={16} /> Call via WhatsApp
+                </Button>
+              </a>
             </div>
           </Col>
           

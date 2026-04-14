@@ -8,13 +8,14 @@ import ServicesPage from './components/ServicesPage';
 import SolutionsPage from './components/SolutionsPage';
 import TechnologiesPage from './components/TechnologiesPage';
 import IndustriesPage from './components/IndustriesPage';
-import IndustryDetail from './components/IndustryDetail';  // ADD THIS IMPORT
+import IndustryDetail from './components/IndustryDetail';
 import InsightsPage from './components/InsightsPage';
 import CompanyPage from './components/CompanyPage';
 import CaseStudiesPage from './components/CaseStudiesPage';
 import ContactPage from './components/ContactPage';
 import JobsPage from './components/JobsPage';
 import ProjectsPage from './components/ProjectsPage';
+import WhatsAppWidget from './components/WhatsAppWidget'; // Add this import
 import './App.css';
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/technologies" element={<TechnologiesPage />} />
           <Route path="/industries" element={<IndustriesPage />} />
-          <Route path="/industries/:id" element={<IndustryDetail />} />  {/* ADD THIS ROUTE */}
+          <Route path="/industries/:id" element={<IndustryDetail />} />
           <Route path="/insights" element={<InsightsPage />} />
           <Route path="/company" element={<CompanyPage />} />
           <Route path="/case-studies" element={<CaseStudiesPage />} />
@@ -37,6 +38,7 @@ function App() {
           <Route path="/jobs" element={<JobsPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
         </Routes>
+        <WhatsAppWidget /> {/* Add the WhatsApp widget here */}
       </div>
     </Router>
   );
