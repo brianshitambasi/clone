@@ -23,6 +23,9 @@ const NavigationBar = () => {
   }, [location]);
 
   const isActive = (path) => {
+    if (path === '/') {
+      return location.pathname === path;
+    }
     return location.pathname === path || location.pathname.startsWith(path + '/');
   };
 
@@ -35,6 +38,7 @@ const NavigationBar = () => {
       icon: React.createElement(FaCogs),
       dropdown: true,
       items: [
+        { path: '/services', label: 'All Services' },
         { path: '/services/it-consulting', label: 'IT Consulting & Digital Transformation' },
         { path: '/services/software-engineering', label: 'Software Engineering & Application Services' },
         { path: '/services/managed-it', label: 'Managed IT Services & Support' },
@@ -48,6 +52,7 @@ const NavigationBar = () => {
       icon: React.createElement(FaLightbulb),
       dropdown: true,
       items: [
+        { path: '/solutions', label: 'All Solutions' },
         { path: '/solutions/crm', label: 'CRM (Salesforce, Dynamics 365)' },
         { path: '/solutions/erp', label: 'ERP (SAP, Odoo)' },
         { path: '/solutions/digital-commerce', label: 'Digital Commerce' },
@@ -58,10 +63,11 @@ const NavigationBar = () => {
     },
     { 
       path: '/technologies', 
-      label: 'Technologies', 
+      label: 'Tech', 
       icon: React.createElement(FaMicrochip),
       dropdown: true,
       items: [
+        { path: '/technologies', label: 'All Technologies' },
         { path: '/technologies/salesforce', label: 'Salesforce' },
         { path: '/technologies/aws', label: 'AWS' },
         { path: '/technologies/azure', label: 'Microsoft Azure & Dynamics 365' },
@@ -76,6 +82,7 @@ const NavigationBar = () => {
       icon: React.createElement(FaIndustry),
       dropdown: true,
       items: [
+        { path: '/industries', label: 'All Industries' },
         { path: '/industries/healthcare', label: 'Healthcare' },
         { path: '/industries/finance', label: 'Finance & Insurance' },
         { path: '/industries/manufacturing', label: 'Manufacturing & Retail' },
@@ -89,10 +96,10 @@ const NavigationBar = () => {
       icon: React.createElement(FaNewspaper),
       dropdown: true,
       items: [
+        { path: '/insights', label: 'All Insights' },
         { path: '/insights/trending', label: 'Trending Topics' },
         { path: '/insights/industry', label: 'Industry Related' },
-        { path: '/insights/whitepapers', label: 'Whitepapers' },
-        { path: '/insights/case-studies', label: 'Case Studies' }
+        { path: '/insights/whitepapers', label: 'Whitepapers' }
       ]
     },
     { 
@@ -108,7 +115,7 @@ const NavigationBar = () => {
         { path: '/company/news', label: 'News' }
       ]
     },
-    { path: '/case-studies', label: 'Case Studies', icon: React.createElement(FaBookOpen) },
+    { path: '/case-studies', label: 'Cases', icon: React.createElement(FaBookOpen) },
     { path: '/contact', label: 'Contact', icon: React.createElement(FaEnvelope), isButton: true }
   ];
 
@@ -122,15 +129,15 @@ const NavigationBar = () => {
       expand: "lg",
       collapseOnSelect: true,
       style: {
-        backgroundColor: scrolled ? 'rgba(8, 8, 12, 0.98)' : 'rgba(8, 8, 12, 0.95)',
-        backdropFilter: 'blur(12px)',
+        backgroundColor: scrolled ? 'rgba(8, 8, 12, 0.98)' : 'rgba(8, 8, 12, 0.92)',
+        backdropFilter: 'blur(16px)',
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-        padding: scrolled ? '8px 0' : '16px 0',
-        borderBottom: '1px solid rgba(102, 126, 234, 0.15)',
-        boxShadow: scrolled ? '0 4px 20px rgba(0, 0, 0, 0.3)' : 'none'
+        padding: scrolled ? '6px 0' : '14px 0',
+        borderBottom: '1px solid rgba(102, 126, 234, 0.2)',
+        boxShadow: scrolled ? '0 4px 25px rgba(0, 0, 0, 0.3)' : 'none'
       }
     },
-    React.createElement(Container, { fluid: true, style: { maxWidth: '1400px' } },
+    React.createElement(Container, { fluid: true, style: { maxWidth: '1300px', padding: '0 24px' } },
       // Brand / Logo
       React.createElement(
         Navbar.Brand,
@@ -138,17 +145,16 @@ const NavigationBar = () => {
           as: Link,
           to: "/",
           style: {
-            fontSize: '1.6rem',
+            fontSize: '1.5rem',
             fontWeight: '800',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 40%, #f093fb 100%)',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            letterSpacing: '-0.5px',
-            transition: 'all 0.3s'
-          },
-          onMouseEnter: (e) => e.target.style.opacity = '0.9',
-          onMouseLeave: (e) => e.target.style.opacity = '1'
+            letterSpacing: '-0.3px',
+            transition: 'all 0.3s',
+            whiteSpace: 'nowrap'
+          }
         },
         "MJ&Roberts"
       ),
@@ -159,9 +165,9 @@ const NavigationBar = () => {
         {
           "aria-controls": "basic-navbar-nav",
           style: { 
-            border: '1px solid rgba(102, 126, 234, 0.3)',
-            borderRadius: '8px',
-            padding: '8px 12px'
+            border: '1px solid rgba(102, 126, 234, 0.4)',
+            borderRadius: '10px',
+            padding: '6px 12px'
           }
         },
         React.createElement(FaBars, { style: { color: '#667eea', fontSize: '1.2rem' } })
@@ -173,45 +179,38 @@ const NavigationBar = () => {
         { id: "basic-navbar-nav" },
         React.createElement(
           Nav,
-          { className: "ms-auto", style: { gap: '4px', alignItems: 'center' } },
+          { className: "ms-auto", style: { gap: '2px', alignItems: 'center' } },
           navLinks.map((link, index) => {
             if (link.dropdown) {
               return React.createElement(
                 NavDropdown,
                 {
                   key: index,
-                  title: React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: '6px' } },
+                  title: React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem' } },
                     link.icon,
                     link.label,
-                    React.createElement(FaChevronDown, { style: { fontSize: '10px', opacity: 0.6 } })
+                    React.createElement(FaChevronDown, { style: { fontSize: '9px', opacity: 0.6 } })
                   ),
                   id: `${link.label.toLowerCase()}-dropdown`,
                   className: "custom-dropdown",
                   style: { 
                     color: isActive(link.path) ? '#667eea' : '#e0e0e0',
                     fontWeight: isActive(link.path) ? '600' : '500',
-                    padding: '8px 16px',
-                    borderRadius: '10px',
+                    padding: '6px 12px',
+                    borderRadius: '8px',
                     transition: 'all 0.3s'
                   },
                   renderMenuOnMount: true
                 },
-                React.createElement(NavDropdown.Item, { 
-                  as: Link, 
-                  to: link.path, 
-                  style: { 
-                    padding: '10px 24px',
-                    fontWeight: '600',
-                    color: '#667eea'
-                  } 
-                }, `All ${link.label}`),
-                React.createElement(NavDropdown.Divider, null),
                 link.items.map((item, idx) => 
                   React.createElement(NavDropdown.Item, { 
                     key: idx, 
                     as: Link, 
                     to: item.path, 
-                    style: { padding: '8px 24px' } 
+                    style: { 
+                      padding: '8px 20px',
+                      fontSize: '0.85rem'
+                    } 
                   }, item.label)
                 )
               );
@@ -227,23 +226,25 @@ const NavigationBar = () => {
                   style: {
                     background: 'linear-gradient(135deg, #667eea, #764ba2)',
                     borderRadius: '50px',
-                    padding: '8px 28px',
-                    marginLeft: '12px',
+                    padding: '6px 20px',
+                    marginLeft: '8px',
                     color: 'white',
                     fontWeight: '600',
+                    fontSize: '0.85rem',
                     transition: 'all 0.3s',
-                    boxShadow: '0 2px 8px rgba(102, 126, 234, 0.3)'
+                    boxShadow: '0 2px 8px rgba(102, 126, 234, 0.3)',
+                    whiteSpace: 'nowrap'
                   },
                   onMouseEnter: (e) => {
                     e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
+                    e.target.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.5)';
                   },
                   onMouseLeave: (e) => {
                     e.target.style.transform = 'translateY(0)';
                     e.target.style.boxShadow = '0 2px 8px rgba(102, 126, 234, 0.3)';
                   }
                 },
-                React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: '8px' } },
+                React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: '6px' } },
                   link.icon,
                   link.label
                 )
@@ -259,13 +260,15 @@ const NavigationBar = () => {
                 style: {
                   color: isActive(link.path) ? '#667eea' : '#e0e0e0',
                   fontWeight: isActive(link.path) ? '600' : '500',
-                  padding: '8px 16px',
-                  borderRadius: '10px',
+                  padding: '6px 12px',
+                  borderRadius: '8px',
                   transition: 'all 0.3s',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px',
-                  background: isActive(link.path) ? 'rgba(102, 126, 234, 0.1)' : 'transparent'
+                  fontSize: '0.9rem',
+                  background: isActive(link.path) ? 'rgba(102, 126, 234, 0.1)' : 'transparent',
+                  whiteSpace: 'nowrap'
                 },
                 onMouseEnter: (e) => {
                   if (!isActive(link.path)) {
@@ -298,39 +301,38 @@ style.textContent = `
   }
   
   .navbar-custom.scrolled {
-    padding: 8px 0;
+    padding: 6px 0;
     background: rgba(8, 8, 12, 0.98) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
   }
   
   .custom-dropdown .dropdown-menu {
     background: rgba(20, 20, 30, 0.98);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(102, 126, 234, 0.2);
-    border-radius: 16px;
+    border-radius: 14px;
     margin-top: 8px;
-    padding: 12px 0;
+    padding: 10px 0;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    min-width: 260px;
+    min-width: 250px;
   }
   
   .custom-dropdown .dropdown-item {
-    color: #e0e0e0;
-    transition: all 0.3s;
-    font-size: 0.9rem;
-    padding: 10px 24px;
-    position: relative;
+    color: #d0d0d0;
+    transition: all 0.25s;
+    font-size: 0.85rem;
+    padding: 8px 20px;
   }
   
   .custom-dropdown .dropdown-item:hover {
     background: linear-gradient(90deg, rgba(102, 126, 234, 0.15), transparent);
     color: #667eea;
-    padding-left: 30px;
+    padding-left: 26px;
   }
   
   .custom-dropdown .dropdown-divider {
     border-color: rgba(102, 126, 234, 0.1);
-    margin: 8px 0;
+    margin: 6px 0;
   }
   
   .custom-dropdown .dropdown-toggle::after {
@@ -342,16 +344,16 @@ style.textContent = `
     outline: none;
   }
   
-  /* Animation for dropdown */
+  /* Dropdown Animation */
   .custom-dropdown .dropdown-menu {
-    animation: dropdownFadeIn 0.25s ease;
+    animation: dropdownFadeIn 0.2s ease;
     transform-origin: top;
   }
   
   @keyframes dropdownFadeIn {
     from {
       opacity: 0;
-      transform: translateY(-10px) scaleY(0.95);
+      transform: translateY(-8px) scaleY(0.96);
     }
     to {
       opacity: 1;
@@ -362,7 +364,7 @@ style.textContent = `
   /* Mobile styles */
   @media (max-width: 992px) {
     .navbar-custom {
-      padding: 12px 0 !important;
+      padding: 10px 0 !important;
     }
     
     .custom-dropdown .dropdown-menu {
@@ -385,48 +387,28 @@ style.textContent = `
     }
     
     .navbar-nav {
-      gap: 8px !important;
-      margin-top: 16px;
+      gap: 5px !important;
+      margin-top: 12px;
     }
     
     .nav-link {
-      padding: 10px 16px !important;
-      border-radius: 12px;
+      padding: 8px 16px !important;
+      border-radius: 10px;
     }
     
     .custom-dropdown .dropdown-toggle {
-      padding: 10px 16px !important;
+      padding: 8px 16px !important;
     }
   }
   
-  /* Hover effect for nav items */
+  /* Nav item hover effect */
   .nav-link {
     position: relative;
   }
   
-  .nav-link::before {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    transition: width 0.3s ease;
-  }
-  
-  .nav-link:hover::before {
-    width: 70%;
-  }
-  
-  .dropdown-toggle.nav-link::before {
-    display: none;
-  }
-  
-  /* Scrollbar styling */
+  /* Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   
   ::-webkit-scrollbar-track {
@@ -435,11 +417,7 @@ style.textContent = `
   
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 4px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #764ba2, #f093fb);
+    border-radius: 3px;
   }
 `;
 document.head.appendChild(style);

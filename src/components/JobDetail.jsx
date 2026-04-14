@@ -1,4 +1,5 @@
 // components/JobDetail.jsx
+/* eslint-disable no-unused-vars */
 const React = require('react');
 const { useState } = React;
 const { Container, Row, Col, Card, Button, Badge, ListGroup, Form, Alert, Modal } = require('react-bootstrap');
@@ -6,8 +7,7 @@ const { Link, useParams } = require('react-router-dom');
 const { 
   FaMapMarkerAlt, FaBriefcase, FaDollarSign, FaGraduationCap, FaClock, 
   FaArrowLeft, FaCheckCircle, FaHeart, FaShare, FaPrint, 
-  FaCalendarAlt, FaUsers, FaBuilding, FaLaptop, FaCoffee, FaGym,
-  FaBook, FaPlane, FaMobile, FaHome
+  FaCalendarAlt, FaUsers, FaBuilding
 } = require('react-icons/fa');
 
 const JobDetail = function() {
@@ -34,46 +34,29 @@ const JobDetail = function() {
       department: 'Engineering',
       posted: '2 days ago',
       applicants: 45,
-      description: 'We are seeking an experienced Senior Full Stack Developer to lead our web development team. You will be responsible for architecting and building scalable web applications that serve enterprise clients worldwide.\n\nAs a technical leader, you will mentor junior developers, conduct code reviews, and drive best practices across the engineering organization. You\'ll work closely with product managers and designers to deliver high-quality features that solve real business problems.\n\nOur tech stack includes React, Node.js, TypeScript, GraphQL, and cloud services on AWS/Azure. We practice continuous deployment and value clean, maintainable code.',
+      description: 'We are seeking an experienced Senior Full Stack Developer to lead our web development team. You will be responsible for architecting and building scalable web applications that serve enterprise clients worldwide.',
       responsibilities: [
         'Architect and build scalable web applications using React and Node.js',
         'Lead technical design discussions and architecture reviews',
         'Mentor junior developers and conduct code reviews',
         'Collaborate with product managers and designers',
-        'Optimize application performance and ensure security best practices',
-        'Participate in on-call rotation for critical systems',
-        'Drive continuous improvement in development processes'
+        'Optimize application performance and ensure security best practices'
       ],
       requirements: [
         '5+ years of professional software development experience',
         'Strong proficiency in React, Node.js, and TypeScript',
         'Experience with GraphQL and REST APIs',
         'Knowledge of cloud platforms (AWS or Azure)',
-        'Experience with MongoDB, PostgreSQL, or similar databases',
-        'Understanding of CI/CD pipelines and DevOps practices',
         'Bachelor\'s degree in Computer Science or equivalent experience'
       ],
       benefits: [
-        { icon: React.createElement(FaHeart), title: 'Health Insurance', desc: 'Comprehensive medical, dental, and vision coverage' },
-        { icon: React.createElement(FaDollarSign), title: '401k Match', desc: '4% match on 401k contributions' },
-        { icon: React.createElement(FaHome), title: 'Remote Work', desc: 'Work from anywhere with home office stipend' },
-        { icon: React.createElement(FaBook), title: 'Learning Budget', desc: '$2000 annual learning and development budget' },
-        { icon: React.createElement(FaClock), title: 'Flexible Hours', desc: 'Flexible working hours and unlimited PTO' },
-        { icon: React.createElement(FaCoffee), title: 'Wellness Stipend', desc: '$500 quarterly wellness allowance' }
+        { title: 'Health Insurance', desc: 'Comprehensive medical, dental, and vision coverage' },
+        { title: '401k Match', desc: '4% match on 401k contributions' },
+        { title: 'Remote Work', desc: 'Work from anywhere with home office stipend' },
+        { title: 'Learning Budget', desc: '$2000 annual learning and development budget' }
       ],
-      team: {
-        size: 12,
-        manager: 'Sarah Johnson',
-        techLead: 'Michael Chen',
-        culture: 'Collaborative, innovative, and fast-paced'
-      },
-      interviewProcess: [
-        'Initial screening (30 min video call)',
-        'Technical assessment (take-home project)',
-        'Technical interview with the team (1 hour)',
-        'System design interview (1 hour)',
-        'Culture fit interview with leadership (45 min)'
-      ]
+      team: { size: 12, manager: 'Sarah Johnson', techLead: 'Michael Chen', culture: 'Collaborative, innovative, and fast-paced' },
+      interviewProcess: ['Initial screening (30 min video call)', 'Technical assessment (take-home project)', 'Technical interview with the team (1 hour)', 'System design interview (1 hour)', 'Culture fit interview with leadership (45 min)']
     }
   };
 
@@ -89,7 +72,7 @@ const JobDetail = function() {
     description: 'Detailed job description and requirements coming soon. Please check back later or contact us for more information.',
     responsibilities: ['Detailed responsibilities to be announced'],
     requirements: ['Detailed requirements to be announced'],
-    benefits: [{ icon: React.createElement(FaHeart), title: 'Competitive Benefits', desc: 'Comprehensive benefits package' }],
+    benefits: [{ title: 'Competitive Benefits', desc: 'Comprehensive benefits package' }],
     team: { size: 0, manager: 'TBD', techLead: 'TBD', culture: 'Collaborative and innovative' },
     interviewProcess: ['Application review', 'Initial screening', 'Team interview', 'Final decision']
   };
@@ -123,23 +106,17 @@ const JobDetail = function() {
     React.createElement(
       Container,
       { style: { padding: '40px 0' } },
-      
-      // Back Button
       React.createElement(
         Button,
         { as: Link, to: '/jobs', variant: 'link', style: { color: '#667eea', marginBottom: '20px', paddingLeft: 0 } },
         React.createElement(FaArrowLeft, { style: { marginRight: '5px' } }), ' Back to all jobs'
       ),
-      
       React.createElement(
         Row,
         null,
-        // Left Column
         React.createElement(
           Col,
           { lg: 8 },
-          
-          // Job Header
           React.createElement(
             Card,
             { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '30px' } },
@@ -180,8 +157,6 @@ const JobDetail = function() {
               )
             )
           ),
-          
-          // Job Description
           React.createElement(
             Card,
             { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '30px' } },
@@ -189,11 +164,9 @@ const JobDetail = function() {
               Card.Body,
               { style: { padding: '30px' } },
               React.createElement('h3', { style: { marginBottom: '20px', color: '#667eea' } }, 'Job Description'),
-              React.createElement('p', { style: { color: '#ccc', lineHeight: '1.8', whiteSpace: 'pre-line' } }, job.description)
+              React.createElement('p', { style: { color: '#ccc', lineHeight: '1.8' } }, job.description)
             )
           ),
-          
-          // Responsibilities
           React.createElement(
             Card,
             { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '30px' } },
@@ -214,8 +187,6 @@ const JobDetail = function() {
               )
             )
           ),
-          
-          // Requirements
           React.createElement(
             Card,
             { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '30px' } },
@@ -235,42 +206,11 @@ const JobDetail = function() {
                 })
               )
             )
-          ),
-          
-          // Interview Process
-          React.createElement(
-            Card,
-            { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '30px' } },
-            React.createElement(
-              Card.Body,
-              { style: { padding: '30px' } },
-              React.createElement('h3', { style: { marginBottom: '20px', color: '#667eea' } }, 'Interview Process'),
-              React.createElement(
-                Row,
-                null,
-                job.interviewProcess.map(function(step, idx) {
-                  return React.createElement(
-                    Col,
-                    { md: 6, key: idx, className: 'mb-3' },
-                    React.createElement(
-                      'div',
-                      { style: { backgroundColor: '#222', padding: '15px', borderRadius: '10px', borderLeft: '4px solid #667eea' } },
-                      React.createElement('strong', { style: { color: '#667eea' } }, 'Step ', idx + 1),
-                      React.createElement('p', { style: { color: '#ccc', marginTop: '5px', marginBottom: 0 } }, step)
-                    )
-                  );
-                })
-              )
-            )
           )
         ),
-        
-        // Right Column
         React.createElement(
           Col,
           { lg: 4 },
-          
-          // Apply Button
           React.createElement(
             Card,
             { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '30px', position: 'sticky', top: '100px' } },
@@ -286,8 +226,6 @@ const JobDetail = function() {
               React.createElement('p', { style: { color: '#aaa', fontSize: '0.85rem' } }, 'Applications are reviewed within 5 business days')
             )
           ),
-          
-          // Benefits
           React.createElement(
             Card,
             { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '30px' } },
@@ -299,7 +237,7 @@ const JobDetail = function() {
                 return React.createElement(
                   'div',
                   { key: idx, style: { display: 'flex', alignItems: 'center', marginBottom: '15px' } },
-                  React.createElement('div', { style: { fontSize: '1.5rem', color: '#667eea', marginRight: '15px' } }, benefit.icon),
+                  React.createElement(FaCheckCircle, { style: { color: '#10b981', marginRight: '15px' } }),
                   React.createElement(
                     'div',
                     null,
@@ -310,48 +248,28 @@ const JobDetail = function() {
               })
             )
           ),
-          
-          // Team Info
           React.createElement(
             Card,
             { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px' } },
             React.createElement(
               Card.Body,
               { style: { padding: '30px' } },
-              React.createElement('h3', { style: { marginBottom: '20px', color: '#667eea' } }, 'Team & Culture'),
-              React.createElement(
-                'div',
-                { style: { marginBottom: '15px' } },
-                React.createElement('div', { style: { color: '#aaa', marginBottom: '5px' } }, 'Team Size'),
-                React.createElement('div', { style: { fontWeight: '600' } }, job.team.size, ' members')
-              ),
-              React.createElement(
-                'div',
-                { style: { marginBottom: '15px' } },
-                React.createElement('div', { style: { color: '#aaa', marginBottom: '5px' } }, 'Hiring Manager'),
-                React.createElement('div', { style: { fontWeight: '600' } }, job.team.manager)
-              ),
-              React.createElement(
-                'div',
-                { style: { marginBottom: '15px' } },
-                React.createElement('div', { style: { color: '#aaa', marginBottom: '5px' } }, 'Tech Lead'),
-                React.createElement('div', { style: { fontWeight: '600' } }, job.team.techLead)
-              ),
-              React.createElement(
-                'div',
-                null,
-                React.createElement('div', { style: { color: '#aaa', marginBottom: '5px' } }, 'Culture'),
-                React.createElement('div', { style: { fontWeight: '600' } }, job.team.culture)
-              )
+              React.createElement('h3', { style: { marginBottom: '20px', color: '#667eea' } }, 'Interview Process'),
+              job.interviewProcess.map(function(step, idx) {
+                return React.createElement(
+                  'div',
+                  { key: idx, style: { marginBottom: '10px', padding: '10px', backgroundColor: '#222', borderRadius: '10px' } },
+                  React.createElement('strong', { style: { color: '#667eea' } }, 'Step ', idx + 1),
+                  React.createElement('p', { style: { color: '#ccc', marginTop: '5px', marginBottom: 0, fontSize: '0.85rem' } }, step)
+                );
+              })
             )
           )
         )
       ),
-      
-      // Application Modal
       React.createElement(
         Modal,
-        { show: showApply, onHide: function() { setShowApply(false); }, size: 'lg', centered },
+        { show: showApply, onHide: function() { setShowApply(false); }, size: "lg", centered: true },
         React.createElement(
           Modal.Header,
           { style: { backgroundColor: '#1a1a1a', borderBottom: '1px solid #333' } },
