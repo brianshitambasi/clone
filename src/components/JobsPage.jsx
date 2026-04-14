@@ -3,7 +3,7 @@ const React = require('react');
 const { useState, useEffect } = React;
 const { Container, Row, Col, Card, Button, Badge, Form, InputGroup, Pagination } = require('react-bootstrap');
 const { Link } = require('react-router-dom');
-const { FaSearch, FaMapMarkerAlt, FaBriefcase, FaClock, FaDollarSign, FaGraduationCap, FaHeart, FaFilter } = require('react-icons/fa');
+const { FaSearch, FaMapMarkerAlt, FaBriefcase, FaDollarSign, FaGraduationCap, FaHeart } = require('react-icons/fa'); // REMOVED FaClock and FaFilter
 
 const JobsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
