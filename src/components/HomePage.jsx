@@ -1,8 +1,8 @@
-cat > src/components/HomePage.jsx << 'EOF'
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Container, Row, Col, Carousel, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { FaCode, FaChartLine, FaMobile, FaLightbulb, FaRobot } from 'react-icons/fa';
+const React = require('react');
+const { useState, useEffect, useRef, useCallback } = React;
+const { Container, Row, Col, Carousel, Button } = require('react-bootstrap');
+const { Link } = require('react-router-dom');
+const { FaCode, FaChartLine, FaMobile, FaLightbulb, FaRobot } = require('react-icons/fa');
 
 const HomePage = () => {
   const [services] = useState([
@@ -13,7 +13,13 @@ const HomePage = () => {
     { id: 'technology-advisory', title: 'Technology advisory', description: 'Expert technology consulting to help you make the right strategic decisions.' }
   ]);
 
-  const serviceIcons = [<FaCode key="1" />, <FaRobot key="2" />, <FaChartLine key="3" />, <FaMobile key="4" />, <FaLightbulb key="5" />];
+  const serviceIcons = [
+    React.createElement(FaCode, { key: "1" }),
+    React.createElement(FaRobot, { key: "2" }),
+    React.createElement(FaChartLine, { key: "3" }),
+    React.createElement(FaMobile, { key: "4" }),
+    React.createElement(FaLightbulb, { key: "5" })
+  ];
 
   const [counters, setCounters] = useState({
     clients: 0,
@@ -25,24 +31,25 @@ const HomePage = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const statsRef = useRef(null);
 
-  const targetValues = React.useMemo(() => ({
-    clients: 800,
-    engineers: 3000,
-    years: 25,
-    countries: 40
-  }), []);
+  const targetValues = React.useMemo(function() {
+    return {
+      clients: 800,
+      engineers: 3000,
+      years: 25,
+      countries: 40
+    };
+  }, []);
 
-  const animateNumbers = useCallback(() => {
+  const animateNumbers = useCallback(function() {
     const duration = 2000;
     const frameDuration = 1000 / 60;
     const totalFrames = Math.round(duration / frameDuration);
-    
     let frame = 0;
     
-    const timer = setInterval(() => {
+    const timer = setInterval(function() {
       frame++;
       const progress = frame / totalFrames;
-      const easeOutQuad = 1 - (1 - progress) * (1 - progress);
+      const easeOutQuad = 1 - Math.pow(1 - progress, 2);
       
       setCounters({
         clients: Math.floor(easeOutQuad * targetValues.clients),
@@ -58,10 +65,10 @@ const HomePage = () => {
     }, frameDuration);
   }, [targetValues]);
 
-  useEffect(() => {
+  useEffect(function() {
     const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
+      function(entries) {
+        const entry = entries[0];
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
           animateNumbers();
@@ -76,164 +83,154 @@ const HomePage = () => {
       observer.observe(currentRef);
     }
 
-    return () => {
+    return function() {
       if (currentRef) {
         observer.unobserve(currentRef);
       }
     };
   }, [hasAnimated, animateNumbers]);
 
-  return (
-    <>
-      <div className="video-background">
-        <video autoPlay loop muted playsInline>
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-world-map-32873-large.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div className="overlay"></div>
-
-      <section className="hero-section">
-        <Container>
-          <Row>
-            <Col md={12}>
-              <div className="hero-content">
-                <h1>MJ & Roberts Consulting</h1>
-                <p>Digital Innovation That Drives Growth</p>
-                <div className="hero-buttons">
-                  <Button as={Link} to="/contact" className="btn-primary-custom">Get Started</Button>
-                  <Button as={Link} to="/services" className="btn-outline-custom">Our Services</Button>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
-      <section className="services-carousel-section">
-        <Container>
-          <h2 className="section-title">Our Services</h2>
-          <Carousel interval={4000} indicators controls>
-            {services.map((service, index) => (
-              <Carousel.Item key={index}>
-                <div className="service-card">
-                  <div className="service-icon">
-                    {serviceIcons[index % serviceIcons.length]}
-                  </div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                  <Button as={Link} to={`/services/${service.id}`} variant="link" className="btn-learn">Learn more →</Button>
-                </div>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </Container>
-      </section>
-
-      <section className="stats-section" ref={statsRef}>
-        <Container>
-          <Row>
-            <Col md={3} sm={6}>
-              <div className="stat-card">
-                <div className="stat-number">{counters.clients.toLocaleString()}+</div>
-                <div className="stat-label">Clients Served</div>
-              </div>
-            </Col>
-            <Col md={3} sm={6}>
-              <div className="stat-card">
-                <div className="stat-number">{counters.engineers.toLocaleString()}+</div>
-                <div className="stat-label">Engineers</div>
-              </div>
-            </Col>
-            <Col md={3} sm={6}>
-              <div className="stat-card">
-                <div className="stat-number">{counters.years}+</div>
-                <div className="stat-label">Years Experience</div>
-              </div>
-            </Col>
-            <Col md={3} sm={6}>
-              <div className="stat-card">
-                <div className="stat-number">{counters.countries}</div>
-                <div className="stat-label">Countries</div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
-      <section className="industries-section">
-        <Container>
-          <h2 className="section-title">Industries We Serve</h2>
-          <Row>
-            <Col md={4}>
-              <div className="industry-card">
-                <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&h=250&fit=crop" alt="Manufacturing" />
-                <div className="industry-overlay">
-                  <h4>Manufacturing</h4>
-                </div>
-              </div>
-            </Col>
-            <Col md={4}>
-              <div className="industry-card">
-                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop" alt="Retail" />
-                <div className="industry-overlay">
-                  <h4>Retail</h4>
-                </div>
-              </div>
-            </Col>
-            <Col md={4}>
-              <div className="industry-card">
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=250&fit=crop" alt="Healthcare" />
-                <div className="industry-overlay">
-                  <h4>Healthcare</h4>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
-      <footer className="footer">
-        <Container>
-          <Row>
-            <Col md={4}>
-              <h5>MJ & Roberts Consulting</h5>
-              <p>Digital innovation that drives growth. We help businesses transform through cutting-edge technology solutions.</p>
-              <div className="social-icons">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
-              </div>
-            </Col>
-            <Col md={2}>
-              <h5>Quick Links</h5>
-              <p><Link to="/about">About Us</Link></p>
-              <p><Link to="/services">Services</Link></p>
-              <p><Link to="/solutions">Solutions</Link></p>
-              <p><Link to="/technologies">Technologies</Link></p>
-              <p><Link to="/case-studies">Case Studies</Link></p>
-            </Col>
-            <Col md={3}>
-              <h5>Contact Info</h5>
-              <p><i className="fas fa-envelope"></i> info@mjroberts.com</p>
-              <p><i className="fas fa-phone"></i> +1 (555) 123-4567</p>
-            </Col>
-            <Col md={3}>
-              <h5>Newsletter</h5>
-              <p>Subscribe to get updates</p>
-              <div className="input-group">
-                <input type="email" className="form-control" placeholder="Your email" />
-                <Button variant="primary">Subscribe</Button>
-              </div>
-            </Col>
-          </Row>
-          <div className="footer-bottom">
-            <p>&copy; 2024 MJ & Roberts Consulting. All rights reserved.</p>
-          </div>
-        </Container>
-      </footer>
-    </>
+  return React.createElement(React.Fragment, null,
+    React.createElement("div", { className: "video-background" },
+      React.createElement("video", { autoPlay: true, loop: true, muted: true, playsInline: true },
+        React.createElement("source", { src: "https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-world-map-32873-large.mp4", type: "video/mp4" })
+      )
+    ),
+    React.createElement("div", { className: "overlay" }),
+    React.createElement("section", { className: "hero-section" },
+      React.createElement(Container, null,
+        React.createElement(Row, null,
+          React.createElement(Col, { md: 12 },
+            React.createElement("div", { className: "hero-content" },
+              React.createElement("h1", null, "MJ & Roberts Consulting"),
+              React.createElement("p", null, "Digital Innovation That Drives Growth"),
+              React.createElement("div", { className: "hero-buttons" },
+                React.createElement(Button, { as: Link, to: "/contact", className: "btn-primary-custom" }, "Get Started"),
+                React.createElement(Button, { as: Link, to: "/services", className: "btn-outline-custom" }, "Our Services")
+              )
+            )
+          )
+        )
+      )
+    ),
+    React.createElement("section", { className: "services-carousel-section" },
+      React.createElement(Container, null,
+        React.createElement("h2", { className: "section-title" }, "Our Services"),
+        React.createElement(Carousel, { interval: 4000, indicators: true, controls: true },
+          services.map(function(service, index) {
+            return React.createElement(Carousel.Item, { key: index },
+              React.createElement("div", { className: "service-card" },
+                React.createElement("div", { className: "service-icon" }, serviceIcons[index % serviceIcons.length]),
+                React.createElement("h3", null, service.title),
+                React.createElement("p", null, service.description),
+                React.createElement(Button, { as: Link, to: "/services/" + service.id, variant: "link", className: "btn-learn" }, "Learn more →")
+              )
+            );
+          })
+        )
+      )
+    ),
+    React.createElement("section", { className: "stats-section", ref: statsRef },
+      React.createElement(Container, null,
+        React.createElement(Row, null,
+          React.createElement(Col, { md: 3, sm: 6 },
+            React.createElement("div", { className: "stat-card" },
+              React.createElement("div", { className: "stat-number" }, counters.clients.toLocaleString(), "+"),
+              React.createElement("div", { className: "stat-label" }, "Clients Served")
+            )
+          ),
+          React.createElement(Col, { md: 3, sm: 6 },
+            React.createElement("div", { className: "stat-card" },
+              React.createElement("div", { className: "stat-number" }, counters.engineers.toLocaleString(), "+"),
+              React.createElement("div", { className: "stat-label" }, "Engineers")
+            )
+          ),
+          React.createElement(Col, { md: 3, sm: 6 },
+            React.createElement("div", { className: "stat-card" },
+              React.createElement("div", { className: "stat-number" }, counters.years, "+"),
+              React.createElement("div", { className: "stat-label" }, "Years Experience")
+            )
+          ),
+          React.createElement(Col, { md: 3, sm: 6 },
+            React.createElement("div", { className: "stat-card" },
+              React.createElement("div", { className: "stat-number" }, counters.countries),
+              React.createElement("div", { className: "stat-label" }, "Countries")
+            )
+          )
+        )
+      )
+    ),
+    React.createElement("section", { className: "industries-section" },
+      React.createElement(Container, null,
+        React.createElement("h2", { className: "section-title" }, "Industries We Serve"),
+        React.createElement(Row, null,
+          React.createElement(Col, { md: 4 },
+            React.createElement("div", { className: "industry-card" },
+              React.createElement("img", { src: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&h=250&fit=crop", alt: "Manufacturing" }),
+              React.createElement("div", { className: "industry-overlay" },
+                React.createElement("h4", null, "Manufacturing")
+              )
+            )
+          ),
+          React.createElement(Col, { md: 4 },
+            React.createElement("div", { className: "industry-card" },
+              React.createElement("img", { src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop", alt: "Retail" }),
+              React.createElement("div", { className: "industry-overlay" },
+                React.createElement("h4", null, "Retail")
+              )
+            )
+          ),
+          React.createElement(Col, { md: 4 },
+            React.createElement("div", { className: "industry-card" },
+              React.createElement("img", { src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=250&fit=crop", alt: "Healthcare" }),
+              React.createElement("div", { className: "industry-overlay" },
+                React.createElement("h4", null, "Healthcare")
+              )
+            )
+          )
+        )
+      )
+    ),
+    React.createElement("footer", { className: "footer" },
+      React.createElement(Container, null,
+        React.createElement(Row, null,
+          React.createElement(Col, { md: 4 },
+            React.createElement("h5", null, "MJ & Roberts Consulting"),
+            React.createElement("p", null, "Digital innovation that drives growth. We help businesses transform through cutting-edge technology solutions."),
+            React.createElement("div", { className: "social-icons" },
+              React.createElement("a", { href: "https://linkedin.com", target: "_blank", rel: "noopener noreferrer" }, React.createElement("i", { className: "fab fa-linkedin" })),
+              React.createElement("a", { href: "https://twitter.com", target: "_blank", rel: "noopener noreferrer" }, React.createElement("i", { className: "fab fa-twitter" })),
+              React.createElement("a", { href: "https://facebook.com", target: "_blank", rel: "noopener noreferrer" }, React.createElement("i", { className: "fab fa-facebook" }))
+            )
+          ),
+          React.createElement(Col, { md: 2 },
+            React.createElement("h5", null, "Quick Links"),
+            React.createElement("p", null, React.createElement(Link, { to: "/about" }, "About Us")),
+            React.createElement("p", null, React.createElement(Link, { to: "/services" }, "Services")),
+            React.createElement("p", null, React.createElement(Link, { to: "/solutions" }, "Solutions")),
+            React.createElement("p", null, React.createElement(Link, { to: "/technologies" }, "Technologies")),
+            React.createElement("p", null, React.createElement(Link, { to: "/case-studies" }, "Case Studies"))
+          ),
+          React.createElement(Col, { md: 3 },
+            React.createElement("h5", null, "Contact Info"),
+            React.createElement("p", null, React.createElement("i", { className: "fas fa-envelope" }), " info@mjroberts.com"),
+            React.createElement("p", null, React.createElement("i", { className: "fas fa-phone" }), " +1 (555) 123-4567")
+          ),
+          React.createElement(Col, { md: 3 },
+            React.createElement("h5", null, "Newsletter"),
+            React.createElement("p", null, "Subscribe to get updates"),
+            React.createElement("div", { className: "input-group" },
+              React.createElement("input", { type: "email", className: "form-control", placeholder: "Your email" }),
+              React.createElement(Button, { variant: "primary" }, "Subscribe")
+            )
+          )
+        ),
+        React.createElement("div", { className: "footer-bottom" },
+          React.createElement("p", null, "\u00A9 2024 MJ & Roberts Consulting. All rights reserved.")
+        )
+      )
+    )
   );
 };
 
-export default HomePage;
-EOF
+module.exports = HomePage;
