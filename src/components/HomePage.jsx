@@ -1,6 +1,7 @@
 // components/HomePage.jsx
 /* eslint-disable no-unused-vars */
 const React = require('react');
+const ThreeBackground = require('./ThreeBackground').default;
 const { useState, useEffect, useRef, useCallback } = React;
 const { Container, Row, Col, Carousel, Button, Card, Badge, Modal, Navbar, Nav } = require('react-bootstrap');
 const { Link } = require('react-router-dom');

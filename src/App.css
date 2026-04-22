@@ -1221,3 +1221,10 @@ body {
   background-color: #764ba2 !important;
   transform: scale(1.2);
 }
+
+.hero-section,
+section,
+footer {
+  position: relative;
+  z-index: 1;
+}
