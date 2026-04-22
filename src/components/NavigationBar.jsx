@@ -1,4 +1,3 @@
-// components/NavigationBar.jsx
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
@@ -39,11 +38,11 @@ const NavigationBar = () => {
       dropdown: true,
       items: [
         { path: '/services', label: 'All Services' },
-        { path: '/services/it-consulting', label: 'IT Consulting & Digital Transformation' },
-        { path: '/services/software-engineering', label: 'Software Engineering & Application Services' },
-        { path: '/services/managed-it', label: 'Managed IT Services & Support' },
-        { path: '/services/devops', label: 'DevOps & Platform Engineering' },
-        { path: '/services/qa', label: 'Quality Assurance & Testing' }
+        { path: '/services/it-consulting', label: 'IT Consulting' },
+        { path: '/services/software-engineering', label: 'Software Engineering' },
+        { path: '/services/managed-it', label: 'Managed IT Services' },
+        { path: '/services/devops', label: 'DevOps & Platform' },
+        { path: '/services/qa', label: 'Quality Assurance' }
       ]
     },
     { 
@@ -53,12 +52,11 @@ const NavigationBar = () => {
       dropdown: true,
       items: [
         { path: '/solutions', label: 'All Solutions' },
-        { path: '/solutions/crm', label: 'CRM (Salesforce, Dynamics 365)' },
-        { path: '/solutions/erp', label: 'ERP (SAP, Odoo)' },
+        { path: '/solutions/crm', label: 'CRM Solutions' },
+        { path: '/solutions/erp', label: 'ERP Solutions' },
         { path: '/solutions/digital-commerce', label: 'Digital Commerce' },
-        { path: '/solutions/data-analytics', label: 'Data Analytics & BI' },
-        { path: '/solutions/ai-rpa', label: 'Artificial Intelligence & RPA' },
-        { path: '/solutions/ar-vr-iot', label: 'AR/VR & IoT' }
+        { path: '/solutions/data-analytics', label: 'Data Analytics' },
+        { path: '/solutions/ai-rpa', label: 'AI & RPA' }
       ]
     },
     { 
@@ -70,10 +68,9 @@ const NavigationBar = () => {
         { path: '/technologies', label: 'All Technologies' },
         { path: '/technologies/salesforce', label: 'Salesforce' },
         { path: '/technologies/aws', label: 'AWS' },
-        { path: '/technologies/azure', label: 'Microsoft Azure & Dynamics 365' },
-        { path: '/technologies/sap', label: 'SAP Commerce & Odoo' },
-        { path: '/technologies/atlassian', label: 'Atlassian' },
-        { path: '/technologies/powerbi', label: 'Power BI' }
+        { path: '/technologies/azure', label: 'Azure & Dynamics' },
+        { path: '/technologies/sap', label: 'SAP & Odoo' },
+        { path: '/technologies/atlassian', label: 'Atlassian' }
       ]
     },
     { 
@@ -85,9 +82,8 @@ const NavigationBar = () => {
         { path: '/industries', label: 'All Industries' },
         { path: '/industries/healthcare', label: 'Healthcare' },
         { path: '/industries/finance', label: 'Finance & Insurance' },
-        { path: '/industries/manufacturing', label: 'Manufacturing & Retail' },
-        { path: '/industries/software', label: 'Software & Hi-Tech' },
-        { path: '/industries/professional', label: 'Professional Services' }
+        { path: '/industries/manufacturing', label: 'Manufacturing' },
+        { path: '/industries/software', label: 'Software & Hi-Tech' }
       ]
     },
     { 
@@ -132,12 +128,19 @@ const NavigationBar = () => {
         backgroundColor: scrolled ? 'rgba(8, 8, 12, 0.98)' : 'rgba(8, 8, 12, 0.92)',
         backdropFilter: 'blur(16px)',
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-        padding: scrolled ? '6px 0' : '14px 0',
+        padding: scrolled ? '8px 0' : '16px 0',
         borderBottom: '1px solid rgba(102, 126, 234, 0.2)',
         boxShadow: scrolled ? '0 4px 25px rgba(0, 0, 0, 0.3)' : 'none'
       }
     },
-    React.createElement(Container, { fluid: true, style: { maxWidth: '1300px', padding: '0 24px' } },
+    React.createElement(Container, { 
+      fluid: true, 
+      style: { 
+        maxWidth: '1400px', 
+        padding: '0 20px',
+        margin: '0 auto'
+      } 
+    },
       // Brand / Logo
       React.createElement(
         Navbar.Brand,
@@ -145,7 +148,7 @@ const NavigationBar = () => {
           as: Link,
           to: "/",
           style: {
-            fontSize: '1.5rem',
+            fontSize: '1.3rem',
             fontWeight: '800',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
             WebkitBackgroundClip: 'text',
@@ -153,7 +156,8 @@ const NavigationBar = () => {
             backgroundClip: 'text',
             letterSpacing: '-0.3px',
             transition: 'all 0.3s',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            marginRight: '1rem'
           }
         },
         "MJ&Roberts"
@@ -179,24 +183,31 @@ const NavigationBar = () => {
         { id: "basic-navbar-nav" },
         React.createElement(
           Nav,
-          { className: "ms-auto", style: { gap: '2px', alignItems: 'center' } },
+          { 
+            className: "ms-auto", 
+            style: { 
+              gap: '4px', 
+              alignItems: 'center',
+              flexWrap: 'wrap'
+            } 
+          },
           navLinks.map((link, index) => {
             if (link.dropdown) {
               return React.createElement(
                 NavDropdown,
                 {
                   key: index,
-                  title: React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem' } },
+                  title: React.createElement('span', { style: { display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem' } },
                     link.icon,
                     link.label,
-                    React.createElement(FaChevronDown, { style: { fontSize: '9px', opacity: 0.6 } })
+                    React.createElement(FaChevronDown, { style: { fontSize: '8px', opacity: 0.6 } })
                   ),
                   id: `${link.label.toLowerCase()}-dropdown`,
                   className: "custom-dropdown",
                   style: { 
                     color: isActive(link.path) ? '#667eea' : '#e0e0e0',
                     fontWeight: isActive(link.path) ? '600' : '500',
-                    padding: '6px 12px',
+                    padding: '6px 10px',
                     borderRadius: '8px',
                     transition: 'all 0.3s'
                   },
@@ -208,8 +219,8 @@ const NavigationBar = () => {
                     as: Link, 
                     to: item.path, 
                     style: { 
-                      padding: '8px 20px',
-                      fontSize: '0.85rem'
+                      padding: '6px 18px',
+                      fontSize: '0.82rem'
                     } 
                   }, item.label)
                 )
@@ -226,11 +237,11 @@ const NavigationBar = () => {
                   style: {
                     background: 'linear-gradient(135deg, #667eea, #764ba2)',
                     borderRadius: '50px',
-                    padding: '6px 20px',
-                    marginLeft: '8px',
+                    padding: '5px 18px',
+                    marginLeft: '6px',
                     color: 'white',
                     fontWeight: '600',
-                    fontSize: '0.85rem',
+                    fontSize: '0.82rem',
                     transition: 'all 0.3s',
                     boxShadow: '0 2px 8px rgba(102, 126, 234, 0.3)',
                     whiteSpace: 'nowrap'
@@ -260,13 +271,13 @@ const NavigationBar = () => {
                 style: {
                   color: isActive(link.path) ? '#667eea' : '#e0e0e0',
                   fontWeight: isActive(link.path) ? '600' : '500',
-                  padding: '6px 12px',
+                  padding: '6px 10px',
                   borderRadius: '8px',
                   transition: 'all 0.3s',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px',
-                  fontSize: '0.9rem',
+                  fontSize: '0.85rem',
                   background: isActive(link.path) ? 'rgba(102, 126, 234, 0.1)' : 'transparent',
                   whiteSpace: 'nowrap'
                 },
@@ -296,38 +307,46 @@ const NavigationBar = () => {
 // Add custom CSS styles
 const style = document.createElement('style');
 style.textContent = `
+  /* Base navbar styles */
   .navbar-custom {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: auto;
   }
   
   .navbar-custom.scrolled {
-    padding: 6px 0;
+    padding: 8px 0 !important;
     background: rgba(8, 8, 12, 0.98) !important;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
   }
   
+  /* Prevent content from hiding under navbar */
+  body {
+    padding-top: 76px !important;
+  }
+  
+  /* Dropdown styles */
   .custom-dropdown .dropdown-menu {
     background: rgba(20, 20, 30, 0.98);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(102, 126, 234, 0.2);
-    border-radius: 14px;
+    border-radius: 12px;
     margin-top: 8px;
-    padding: 10px 0;
+    padding: 8px 0;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    min-width: 250px;
+    min-width: 220px;
   }
   
   .custom-dropdown .dropdown-item {
     color: #d0d0d0;
     transition: all 0.25s;
-    font-size: 0.85rem;
-    padding: 8px 20px;
+    font-size: 0.82rem;
+    padding: 6px 18px;
   }
   
   .custom-dropdown .dropdown-item:hover {
     background: linear-gradient(90deg, rgba(102, 126, 234, 0.15), transparent);
     color: #667eea;
-    padding-left: 26px;
+    padding-left: 24px;
   }
   
   .custom-dropdown .dropdown-divider {
@@ -361,8 +380,40 @@ style.textContent = `
     }
   }
   
+  /* Desktop styles */
+  @media (min-width: 992px) {
+    .navbar-custom {
+      padding: 16px 0 !important;
+    }
+    
+    .navbar-custom.scrolled {
+      padding: 8px 0 !important;
+    }
+    
+    .navbar-nav .nav-link,
+    .custom-dropdown .dropdown-toggle {
+      font-size: 0.85rem !important;
+    }
+  }
+  
   /* Mobile styles */
-  @media (max-width: 992px) {
+  @media (max-width: 1199px) and (min-width: 992px) {
+    .navbar-nav .nav-link,
+    .custom-dropdown .dropdown-toggle {
+      padding: 6px 6px !important;
+      font-size: 0.8rem !important;
+    }
+    
+    .custom-dropdown .dropdown-toggle span {
+      gap: 4px !important;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    body {
+      padding-top: 66px !important;
+    }
+    
     .navbar-custom {
       padding: 10px 0 !important;
     }
@@ -389,6 +440,8 @@ style.textContent = `
     .navbar-nav {
       gap: 5px !important;
       margin-top: 12px;
+      max-height: 70vh;
+      overflow-y: auto;
     }
     
     .nav-link {
@@ -398,6 +451,13 @@ style.textContent = `
     
     .custom-dropdown .dropdown-toggle {
       padding: 8px 16px !important;
+    }
+  }
+  
+  /* For very small screens */
+  @media (max-width: 768px) {
+    .navbar-brand {
+      font-size: 1.1rem !important;
     }
   }
   
