@@ -45,9 +45,8 @@ const JobApplicationPage = () => {
 
   const job = jobs[jobId] || jobs[1];
 
-  // WhatsApp number with correct Kenya format (without leading 0)
-  // 0116378188 becomes 254116378188 (remove leading 0 and add 254)
-  const whatsappNumber = '254116378188';
+  // WhatsApp number: +254 723 156066
+  const whatsappNumber = '254723156066';
   const whatsappMessage = encodeURIComponent(`Hello! I'm interested in the ${job.title} position. I've submitted my application.`);
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -191,14 +190,14 @@ ${formData.resumeLink || 'Not provided'}
                 <h2 style={{ color: '#fff', marginBottom: '10px' }}>Apply for {job.title}</h2>
                 <p style={{ color: '#aaa' }}>Complete the form below to submit your application</p>
                 
-                {/* Fixed WhatsApp Alert with correct number */}
+                {/* WhatsApp Alert with new number */}
                 <Alert variant="success" style={{ backgroundColor: '#25D366', color: '#fff', borderRadius: '10px', marginBottom: '20px', border: 'none' }}>
                   <FaWhatsapp className="me-2" />
-                  <strong>Questions? Chat on WhatsApp: 0116378188</strong>
+                  <strong>Questions? Chat on WhatsApp: +254 723 156066</strong>
                   <br />
                   <small>Click to chat: 
                     <a href={whatsappLink} target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline', marginLeft: '5px' }}>
-                      wa.me/254116378188
+                      wa.me/254723156066
                     </a>
                   </small>
                 </Alert>
@@ -397,7 +396,7 @@ ${formData.resumeLink || 'Not provided'}
                 <div style={{ marginBottom: '15px' }}>
                   <FaWhatsapp style={{ color: '#25D366', marginRight: '10px' }} />
                   <strong style={{ color: '#fff' }}>WhatsApp Support:</strong>
-                  <p style={{ color: '#aaa', margin: '5px 0 0 25px' }}>0116378188</p>
+                  <p style={{ color: '#aaa', margin: '5px 0 0 25px' }}>+254 723 156066</p>
                 </div>
                 
                 <div style={{ marginBottom: '15px' }}>
@@ -416,7 +415,7 @@ ${formData.resumeLink || 'Not provided'}
                   <li style={{ marginBottom: '10px' }}>📄 Ensure your CV highlights relevant experience</li>
                   <li style={{ marginBottom: '10px' }}>⏰ Applications reviewed within 5 business days</li>
                   <li style={{ marginBottom: '10px' }}>📧 You'll receive confirmation via email</li>
-                  <li style={{ marginBottom: '10px' }}>💬 Chat on WhatsApp: <strong>0116378188</strong> for quick questions</li>
+                  <li style={{ marginBottom: '10px' }}>💬 Chat on WhatsApp: <strong>+254 723 156066</strong> for quick questions</li>
                 </ul>
               </Card.Body>
             </Card>
