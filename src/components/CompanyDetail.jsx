@@ -148,6 +148,7 @@ const CompanyDetail = () => {
       to={`/contact?subject=Job%20Application%20-%20${encodeURIComponent(jobTitle)}`}
       variant="primary" 
       size="sm"
+      style={{ borderRadius: '50px' }}
     >
       Apply Now
     </Button>
@@ -159,42 +160,42 @@ const CompanyDetail = () => {
       icon: <FaGlobe size={40} />,
       content: (
         <>
-          <h3>About MJ & Roberts Consulting</h3>
-          <p><strong>Founded in 2021</strong>, MJ & Roberts Consulting is a Kenyan technology consulting firm specializing in digital transformation, cloud migration, and enterprise software implementation.</p>
+          <h3 style={{ color: '#fff', marginBottom: '20px' }}>About MJ & Roberts Consulting</h3>
+          <p style={{ color: '#ccc', lineHeight: '1.6' }}><strong style={{ color: '#667eea' }}>Founded in 2021</strong>, MJ & Roberts Consulting is a Kenyan technology consulting firm specializing in digital transformation, cloud migration, and enterprise software implementation.</p>
           
-          <p>We help Kenyan businesses—from banks and telecom companies to NGOs and retailers—leverage technology to grow, reduce costs, and serve their customers better.</p>
+          <p style={{ color: '#ccc', lineHeight: '1.6' }}>We help Kenyan businesses—from banks and telecom companies to NGOs and retailers—leverage technology to grow, reduce costs, and serve their customers better.</p>
           
-          <h4 className="mt-4">Our Mission</h4>
-          <p>To help Kenyan organizations succeed in the digital economy through practical, affordable technology solutions.</p>
+          <h4 style={{ color: '#fff', marginTop: '30px', marginBottom: '15px' }}>Our Mission</h4>
+          <p style={{ color: '#ccc', lineHeight: '1.6' }}>To help Kenyan organizations succeed in the digital economy through practical, affordable technology solutions.</p>
           
-          <h4 className="mt-4">What We Do</h4>
-          <ul>
-            <li>Move businesses from on-premise servers to AWS/Azure cloud</li>
-            <li>Implement Salesforce for sales and customer service tracking</li>
-            <li>Build data dashboards so leaders can see business performance</li>
-            <li>Train teams on using technology effectively</li>
+          <h4 style={{ color: '#fff', marginTop: '30px', marginBottom: '15px' }}>What We Do</h4>
+          <ul style={{ color: '#ccc' }}>
+            <li style={{ marginBottom: '8px' }}>Move businesses from on-premise servers to AWS/Azure cloud</li>
+            <li style={{ marginBottom: '8px' }}>Implement Salesforce for sales and customer service tracking</li>
+            <li style={{ marginBottom: '8px' }}>Build data dashboards so leaders can see business performance</li>
+            <li style={{ marginBottom: '8px' }}>Train teams on using technology effectively</li>
           </ul>
           
-          <h4 className="mt-4">Quick Facts</h4>
+          <h4 style={{ color: '#fff', marginTop: '30px', marginBottom: '15px' }}>Quick Facts</h4>
           <Row className="mt-3">
             <Col md={6}>
-              <Card className="p-3 bg-dark mb-3">
-                <strong>📍 Location:</strong> Westlands, Nairobi
+              <Card className="p-3 mb-3" style={{ backgroundColor: '#2a2a2a', border: 'none' }}>
+                <p style={{ color: '#ccc', margin: 0 }}><strong style={{ color: '#667eea' }}>📍 Location:</strong> Westlands, Nairobi</p>
               </Card>
             </Col>
             <Col md={6}>
-              <Card className="p-3 bg-dark mb-3">
-                <strong>👥 Team Size:</strong> 25+ consultants
+              <Card className="p-3 mb-3" style={{ backgroundColor: '#2a2a2a', border: 'none' }}>
+                <p style={{ color: '#ccc', margin: 0 }}><strong style={{ color: '#667eea' }}>👥 Team Size:</strong> 25+ consultants</p>
               </Card>
             </Col>
             <Col md={6}>
-              <Card className="p-3 bg-dark mb-3">
-                <strong>🏢 Founded:</strong> 2021
+              <Card className="p-3 mb-3" style={{ backgroundColor: '#2a2a2a', border: 'none' }}>
+                <p style={{ color: '#ccc', margin: 0 }}><strong style={{ color: '#667eea' }}>🏢 Founded:</strong> 2021</p>
               </Card>
             </Col>
             <Col md={6}>
-              <Card className="p-3 bg-dark mb-3">
-                <strong>🤝 Clients:</strong> 30+ Kenyan businesses
+              <Card className="p-3 mb-3" style={{ backgroundColor: '#2a2a2a', border: 'none' }}>
+                <p style={{ color: '#ccc', margin: 0 }}><strong style={{ color: '#667eea' }}>🤝 Clients:</strong> 30+ Kenyan businesses</p>
               </Card>
             </Col>
           </Row>
@@ -206,26 +207,34 @@ const CompanyDetail = () => {
       icon: <FaRocket size={40} />,
       content: (
         <>
-          <h3>How We Work With Kenyan Businesses</h3>
+          <h3 style={{ color: '#fff', marginBottom: '20px' }}>How We Work With Kenyan Businesses</h3>
           
-          <h4 className="mt-4">Step 1: Understand Your Business (2 weeks)</h4>
-          <p>We meet with your team to understand your challenges, budget, and goals. No technical jargon—just real business conversation.</p>
+          <div style={{ marginBottom: '30px' }}>
+            <h4 style={{ color: '#667eea', marginBottom: '10px' }}>Step 1: Understand Your Business (2 weeks)</h4>
+            <p style={{ color: '#ccc', lineHeight: '1.6' }}>We meet with your team to understand your challenges, budget, and goals. No technical jargon—just real business conversation.</p>
+          </div>
           
-          <h4 className="mt-4">Step 2: Propose a Solution (1 week)</h4>
-          <p>We provide a clear proposal with costs, timeline, and expected outcomes. You'll know exactly what you're paying for.</p>
+          <div style={{ marginBottom: '30px' }}>
+            <h4 style={{ color: '#667eea', marginBottom: '10px' }}>Step 2: Propose a Solution (1 week)</h4>
+            <p style={{ color: '#ccc', lineHeight: '1.6' }}>We provide a clear proposal with costs, timeline, and expected outcomes. You'll know exactly what you're paying for.</p>
+          </div>
           
-          <h4 className="mt-4">Step 3: Implement (2-12 weeks)</h4>
-          <p>Our team builds and tests the solution. We train your staff along the way so they understand the new system.</p>
+          <div style={{ marginBottom: '30px' }}>
+            <h4 style={{ color: '#667eea', marginBottom: '10px' }}>Step 3: Implement (2-12 weeks)</h4>
+            <p style={{ color: '#ccc', lineHeight: '1.6' }}>Our team builds and tests the solution. We train your staff along the way so they understand the new system.</p>
+          </div>
           
-          <h4 className="mt-4">Step 4: Support (Ongoing)</h4>
-          <p>After launch, we provide ongoing support via WhatsApp, email, and phone. Kenyan clients reach us quickly.</p>
+          <div style={{ marginBottom: '30px' }}>
+            <h4 style={{ color: '#667eea', marginBottom: '10px' }}>Step 4: Support (Ongoing)</h4>
+            <p style={{ color: '#ccc', lineHeight: '1.6' }}>After launch, we provide ongoing support via WhatsApp, email, and phone. Kenyan clients reach us quickly.</p>
+          </div>
           
-          <h4 className="mt-4">Our Promise</h4>
-          <ul>
-            <li>✅ Transparent pricing—no hidden fees</li>
-            <li>✅ Local team—you can visit our Nairobi office</li>
-            <li>✅ Practical solutions—we recommend what you actually need</li>
-            <li>✅ Ongoing support—we don't disappear after the project</li>
+          <h4 style={{ color: '#fff', marginTop: '30px', marginBottom: '15px' }}>Our Promise</h4>
+          <ul style={{ color: '#ccc' }}>
+            <li style={{ marginBottom: '8px' }}>✅ Transparent pricing—no hidden fees</li>
+            <li style={{ marginBottom: '8px' }}>✅ Local team—you can visit our Nairobi office</li>
+            <li style={{ marginBottom: '8px' }}>✅ Practical solutions—we recommend what you actually need</li>
+            <li style={{ marginBottom: '8px' }}>✅ Ongoing support—we don't disappear after the project</li>
           </ul>
         </>
       )
@@ -235,29 +244,29 @@ const CompanyDetail = () => {
       icon: <FaHandshake size={40} />,
       content: (
         <>
-          <h3>Our Technology Partners</h3>
+          <h3 style={{ color: '#fff', marginBottom: '20px' }}>Our Technology Partners</h3>
           
-          <Card className="bg-dark mb-4 p-4">
-            <h4>AWS (Amazon Web Services)</h4>
-            <p><Badge bg="warning">Select Tier Partner</Badge></p>
-            <p>We help Kenyan businesses move their servers and applications to AWS cloud, reducing IT costs and improving reliability.</p>
-            <p className="small text-muted">What this means for you: Access to AWS credits, migration support, and certified architects.</p>
+          <Card className="mb-4 p-4" style={{ backgroundColor: '#2a2a2a', border: 'none', borderRadius: '15px' }}>
+            <h4 style={{ color: '#fff', marginBottom: '10px' }}>AWS (Amazon Web Services)</h4>
+            <Badge bg="warning" style={{ marginBottom: '15px', padding: '5px 15px' }}>Select Tier Partner</Badge>
+            <p style={{ color: '#ccc', lineHeight: '1.6' }}>We help Kenyan businesses move their servers and applications to AWS cloud, reducing IT costs and improving reliability.</p>
+            <p style={{ color: '#aaa', fontSize: '0.9rem' }}>What this means for you: Access to AWS credits, migration support, and certified architects.</p>
           </Card>
           
-          <Card className="bg-dark mb-4 p-4">
-            <h4>Salesforce</h4>
-            <p><Badge bg="warning">Registered Partner</Badge></p>
-            <p>We implement Salesforce to help Kenyan sales teams track customers, manage leads, and close more deals.</p>
-            <p className="small text-muted">What this means for you: Discounted licenses, local implementation support, and training.</p>
+          <Card className="mb-4 p-4" style={{ backgroundColor: '#2a2a2a', border: 'none', borderRadius: '15px' }}>
+            <h4 style={{ color: '#fff', marginBottom: '10px' }}>Salesforce</h4>
+            <Badge bg="warning" style={{ marginBottom: '15px', padding: '5px 15px' }}>Registered Partner</Badge>
+            <p style={{ color: '#ccc', lineHeight: '1.6' }}>We implement Salesforce to help Kenyan sales teams track customers, manage leads, and close more deals.</p>
+            <p style={{ color: '#aaa', fontSize: '0.9rem' }}>What this means for you: Discounted licenses, local implementation support, and training.</p>
           </Card>
           
-          <Card className="bg-dark mb-4 p-4">
-            <h4>Microsoft</h4>
-            <p>We implement Microsoft 365, Azure, and Power BI solutions for Kenyan organizations.</p>
-            <p className="small text-muted">What this means for you: Licensed software, migration support, and admin training.</p>
+          <Card className="mb-4 p-4" style={{ backgroundColor: '#2a2a2a', border: 'none', borderRadius: '15px' }}>
+            <h4 style={{ color: '#fff', marginBottom: '10px' }}>Microsoft</h4>
+            <p style={{ color: '#ccc', lineHeight: '1.6' }}>We implement Microsoft 365, Azure, and Power BI solutions for Kenyan organizations.</p>
+            <p style={{ color: '#aaa', fontSize: '0.9rem' }}>What this means for you: Licensed software, migration support, and admin training.</p>
           </Card>
           
-          <p className="mt-3">Want to partner with us? <Link to="/contact">Contact our partnerships team</Link></p>
+          <p style={{ color: '#ccc', marginTop: '20px' }}>Want to partner with us? <Link to="/contact" style={{ color: '#667eea' }}>Contact our partnerships team</Link></p>
         </>
       )
     },
@@ -266,39 +275,39 @@ const CompanyDetail = () => {
       icon: <FaBriefcase size={40} />,
       content: (
         <>
-          <h3>Join Our Team in Nairobi</h3>
-          <p>We're hiring Kenyan technology professionals. If you have experience in cloud, Salesforce, data analytics, or software development, we want to hear from you.</p>
+          <h3 style={{ color: '#fff', marginBottom: '20px' }}>Join Our Team in Nairobi</h3>
+          <p style={{ color: '#ccc', lineHeight: '1.6' }}>We're hiring Kenyan technology professionals. If you have experience in cloud, Salesforce, data analytics, or software development, we want to hear from you.</p>
           
-          <h4 className="mt-4">Why Work With Us</h4>
-          <ul>
-            <li>💰 Competitive Kenyan market salaries</li>
-            <li>🏠 Hybrid work (office + remote)</li>
-            <li>📚 Training and certification budget</li>
-            <li>🏥 Health insurance (NHIF supplement)</li>
-            <li>📈 Career growth opportunities</li>
+          <h4 style={{ color: '#fff', marginTop: '30px', marginBottom: '15px' }}>Why Work With Us</h4>
+          <ul style={{ color: '#ccc' }}>
+            <li style={{ marginBottom: '8px' }}>💰 Competitive Kenyan market salaries</li>
+            <li style={{ marginBottom: '8px' }}>🏠 Hybrid work (office + remote)</li>
+            <li style={{ marginBottom: '8px' }}>📚 Training and certification budget</li>
+            <li style={{ marginBottom: '8px' }}>🏥 Health insurance (NHIF supplement)</li>
+            <li style={{ marginBottom: '8px' }}>📈 Career growth opportunities</li>
           </ul>
           
-          <h4 className="mt-4">Current Openings</h4>
+          <h4 style={{ color: '#fff', marginTop: '30px', marginBottom: '15px' }}>Current Openings</h4>
           <Accordion className="mt-3">
             {jobOpenings.map((job, index) => (
-              <Accordion.Item eventKey={index.toString()} key={job.id}>
-                <Accordion.Header>
-                  <strong>{job.title}</strong> - {job.department} ({job.type})
+              <Accordion.Item eventKey={index.toString()} key={job.id} style={{ backgroundColor: '#2a2a2a', border: 'none' }}>
+                <Accordion.Header style={{ backgroundColor: '#2a2a2a' }}>
+                  <strong style={{ color: '#fff' }}>{job.title}</strong> <span style={{ color: '#aaa', marginLeft: '10px' }}>- {job.department} ({job.type})</span>
                 </Accordion.Header>
-                <Accordion.Body>
-                  <p><strong>📍 Location:</strong> {job.location}</p>
-                  <p><strong>💰 Salary:</strong> {job.salary}</p>
-                  <p><strong>📅 Posted:</strong> {job.posted}</p>
-                  <p><strong>About the role:</strong> {job.description}</p>
+                <Accordion.Body style={{ backgroundColor: '#2a2a2a', color: '#ccc' }}>
+                  <p><strong style={{ color: '#667eea' }}>📍 Location:</strong> {job.location}</p>
+                  <p><strong style={{ color: '#667eea' }}>💰 Salary:</strong> {job.salary}</p>
+                  <p><strong style={{ color: '#667eea' }}>📅 Posted:</strong> {job.posted}</p>
+                  <p><strong style={{ color: '#667eea' }}>About the role:</strong> {job.description}</p>
                   
-                  <h6>Requirements:</h6>
+                  <h6 style={{ color: '#fff', marginTop: '15px' }}>Requirements:</h6>
                   <ul>
-                    {job.requirements.map((req, i) => <li key={i}>{req}</li>)}
+                    {job.requirements.map((req, i) => <li key={i} style={{ color: '#ccc' }}>{req}</li>)}
                   </ul>
                   
-                  <h6>What we offer:</h6>
+                  <h6 style={{ color: '#fff', marginTop: '15px' }}>What we offer:</h6>
                   <ul>
-                    {job.benefits.map((benefit, i) => <li key={i}>{benefit}</li>)}
+                    {job.benefits.map((benefit, i) => <li key={i} style={{ color: '#ccc' }}>{benefit}</li>)}
                   </ul>
                   
                   <JobApplyButton jobTitle={job.title} />
@@ -307,10 +316,10 @@ const CompanyDetail = () => {
             ))}
           </Accordion>
           
-          <div className="mt-4 p-4 bg-dark rounded">
-            <h5>Not seeing your role?</h5>
-            <p>Send your CV to <strong>careers@mjroberts.com</strong> and we'll keep it on file for future openings.</p>
-            <Button as={Link} to="/contact" variant="outline-primary">Submit Application</Button>
+          <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#2a2a2a' }}>
+            <h5 style={{ color: '#fff' }}>Not seeing your role?</h5>
+            <p style={{ color: '#ccc' }}>Send your CV to <strong style={{ color: '#667eea' }}>careers@mjroberts.com</strong> and we'll keep it on file for future openings.</p>
+            <Button as={Link} to="/contact" variant="outline-primary" style={{ borderRadius: '50px' }}>Submit Application</Button>
           </div>
         </>
       )
@@ -320,29 +329,29 @@ const CompanyDetail = () => {
       icon: <FaNewspaper size={40} />,
       content: (
         <>
-          <h3>MJ & Roberts Consulting News</h3>
+          <h3 style={{ color: '#fff', marginBottom: '20px' }}>MJ & Roberts Consulting News</h3>
           
           {companyNews.map((news) => (
-            <Card className="bg-dark mb-4 p-4" key={news.id}>
+            <Card className="mb-4 p-4" key={news.id} style={{ backgroundColor: '#2a2a2a', border: 'none', borderRadius: '15px' }}>
               <div className="d-flex justify-content-between align-items-center mb-2">
-                <FaCalendarAlt className="text-primary" />
-                <small>{news.date}</small>
+                <FaCalendarAlt style={{ color: '#667eea' }} />
+                <small style={{ color: '#aaa' }}>{news.date}</small>
               </div>
-              <h4>{news.title}</h4>
-              <p>{news.summary}</p>
+              <h4 style={{ color: '#fff', marginBottom: '10px' }}>{news.title}</h4>
+              <p style={{ color: '#ccc', lineHeight: '1.6' }}>{news.summary}</p>
               <details>
-                <summary>Read more</summary>
-                <p className="mt-2">{news.details}</p>
+                <summary style={{ color: '#667eea', cursor: 'pointer' }}>Read more</summary>
+                <p className="mt-2" style={{ color: '#ccc' }}>{news.details}</p>
               </details>
             </Card>
           ))}
           
-          <div className="mt-4 p-4 bg-dark rounded">
-            <h5>Media Inquiries</h5>
-            <p>For press inquiries, contact our communications team:</p>
-            <p><strong>Email:</strong> media@mjroberts.com</p>
-            <p><strong>Phone:</strong> +254 723 156 066</p>
-            <Button as={Link} to="/contact" variant="primary">Contact Media Team</Button>
+          <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#2a2a2a' }}>
+            <h5 style={{ color: '#fff' }}>Media Inquiries</h5>
+            <p style={{ color: '#ccc' }}>For press inquiries, contact our communications team:</p>
+            <p style={{ color: '#ccc' }}><strong style={{ color: '#667eea' }}>Email:</strong> media@mjroberts.com</p>
+            <p style={{ color: '#ccc' }}><strong style={{ color: '#667eea' }}>Phone:</strong> +254 723 156 066</p>
+            <Button as={Link} to="/contact" variant="primary" style={{ borderRadius: '50px' }}>Contact Media Team</Button>
           </div>
         </>
       )
@@ -352,10 +361,16 @@ const CompanyDetail = () => {
   const details = companyDetails[id] || companyDetails.overview;
 
   return (
-    <div style={{ paddingTop: '100px', backgroundColor: '#0a0a0a', minHeight: '100vh', color: 'white' }}>
+    <div style={{ paddingTop: '100px', backgroundColor: '#0a0a0a', minHeight: '100vh' }}>
+      {/* Hero Section */}
       <section style={{ padding: '60px 0', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
         <Container>
-          <Button as={Link} to="/company" variant="light" style={{ marginBottom: '30px', borderRadius: '50px' }}>
+          <Button 
+            as={Link} 
+            to="/company" 
+            variant="light" 
+            style={{ marginBottom: '30px', borderRadius: '50px' }}
+          >
             <FaArrowLeft className="me-2" /> Back to Company
           </Button>
           <Row>
@@ -369,7 +384,7 @@ const CompanyDetail = () => {
                   {details.icon}
                 </div>
                 <div>
-                  <h1 style={{ fontSize: '3rem', fontWeight: '800' }}>{details.title}</h1>
+                  <h1 style={{ fontSize: '3rem', fontWeight: '800', color: '#fff' }}>{details.title}</h1>
                 </div>
               </div>
             </Col>
@@ -377,10 +392,11 @@ const CompanyDetail = () => {
         </Container>
       </section>
 
+      {/* Content Section */}
       <Container style={{ padding: '60px 0' }}>
         <Row>
           <Col lg={9}>
-            <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px' }}>
+            <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', boxShadow: '0 5px 20px rgba(0,0,0,0.3)' }}>
               <Card.Body style={{ padding: '40px' }}>
                 {details.content}
               </Card.Body>
@@ -388,42 +404,109 @@ const CompanyDetail = () => {
           </Col>
           
           <Col lg={3}>
+            {/* Quick Navigation */}
             <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '20px' }}>
               <Card.Body>
-                <h5>Quick Links</h5>
+                <h5 style={{ color: '#fff', marginBottom: '20px' }}>Quick Links</h5>
                 <ListGroup variant="flush">
-                  <ListGroup.Item as={Link} to="/company/overview" action style={{ backgroundColor: 'transparent', color: id === 'overview' ? '#667eea' : '#aaa' }}>
+                  <ListGroup.Item 
+                    as={Link} 
+                    to="/company/overview" 
+                    action 
+                    style={{ 
+                      backgroundColor: 'transparent', 
+                      color: id === 'overview' ? '#667eea' : '#ccc',
+                      borderBottom: '1px solid #333',
+                      padding: '12px 0'
+                    }}
+                  >
                     Company Overview
                   </ListGroup.Item>
-                  <ListGroup.Item as={Link} to="/company/approach" action style={{ backgroundColor: 'transparent', color: id === 'approach' ? '#667eea' : '#aaa' }}>
+                  <ListGroup.Item 
+                    as={Link} 
+                    to="/company/approach" 
+                    action 
+                    style={{ 
+                      backgroundColor: 'transparent', 
+                      color: id === 'approach' ? '#667eea' : '#ccc',
+                      borderBottom: '1px solid #333',
+                      padding: '12px 0'
+                    }}
+                  >
                     Our Approach
                   </ListGroup.Item>
-                  <ListGroup.Item as={Link} to="/company/partnerships" action style={{ backgroundColor: 'transparent', color: id === 'partnerships' ? '#667eea' : '#aaa' }}>
+                  <ListGroup.Item 
+                    as={Link} 
+                    to="/company/partnerships" 
+                    action 
+                    style={{ 
+                      backgroundColor: 'transparent', 
+                      color: id === 'partnerships' ? '#667eea' : '#ccc',
+                      borderBottom: '1px solid #333',
+                      padding: '12px 0'
+                    }}
+                  >
                     Partnerships
                   </ListGroup.Item>
-                  <ListGroup.Item as={Link} to="/jobs" action style={{ backgroundColor: 'transparent', color: id === 'careers' ? '#667eea' : '#aaa' }}>
+                  <ListGroup.Item 
+                    as={Link} 
+                    to="/jobs" 
+                    action 
+                    style={{ 
+                      backgroundColor: 'transparent', 
+                      color: id === 'careers' ? '#667eea' : '#ccc',
+                      borderBottom: '1px solid #333',
+                      padding: '12px 0'
+                    }}
+                  >
                     Careers
                   </ListGroup.Item>
-                  <ListGroup.Item as={Link} to="/company/news" action style={{ backgroundColor: 'transparent', color: id === 'news' ? '#667eea' : '#aaa' }}>
+                  <ListGroup.Item 
+                    as={Link} 
+                    to="/company/news" 
+                    action 
+                    style={{ 
+                      backgroundColor: 'transparent', 
+                      color: id === 'news' ? '#667eea' : '#ccc',
+                      padding: '12px 0'
+                    }}
+                  >
                     News & Press
                   </ListGroup.Item>
                 </ListGroup>
               </Card.Body>
             </Card>
 
+            {/* Contact Card */}
             <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px' }}>
               <Card.Body>
-                <h5>Contact Us</h5>
-                <p><FaEnvelope className="text-primary me-2" /> info@mjroberts.com</p>
-                <p><FaPhone className="text-primary me-2" /> +254 723 156 066</p>
-                <p><FaBuilding className="text-primary me-2" /> Westlands, Nairobi</p>
-                <hr />
-                <div className="d-flex gap-2">
-                  <Button variant="outline-primary" size="sm" as="a" href="#">LinkedIn</Button>
-                  <Button variant="outline-info" size="sm" as="a" href="#">Twitter</Button>
-                </div>
-                <hr />
-                <Button as={Link} to="/contact" variant="primary" size="sm" style={{ width: '100%' }}>Contact Us</Button>
+                <h5 style={{ color: '#fff', marginBottom: '20px' }}>Contact Us</h5>
+                <p style={{ color: '#ccc', marginBottom: '12px' }}>
+                  <FaEnvelope style={{ color: '#667eea', marginRight: '10px' }} /> 
+                  info@mjroberts.com
+                </p>
+                <p style={{ color: '#ccc', marginBottom: '12px' }}>
+                  <FaPhone style={{ color: '#667eea', marginRight: '10px' }} /> 
+                  +254 723 156 066
+                </p>
+                <p style={{ color: '#ccc', marginBottom: '20px' }}>
+                  <FaBuilding style={{ color: '#667eea', marginRight: '10px' }} /> 
+                  Westlands, Nairobi
+                </p>
+                <hr style={{ backgroundColor: '#333' }} />
+                <Button 
+                  as={Link} 
+                  to="/contact" 
+                  variant="primary" 
+                  style={{ 
+                    width: '100%', 
+                    borderRadius: '50px',
+                    background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                    border: 'none'
+                  }}
+                >
+                  Contact Us
+                </Button>
               </Card.Body>
             </Card>
           </Col>

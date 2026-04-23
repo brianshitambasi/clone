@@ -1,5 +1,5 @@
 // components/ContactPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Alert, Card, Badge } from 'react-bootstrap';
 import { 
   FaEnvelope, FaPhone, FaMapMarkerAlt, FaWhatsapp, FaUserTie, 
@@ -8,12 +8,78 @@ import {
 } from 'react-icons/fa';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    phone: '', 
+    subject: '', 
+    message: '' 
+  });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [applicationDetected, setApplicationDetected] = useState(false);
 
-  // WhatsApp configuration
-  const whatsappNumber = '254723156066';
+  // Check for pending job application on component mount
+  useEffect(() => {
+    // Check URL params for application pending
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasApplication = urlParams.get('application') === 'pending';
+    
+    // Check localStorage for pending application
+    const pendingApp = localStorage.getItem('pendingApplication');
+    
+    if (hasApplication && pendingApp) {
+      try {
+        const application = JSON.parse(pendingApp);
+        
+        // Extract name from subject or message
+        let applicantName = '';
+        let applicantEmail = '';
+        let applicantPhone = '';
+        let jobTitle = '';
+        
+        // Parse the application data
+        if (application.message) {
+          const nameMatch = application.message.match(/Full Name: ([^\n]+)/);
+          if (nameMatch) applicantName = nameMatch[1];
+          
+          const emailMatch = application.message.match(/Email: ([^\n]+)/);
+          if (emailMatch) applicantEmail = emailMatch[1];
+          
+          const phoneMatch = application.message.match(/Phone: ([^\n]+)/);
+          if (phoneMatch) applicantPhone = phoneMatch[1];
+          
+          const jobMatch = application.message.match(/Position: ([^\n]+)/);
+          if (jobMatch) jobTitle = jobMatch[1];
+        }
+        
+        // Pre-fill the form with application data
+        setFormData({
+          name: applicantName || '',
+          email: applicantEmail || '',
+          phone: applicantPhone || '',
+          subject: application.subject || `Job Application: ${jobTitle}`,
+          message: application.message || ''
+        });
+        
+        setApplicationDetected(true);
+        
+        // Clear the pending application
+        localStorage.removeItem('pendingApplication');
+        
+        // Show success message
+        setTimeout(() => {
+          setSubmitted(true);
+          setTimeout(() => setSubmitted(false), 8000);
+        }, 500);
+      } catch (error) {
+        console.error('Error parsing application data:', error);
+      }
+    }
+  }, []);
+
+  // WhatsApp configuration with new number 0116378188
+  const whatsappNumber = '0116378188';
   const whatsappMessage = encodeURIComponent('Hello! I would like to get more information about your services.');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   const whatsappCallLink = `https://wa.me/${whatsappNumber}`;
@@ -62,8 +128,42 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Get recipient email from localStorage if job application, otherwise use default
+    const recipientEmail = localStorage.getItem('applicationRecipient') || 'brianshitambasi270@gmail.com';
+    
+    // Create email content
+    const emailSubject = formData.subject;
+    const emailBody = `
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Subject: ${formData.subject}
+
+Message:
+${formData.message}
+
+---
+Sent from MJ & Roberts Consulting Contact Form
+WhatsApp: 0116378188
+    `;
+    
+    // Open email client with pre-filled details
+    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Simulate sending email
     setTimeout(() => {
+      // Log the form data
+      console.log('Form submitted:', formData);
+      console.log('Application type:', applicationDetected ? 'Job Application' : 'General Inquiry');
+      console.log('Sending to:', recipientEmail);
+      
+      // Open email client (in production, you'd use an API)
+      window.location.href = mailtoLink;
+      
       setSubmitted(true);
+      setApplicationDetected(false);
+      localStorage.removeItem('applicationRecipient');
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       setIsSubmitting(false);
       setTimeout(() => setSubmitted(false), 5000);
@@ -115,7 +215,8 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <small style={{ color: '#999' }}>Email Us</small>
-                      <p style={{ margin: 0, fontWeight: '600' }}>info@mjroberts.com</p>
+                      <p style={{ margin: 0, fontWeight: '600' }}>brianshitambasi270@gmail.com</p>
+                      <small style={{ color: '#999' }}>For jobs: brianshitambasi270@gmail.com</small>
                     </div>
                   </div>
                   
@@ -125,7 +226,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <small style={{ color: '#999' }}>Call Us</small>
-                      <p style={{ margin: 0, fontWeight: '600' }}>+254 723 156 066</p>
+                      <p style={{ margin: 0, fontWeight: '600' }}>0116378188</p>
                     </div>
                   </div>
                   
@@ -135,7 +236,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <small style={{ color: '#999' }}>WhatsApp</small>
-                      <p style={{ margin: 0, fontWeight: '600' }}>+254 723 156 066</p>
+                      <p style={{ margin: 0, fontWeight: '600' }}>0116378188</p>
                     </div>
                   </div>
                   
@@ -187,13 +288,27 @@ const ContactPage = () => {
           <Col lg={8} className="mb-4">
             <Card style={{ borderRadius: '15px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
               <Card.Body style={{ padding: '40px' }}>
-                <h3 style={{ fontWeight: '700', marginBottom: '10px', color: '#333' }}>Send us a message</h3>
-                <p style={{ color: '#666', marginBottom: '30px' }}>Fill out the form below and we'll get back to you within 24 hours</p>
+                <h3 style={{ fontWeight: '700', marginBottom: '10px', color: '#333' }}>
+                  {applicationDetected ? 'Complete Your Job Application' : 'Send us a message'}
+                </h3>
+                <p style={{ color: '#666', marginBottom: '30px' }}>
+                  {applicationDetected 
+                    ? 'Please review your application details below and click send to submit your job application.' 
+                    : 'Fill out the form below and we\'ll get back to you within 24 hours'}
+                </p>
+                
+                {/* WhatsApp Contact Alert */}
+                <Alert variant="success" style={{ backgroundColor: '#25D366', color: '#fff', borderRadius: '10px', marginBottom: '20px', border: 'none' }}>
+                  <FaWhatsapp className="me-2" />
+                  <strong>Quick Support:</strong> Chat with us on WhatsApp at <strong>0116378188</strong> for immediate assistance
+                </Alert>
                 
                 {submitted && (
                   <Alert variant="success" style={{ borderRadius: '10px' }}>
                     <FaCheckCircle className="me-2" />
-                    Message sent successfully! Our team will contact you soon.
+                    {applicationDetected 
+                      ? 'Your job application has been sent successfully! Our HR team will review your application and contact you within 3-5 business days.' 
+                      : 'Message sent successfully! Our team will contact you soon.'}
                   </Alert>
                 )}
                 
@@ -238,7 +353,7 @@ const ContactPage = () => {
                           name="phone" 
                           value={formData.phone} 
                           onChange={handleChange} 
-                          placeholder="+254 XXX XXX XXX"
+                          placeholder="0116378188"
                           style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd' }} 
                         />
                       </Form.Group>
@@ -254,6 +369,7 @@ const ContactPage = () => {
                           required 
                           placeholder="What is this regarding?"
                           style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd' }} 
+                          readOnly={applicationDetected}
                         />
                       </Form.Group>
                     </Col>
@@ -267,9 +383,9 @@ const ContactPage = () => {
                       value={formData.message} 
                       onChange={handleChange} 
                       required 
-                      rows={5} 
+                      rows={applicationDetected ? 12 : 5} 
                       placeholder="Tell us about your project or inquiry..."
-                      style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd' }} 
+                      style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd', fontFamily: 'monospace', fontSize: '12px' }} 
                     />
                   </Form.Group>
                   
@@ -287,7 +403,7 @@ const ContactPage = () => {
                       fontSize: '1rem'
                     }}
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? 'Sending...' : applicationDetected ? 'Submit Job Application' : 'Send Message'}
                   </Button>
                 </Form>
               </Card.Body>
