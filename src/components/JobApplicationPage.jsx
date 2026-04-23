@@ -45,7 +45,9 @@ const JobApplicationPage = () => {
 
   const job = jobs[jobId] || jobs[1];
 
-  const whatsappNumber = '0116378188';
+  // WhatsApp number with correct Kenya format (without leading 0)
+  // 0116378188 becomes 254116378188 (remove leading 0 and add 254)
+  const whatsappNumber = '254116378188';
   const whatsappMessage = encodeURIComponent(`Hello! I'm interested in the ${job.title} position. I've submitted my application.`);
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -85,7 +87,6 @@ APPLICANT DETAILS:
 Full Name: ${formData.fullName}
 Email: ${formData.email}
 Phone: ${formData.phone}
-WhatsApp Contact: 0116378188
 Years of Experience: ${formData.experience}
 Current/Previous Company: ${formData.currentCompany || 'Not specified'}
 
@@ -98,17 +99,14 @@ RESUME/CV LINK:
 ${formData.resumeLink || 'Not provided'}
 
 Application Date: ${new Date().toLocaleString()}
-
-Contact Applicant via WhatsApp: https://wa.me/${formData.phone.replace(/[^0-9]/g, '')}
     `;
 
     const emailSubject = `Job Application: ${job.title} - ${formData.fullName}`;
     const recipientEmail = 'brianshitambasi270@gmail.com';
     
-    // Direct mailto link - most reliable for mobile
     const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailContent)}`;
     
-    // Also store in localStorage as backup
+    // Store in localStorage as backup
     const applicationData = {
       name: formData.fullName,
       email: formData.email,
@@ -128,19 +126,50 @@ Contact Applicant via WhatsApp: https://wa.me/${formData.phone.replace(/[^0-9]/g
     
     localStorage.setItem('pendingApplication', JSON.stringify(applicationData));
     
-    // Try to open email client
+    // Open email client
     setTimeout(() => {
       window.location.href = mailtoLink;
       setIsSubmitting(false);
       
-      // Show success message
       alert('Application prepared! Please check your email app to send the application.');
       
-      // Navigate to home after short delay
       setTimeout(() => {
         navigate('/');
-      }, 2000);
+      }, 3000);
     }, 500);
+  };
+
+  // Handle WhatsApp application submission
+  const handleWhatsAppSubmit = () => {
+    const message = `
+NEW JOB APPLICATION - MJ & ROBERTS CONSULTING
+
+Position: ${job.title}
+Department: ${job.department}
+Location: ${job.location}
+
+APPLICANT DETAILS:
+-----------------
+Full Name: ${formData.fullName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Years of Experience: ${formData.experience}
+Current/Previous Company: ${formData.currentCompany || 'Not specified'}
+
+COVER LETTER:
+-------------
+${formData.coverLetter || 'No cover letter provided'}
+
+RESUME/CV LINK:
+---------------
+${formData.resumeLink || 'Not provided'}
+    `;
+    
+    const whatsappMsg = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMsg}`;
+    window.open(whatsappUrl, '_blank');
+    
+    alert('WhatsApp chat opened! Send your application message.');
   };
 
   return (
@@ -162,12 +191,16 @@ Contact Applicant via WhatsApp: https://wa.me/${formData.phone.replace(/[^0-9]/g
                 <h2 style={{ color: '#fff', marginBottom: '10px' }}>Apply for {job.title}</h2>
                 <p style={{ color: '#aaa' }}>Complete the form below to submit your application</p>
                 
-                <Alert variant="info" style={{ backgroundColor: '#25D366', color: '#fff', borderRadius: '10px', marginBottom: '20px', border: 'none' }}>
+                {/* Fixed WhatsApp Alert with correct number */}
+                <Alert variant="success" style={{ backgroundColor: '#25D366', color: '#fff', borderRadius: '10px', marginBottom: '20px', border: 'none' }}>
                   <FaWhatsapp className="me-2" />
-                  <strong>Questions?</strong> Chat on WhatsApp: <strong>0116378188</strong>
-                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline', marginLeft: '10px' }}>
-                    Click to chat →
-                  </a>
+                  <strong>Questions? Chat on WhatsApp: 0116378188</strong>
+                  <br />
+                  <small>Click to chat: 
+                    <a href={whatsappLink} target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline', marginLeft: '5px' }}>
+                      wa.me/254116378188
+                    </a>
+                  </small>
                 </Alert>
                 
                 {error && (
@@ -218,9 +251,12 @@ Contact Applicant via WhatsApp: https://wa.me/${formData.phone.replace(/[^0-9]/g
                           value={formData.phone}
                           onChange={handleChange}
                           required
-                          placeholder="+254 XXX XXX XXX"
+                          placeholder="07XX XXX XXX or 01XX XXX XXX"
                           style={{ backgroundColor: '#2a2a2a', color: '#fff', border: '1px solid #444' }}
                         />
+                        <Form.Text style={{ color: '#aaa' }}>
+                          Enter your phone number (e.g., 07XXXXXXXX or 01XXXXXXXX)
+                        </Form.Text>
                       </Form.Group>
                     </Col>
                     <Col md={6}>
@@ -295,10 +331,28 @@ Contact Applicant via WhatsApp: https://wa.me/${formData.phone.replace(/[^0-9]/g
                       borderRadius: '10px',
                       fontWeight: '700',
                       background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                      border: 'none',
+                      marginBottom: '10px'
+                    }}
+                  >
+                    {isSubmitting ? 'Preparing Application...' : 'Submit via Email'}
+                  </Button>
+
+                  <Button
+                    type="button"
+                    variant="success"
+                    onClick={handleWhatsAppSubmit}
+                    disabled={!formData.fullName || !formData.email}
+                    style={{
+                      width: '100%',
+                      padding: '14px',
+                      borderRadius: '10px',
+                      fontWeight: '700',
+                      backgroundColor: '#25D366',
                       border: 'none'
                     }}
                   >
-                    {isSubmitting ? 'Preparing Application...' : 'Submit Application'}
+                    <FaWhatsapp className="me-2" /> Submit via WhatsApp
                   </Button>
                 </Form>
               </Card.Body>
@@ -362,7 +416,7 @@ Contact Applicant via WhatsApp: https://wa.me/${formData.phone.replace(/[^0-9]/g
                   <li style={{ marginBottom: '10px' }}>📄 Ensure your CV highlights relevant experience</li>
                   <li style={{ marginBottom: '10px' }}>⏰ Applications reviewed within 5 business days</li>
                   <li style={{ marginBottom: '10px' }}>📧 You'll receive confirmation via email</li>
-                  <li style={{ marginBottom: '10px' }}>💬 Chat on WhatsApp: 0116378188 for quick questions</li>
+                  <li style={{ marginBottom: '10px' }}>💬 Chat on WhatsApp: <strong>0116378188</strong> for quick questions</li>
                 </ul>
               </Card.Body>
             </Card>
