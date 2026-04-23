@@ -40,7 +40,7 @@ const ContactPage = () => {
       phone: "+254712345678",
       whatsapp: "254712345678",
       bio: "Expert in strategic planning, operations, and digital transformation",
-      avatar: "/image/static/h22.jpeg",
+      avatar: "/image/static/h23.jpeg",
       social: { linkedin: "#", twitter: "#" },
       expertise: ["Strategic Planning", "Operations", "Change Management"]
     }
