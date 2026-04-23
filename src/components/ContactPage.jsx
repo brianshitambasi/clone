@@ -79,7 +79,7 @@ const ContactPage = () => {
   }, []);
 
   // WhatsApp configuration with new number 0116378188
-  const whatsappNumber = '0116378188';
+  const whatsappNumber = '254116378188';
   const whatsappMessage = encodeURIComponent('Hello! I would like to get more information about your services.');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   const whatsappCallLink = `https://wa.me/${whatsappNumber}`;
@@ -145,7 +145,7 @@ ${formData.message}
 
 ---
 Sent from MJ & Roberts Consulting Contact Form
-WhatsApp: 0116378188
+WhatsApp: 254116378188
     `;
     
     // Open email client with pre-filled details
@@ -226,7 +226,7 @@ WhatsApp: 0116378188
                     </div>
                     <div>
                       <small style={{ color: '#999' }}>Call Us</small>
-                      <p style={{ margin: 0, fontWeight: '600' }}>0116378188</p>
+                      <p style={{ margin: 0, fontWeight: '600' }}>254116378188</p>
                     </div>
                   </div>
                   
@@ -236,7 +236,7 @@ WhatsApp: 0116378188
                     </div>
                     <div>
                       <small style={{ color: '#999' }}>WhatsApp</small>
-                      <p style={{ margin: 0, fontWeight: '600' }}>0116378188</p>
+                      <p style={{ margin: 0, fontWeight: '600' }}>254116378188</p>
                     </div>
                   </div>
                   
@@ -300,7 +300,7 @@ WhatsApp: 0116378188
                 {/* WhatsApp Contact Alert */}
                 <Alert variant="success" style={{ backgroundColor: '#25D366', color: '#fff', borderRadius: '10px', marginBottom: '20px', border: 'none' }}>
                   <FaWhatsapp className="me-2" />
-                  <strong>Quick Support:</strong> Chat with us on WhatsApp at <strong>0116378188</strong> for immediate assistance
+                  <strong>Quick Support:</strong> Chat with us on WhatsApp at <strong>254116378188</strong> for immediate assistance
                 </Alert>
                 
                 {submitted && (
@@ -353,7 +353,7 @@ WhatsApp: 0116378188
                           name="phone" 
                           value={formData.phone} 
                           onChange={handleChange} 
-                          placeholder="0116378188"
+                          placeholder="254116378188"
                           style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd' }} 
                         />
                       </Form.Group>
