@@ -1,17 +1,16 @@
 // src/components/InsightsPage.jsx
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Badge, Button, Modal, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col, Card, Badge, Button, Nav } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { FaNewspaper, FaChartLine, FaMicrochip, FaCloud, FaShieldAlt, FaRobot, FaCalendar, FaUser, FaFile, FaDownload, FaFire, FaIndustry, FaBook } from 'react-icons/fa';
 
 const InsightsPage = () => {
-  const [selectedArticle, setSelectedArticle] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const [activeKey, setActiveKey] = useState('all');
 
   // Featured Article
   const featuredArticle = {
-    id: 'featured',
+    id: 'agentic-ai',
     title: 'The Future of Enterprise AI: Beyond Automation',
     description: 'How generative AI and agentic workflows are reshaping business operations, decision-making, and customer experiences across industries.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop',
@@ -20,8 +19,7 @@ const InsightsPage = () => {
     date: 'April 10, 2024',
     readTime: '8 min read',
     category: 'Artificial Intelligence',
-    type: 'featured',
-    content: 'The landscape of enterprise artificial intelligence has undergone a dramatic transformation over the past 18 months. What was once considered futuristic is now becoming table stakes for competitive advantage. Organizations are moving beyond simple automation to embrace agentic AI systems that can reason, plan, and execute complex tasks autonomously.'
+    type: 'featured'
   };
 
   // Trending Topics Data
@@ -30,7 +28,6 @@ const InsightsPage = () => {
       id: 'agentic-ai',
       title: 'Agentic AI: Why the "Chatbot" Era is Over', 
       description: 'The shift from reactive chatbots to proactive AI agents that understand context, remember conversations, and take meaningful action on behalf of users.',
-      fullContent: 'The era of simple rule-based chatbots is ending. Agentic AI represents a paradigm shift where AI systems can understand intent, maintain context across conversations, access external tools, and execute complex workflows. Unlike traditional chatbots that respond to immediate queries, agentic AI remembers past interactions, learns user preferences, and proactively offers solutions before problems arise. This technology is transforming customer service, IT support, and business process automation.',
       tag: 'Trending', 
       category: 'Artificial Intelligence',
       date: 'March 15, 2024',
@@ -43,7 +40,6 @@ const InsightsPage = () => {
       id: 'cloud-sovereignty',
       title: 'Cloud Sovereignty: Maintaining Data Control in a Multi-Cloud World', 
       description: 'Strategies for navigating data residency requirements, compliance standards, and vendor lock-in while leveraging multiple cloud providers.',
-      fullContent: 'As organizations adopt multi-cloud strategies, maintaining data sovereignty has become paramount. Different countries have varying data residency requirements, from GDPR in Europe to local data protection laws in Asia and Africa. Cloud sovereignty solutions enable businesses to keep data within geographic boundaries while still benefiting from cloud scalability.',
       tag: 'Trending', 
       category: 'Cloud Computing',
       date: 'March 10, 2024',
@@ -56,7 +52,6 @@ const InsightsPage = () => {
       id: 'blockchain-iot',
       title: 'Blockchain & IoT: Decentralized Trust and Edge Intelligence', 
       description: 'How combining blockchain technology with IoT devices creates tamper-proof data chains and enables autonomous machine-to-machine transactions.',
-      fullContent: 'The convergence of blockchain and IoT is creating unprecedented opportunities for supply chain transparency, automated payments, and secure device communication. By recording IoT sensor data on distributed ledgers, organizations can create immutable audit trails that enhance trust among partners. Smart contracts enable automated triggers based on real-world conditions.',
       tag: 'Trending', 
       category: 'Blockchain',
       date: 'March 5, 2024',
@@ -69,7 +64,6 @@ const InsightsPage = () => {
       id: 'generative-ai',
       title: 'Generative AI in Enterprise: Beyond ChatGPT', 
       description: 'How businesses are leveraging generative AI for content creation, code generation, and creative problem-solving at scale.',
-      fullContent: 'Generative AI is revolutionizing how enterprises create content, generate code, and solve complex problems. From automated report writing to AI-assisted software development, organizations are seeing 40-60% productivity gains in creative and analytical tasks.',
       tag: 'Trending', 
       category: 'Artificial Intelligence',
       date: 'February 28, 2024',
@@ -86,7 +80,6 @@ const InsightsPage = () => {
       id: 'fintech-innovation',
       title: 'Fintech Innovation: Secure Cloud Ledgers and Automated Compliance', 
       description: 'Modern financial institutions are leveraging cloud-native ledgers and AI-driven compliance tools to reduce costs while improving security.',
-      fullContent: 'The financial services industry is undergoing a radical transformation driven by cloud technology and artificial intelligence. Traditional banks are replacing legacy systems with cloud-native ledgers that offer real-time transaction processing, improved scalability, and enhanced security features. AI-powered compliance tools automatically monitor transactions for suspicious activity.',
       tag: 'Financial Services', 
       category: 'Fintech',
       date: 'March 12, 2024',
@@ -99,7 +92,6 @@ const InsightsPage = () => {
       id: 'healthtech-privacy',
       title: 'Healthtech Privacy: The Intersection of Privacy and Predictive Diagnostics', 
       description: 'Balancing the promise of AI-driven diagnostics with stringent patient privacy requirements under HIPAA and GDPR.',
-      fullContent: 'Healthcare providers face a unique challenge: leveraging AI for better diagnostics while protecting sensitive patient data. Advanced encryption techniques, federated learning, and differential privacy are enabling hospitals to train AI models without exposing individual patient records.',
       tag: 'Healthcare', 
       category: 'Healthtech',
       date: 'March 8, 2024',
@@ -111,8 +103,7 @@ const InsightsPage = () => {
     { 
       id: 'sustainable-it',
       title: 'Sustainable IT: Reducing Carbon Footprint Through Cloud Optimization', 
-      description: 'How organizations can reduce energy consumption and carbon emissions by optimizing cloud workloads and adopting green computing.',
-      fullContent: 'Data centers account for approximately 1% of global electricity consumption, and that number is growing. Sustainable IT practices help organizations reduce their environmental impact while lowering operational costs. Organizations implementing these practices typically see 20-30% reductions in both carbon emissions and cloud spending.',
+      description: 'How organizations can reduce energy consumption and carbon emissions by optimizing cloud workloads.',
       tag: 'Sustainability', 
       category: 'Green Technology',
       date: 'March 3, 2024',
@@ -124,8 +115,7 @@ const InsightsPage = () => {
     { 
       id: 'manufacturing-40',
       title: 'Industry 4.0: Smart Manufacturing and Predictive Maintenance', 
-      description: 'How IoT sensors, AI analytics, and cloud platforms are transforming manufacturing operations and supply chains.',
-      fullContent: 'Industry 4.0 represents the fourth industrial revolution, combining IoT, AI, and cloud computing to create smart factories. Predictive maintenance alone can reduce machine downtime by 50% and extend equipment life by 20-40%.',
+      description: 'How IoT sensors, AI analytics, and cloud platforms are transforming manufacturing operations.',
       tag: 'Manufacturing', 
       category: 'Industry 4.0',
       date: 'February 25, 2024',
@@ -141,50 +131,43 @@ const InsightsPage = () => {
     { 
       id: 'wp-2024-ai',
       title: 'Enterprise AI Strategy 2024: From Pilot to Production', 
-      description: 'A comprehensive guide to scaling artificial intelligence initiatives across your organization, including governance frameworks, ROI models, and implementation roadmaps.',
-      fullContent: 'This whitepaper provides a step-by-step framework for taking AI from pilot projects to enterprise-wide production. Includes governance frameworks, ROI calculation models, risk assessment matrices, and implementation timelines.',
+      description: 'A comprehensive guide to scaling artificial intelligence initiatives across your organization.',
       tag: 'Premium Content', 
       category: 'AI Strategy',
       date: 'January 2024',
       author: 'AI Research Team',
       readTime: '45 min',
       icon: <FaFile />,
-      pages: 28,
-      downloadLink: '#'
+      pages: 28
     },
     { 
       id: 'wp-cloud-migration',
       title: 'Cloud Migration Playbook: Proven Patterns for Success', 
-      description: 'Battle-tested strategies for migrating enterprise workloads to the cloud with minimal disruption and maximum ROI.',
-      fullContent: 'This playbook documents migration patterns from over 50 successful cloud migrations, including lift-and-shift, re-platforming, and re-architecting approaches. Includes checklists, risk assessments, and cost models.',
+      description: 'Battle-tested strategies for migrating enterprise workloads to the cloud with minimal disruption.',
       tag: 'Premium Content', 
       category: 'Cloud Computing',
       date: 'December 2023',
       author: 'Cloud Center of Excellence',
       readTime: '35 min',
       icon: <FaFile />,
-      pages: 32,
-      downloadLink: '#'
+      pages: 32
     },
     { 
       id: 'wp-cybersecurity',
       title: 'Zero Trust Architecture: A Practical Implementation Guide', 
       description: 'How to implement zero trust security principles in modern cloud-native and hybrid environments.',
-      fullContent: 'This whitepaper explains zero trust principles and provides practical implementation guidance for identity management, network segmentation, continuous monitoring, and incident response.',
       tag: 'Premium Content', 
       category: 'Security',
       date: 'November 2023',
       author: 'Security Practice',
       readTime: '40 min',
       icon: <FaFile />,
-      pages: 35,
-      downloadLink: '#'
+      pages: 35
     }
   ];
 
-  const handleReadMore = (article) => {
-    setSelectedArticle(article);
-    setShowModal(true);
+  const handleReadMore = (articleId) => {
+    navigate(`/insights/${articleId}`);
   };
 
   const handleDownload = (whitepaper) => {
@@ -242,7 +225,8 @@ const InsightsPage = () => {
             {/* Featured Article */}
             <div style={{ marginBottom: '40px' }}>
               <h3 style={{ color: '#667eea', marginBottom: '20px' }}>Featured Insight</h3>
-              <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '20px', overflow: 'hidden' }}>
+              <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '20px', overflow: 'hidden', cursor: 'pointer' }}
+                onClick={() => handleReadMore(featuredArticle.id)}>
                 <Row className="g-0">
                   <Col md={5}>
                     <img src={featuredArticle.image} alt={featuredArticle.title} style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '280px' }} />
@@ -256,7 +240,7 @@ const InsightsPage = () => {
                         <span><FaUser /> {featuredArticle.author}</span>
                         <span><FaCalendar /> {featuredArticle.date}</span>
                       </div>
-                      <Button variant="outline-primary" onClick={() => handleReadMore(featuredArticle)} style={{ borderRadius: '50px' }}>Read Full Article →</Button>
+                      <Button variant="outline-primary" style={{ borderRadius: '50px' }}>Read Full Article →</Button>
                     </div>
                   </Col>
                 </Row>
@@ -269,11 +253,11 @@ const InsightsPage = () => {
               {[...trendingTopics, ...industryTopics].map((article) => (
                 <Col md={6} key={article.id} className="mb-4">
                   <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', padding: '25px', cursor: 'pointer', height: '100%' }}
-                    onClick={() => handleReadMore(article)}>
+                    onClick={() => handleReadMore(article.id)}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
                       <div style={{ fontSize: '2rem', color: '#667eea' }}>{article.icon}</div>
                       <div>
-                        <Badge bg={article.tag === 'Trending' ? 'danger' : 'info'} style={{ marginBottom: '5px' }}>{article.tag || article.category}</Badge>
+                        <Badge bg={article.tag === 'Trending' ? 'danger' : 'info'} style={{ marginBottom: '5px' }}>{article.tag}</Badge>
                         <h4 style={{ fontSize: '1rem', color: '#aaa', margin: 0 }}>{article.category}</h4>
                       </div>
                     </div>
@@ -298,7 +282,7 @@ const InsightsPage = () => {
                 <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', padding: '25px', cursor: 'pointer', height: '100%', transition: 'transform 0.3s' }}
                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
                   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                  onClick={() => handleReadMore(topic)}>
+                  onClick={() => handleReadMore(topic.id)}>
                   <div style={{ fontSize: '2.5rem', color: '#667eea', marginBottom: '15px' }}>{topic.icon}</div>
                   <Badge bg="danger" style={{ width: 'fit-content', marginBottom: '15px' }}>🔥 {topic.tag}</Badge>
                   <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', color: '#ffffff' }}>{topic.title}</h3>
@@ -325,7 +309,7 @@ const InsightsPage = () => {
                 <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', padding: '25px', cursor: 'pointer', height: '100%', transition: 'transform 0.3s' }}
                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
                   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                  onClick={() => handleReadMore(topic)}>
+                  onClick={() => handleReadMore(topic.id)}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
                     <div style={{ fontSize: '2rem', color: '#764ba2' }}>{topic.icon}</div>
                     <div>
@@ -365,7 +349,7 @@ const InsightsPage = () => {
                     </div>
                   </div>
                   <div style={{ display: 'flex', gap: '10px', marginTop: 'auto' }}>
-                    <Button variant="outline-primary" size="sm" onClick={() => handleReadMore(wp)} style={{ borderRadius: '50px', flex: 1 }}>Preview</Button>
+                    <Button variant="outline-primary" size="sm" onClick={() => handleReadMore(wp.id)} style={{ borderRadius: '50px', flex: 1 }}>Preview</Button>
                     <Button variant="primary" size="sm" onClick={() => handleDownload(wp)} style={{ borderRadius: '50px', flex: 1 }}>
                       <FaDownload className="me-1" /> Download
                     </Button>
@@ -376,34 +360,6 @@ const InsightsPage = () => {
           </Row>
         )}
       </Container>
-
-      {/* Modal for Article Preview */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
-        <Modal.Header style={{ backgroundColor: '#1a1a1a', borderBottom: '1px solid #444' }}>
-          <Modal.Title style={{ color: '#ffffff' }}>{selectedArticle?.title}</Modal.Title>
-          <Button variant="close" onClick={() => setShowModal(false)} style={{ filter: 'invert(1)' }} />
-        </Modal.Header>
-        <Modal.Body style={{ backgroundColor: '#0a0a0a', color: '#ccc' }}>
-          <div style={{ marginBottom: '20px', display: 'flex', gap: '15px', color: '#888', flexWrap: 'wrap' }}>
-            <span><FaUser /> {selectedArticle?.author}</span>
-            <span><FaCalendar /> {selectedArticle?.date}</span>
-            {selectedArticle?.readTime && <span>📖 {selectedArticle.readTime}</span>}
-            {selectedArticle?.pages && <span>📄 {selectedArticle.pages} pages</span>}
-          </div>
-          <p style={{ lineHeight: '1.8' }}>{selectedArticle?.fullContent || selectedArticle?.content || selectedArticle?.description}</p>
-          {selectedArticle?.type === 'whitepaper' && (
-            <div style={{ marginTop: '20px', textAlign: 'center' }}>
-              <Button variant="primary" onClick={() => handleDownload(selectedArticle)} style={{ borderRadius: '50px' }}>
-                <FaDownload className="me-2" /> Download Full Whitepaper
-              </Button>
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: '#1a1a1a', borderTop: '1px solid #444' }}>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
-          <Button as={Link} to="/contact" variant="primary">Discuss with Expert</Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };

@@ -7,8 +7,9 @@ import { FaArrowLeft, FaCalendar, FaUser, FaClock, FaShare, FaBookmark } from 'r
 const InsightDetail = () => {
   const { id } = useParams();
 
-  // All insights data with more detailed information
+  // Complete insights data with all articles
   const insightsData = {
+    // Trending Topics
     'agentic-ai': {
       title: 'Agentic AI: Why the "Chatbot" Era is Over',
       author: 'Michael Chen',
@@ -64,25 +65,8 @@ const InsightDetail = () => {
           <li><strong>Scale (3-6 months):</strong> Expand to additional use cases and departments</li>
         </ol>
         
-        <h3>Challenges to Consider</h3>
-        <p>Organizations should be aware of potential challenges:</p>
-        <ul>
-          <li>Data privacy and security concerns</li>
-          <li>Integration with legacy systems</li>
-          <li>User acceptance and change management</li>
-          <li>Cost of implementation and training</li>
-          <li>Regulatory compliance requirements</li>
-        </ul>
-        
         <h3>Getting Started with MJ & Roberts</h3>
-        <p>Our team of AI specialists can help you navigate the agentic AI landscape. We offer:</p>
-        <ul>
-          <li>Strategy workshops to identify high-impact use cases</li>
-          <li>Proof-of-concept development in 4-6 weeks</li>
-          <li>Custom AI agent development and training</li>
-          <li>Integration with existing systems and workflows</li>
-          <li>Ongoing optimization and support</li>
-        </ul>
+        <p>Our team of AI specialists can help you navigate the agentic AI landscape. We offer strategy workshops, proof-of-concept development, custom AI agent development, integration with existing systems, and ongoing optimization support.</p>
         
         <p><strong>Ready to explore agentic AI for your organization?</strong> Contact our team for a free consultation and discovery workshop.</p>
       `
@@ -101,7 +85,7 @@ const InsightDetail = () => {
         <p>As organizations adopt multi-cloud strategies, maintaining data sovereignty has become paramount. Different countries have varying data residency requirements, from GDPR in Europe to local data protection laws in Asia and Africa.</p>
         
         <h3>Understanding Data Sovereignty</h3>
-        <p>Data sovereignty refers to the concept that data is subject to the laws of the country where it is physically stored. This creates challenges for global organizations that need to move data across borders for processing, analytics, or backup purposes.</p>
+        <p>Data sovereignty refers to the concept that data is subject to the laws of the country where it is physically stored. This creates challenges for global organizations that need to move data across borders.</p>
         
         <div class="stats-box">
           <h4>Key Statistics</h4>
@@ -113,49 +97,20 @@ const InsightDetail = () => {
           </ul>
         </div>
         
-        <h3>Key Strategies for Data Sovereignty</h3>
+        <h3>Key Strategies</h3>
         <ul>
-          <li><strong>Hybrid Architectures:</strong> Keep sensitive data on-premise while leveraging cloud for analytics and less sensitive workloads</li>
-          <li><strong>Edge Computing:</strong> Process data locally at the source before sending aggregated insights to central cloud</li>
-          <li><strong>Sovereign Cloud Partnerships:</strong> Work with cloud providers offering region-specific data centers and compliance certifications</li>
-          <li><strong>Data Classification:</strong> Implement automated systems to identify which data types require specific geographic handling</li>
-          <li><strong>Encryption & Key Management:</strong> Maintain control over encryption keys even when data resides in cloud provider data centers</li>
+          <li><strong>Hybrid Architectures:</strong> Keep sensitive data on-premise while leveraging cloud for analytics</li>
+          <li><strong>Edge Computing:</strong> Process data locally before sending to central cloud</li>
+          <li><strong>Sovereign Cloud Partnerships:</strong> Work with providers offering region-specific data centers</li>
+          <li><strong>Data Classification:</strong> Identify which data types require specific geographic handling</li>
         </ul>
         
         <h3>Compliance Considerations by Region</h3>
         <ul>
-          <li><strong>Europe (GDPR):</strong> Requires explicit consent, right to deletion, and data breach notification within 72 hours</li>
-          <li><strong>United States (CCPA, HIPAA):</strong> Consumer privacy rights and healthcare data protection requirements</li>
-          <li><strong>Africa (Data Protection Acts):</strong> Kenya, South Africa, Nigeria have enacted local data protection laws</li>
-          <li><strong>Asia (PDPA, PIPL):</strong> Strict data localization requirements in China, Singapore, and India</li>
-        </ul>
-        
-        <h3>Implementation Framework</h3>
-        <ol>
-          <li><strong>Data Discovery (4-6 weeks):</strong> Identify all data sources and classify by sensitivity and residency requirements</li>
-          <li><strong>Policy Development (3-4 weeks):</strong> Create data governance policies aligned with legal requirements</li>
-          <li><strong>Architecture Design (6-8 weeks):</strong> Design cloud architecture that respects data boundaries</li>
-          <li><strong>Technical Implementation (8-12 weeks):</strong> Deploy encryption, access controls, and monitoring</li>
-          <li><strong>Audit & Compliance (Ongoing):</strong> Regular reviews to ensure continued compliance</li>
-        </ol>
-        
-        <h3>Benefits of a Sovereign Cloud Strategy</h3>
-        <ul>
-          <li>✅ Reduced legal and regulatory risk</li>
-          <li>✅ Improved customer trust and brand reputation</li>
-          <li>✅ Avoidance of costly fines and penalties</li>
-          <li>✅ Competitive advantage in regulated markets</li>
-          <li>✅ Simplified audit and compliance processes</li>
-        </ul>
-        
-        <h3>How MJ & Roberts Can Help</h3>
-        <p>Our cloud sovereignty practice provides end-to-end support:</p>
-        <ul>
-          <li>Compliance assessment and gap analysis</li>
-          <li>Multi-cloud architecture design with sovereignty controls</li>
-          <li>Data classification and governance implementation</li>
-          <li>Encryption and key management solutions</li>
-          <li>Ongoing compliance monitoring and reporting</li>
+          <li><strong>Europe (GDPR):</strong> Requires explicit consent and right to deletion</li>
+          <li><strong>United States (CCPA, HIPAA):</strong> Consumer privacy and healthcare data protection</li>
+          <li><strong>Africa:</strong> Kenya, South Africa, Nigeria have local data protection laws</li>
+          <li><strong>Asia:</strong> Strict data localization in China, Singapore, and India</li>
         </ul>
         
         <p><strong>Concerned about data sovereignty?</strong> Schedule a compliance assessment with our team to identify risks and create your action plan.</p>
@@ -175,7 +130,7 @@ const InsightDetail = () => {
         <p>The convergence of blockchain and IoT is creating unprecedented opportunities for supply chain transparency, automated payments, and secure device communication.</p>
         
         <h3>How Blockchain + IoT Works</h3>
-        <p>By recording IoT sensor data on distributed ledgers, organizations can create immutable audit trails that enhance trust among partners. Smart contracts enable automated triggers based on real-world conditions such as temperature thresholds, location updates, or delivery confirmations.</p>
+        <p>By recording IoT sensor data on distributed ledgers, organizations can create immutable audit trails that enhance trust among partners. Smart contracts enable automated triggers based on real-world conditions.</p>
         
         <div class="stats-box">
           <h4>Key Statistics</h4>
@@ -189,59 +144,56 @@ const InsightDetail = () => {
         
         <h3>Real-World Applications</h3>
         <ul>
-          <li><strong>Supply Chain Tracking:</strong> Track products from origin to destination with tamper-proof temperature, location, and handling records</li>
-          <li><strong>Automated Payments:</strong> Smart contracts that automatically release payment when sensors confirm delivery conditions are met</li>
-          <li><strong>Maintenance Alerts:</strong> Trigger service requests and automatically schedule technicians when equipment needs attention</li>
-          <li><strong>Energy Trading:</strong> Enable peer-to-peer energy transactions between smart meters on renewable microgrids</li>
-          <li><strong>Pharmaceutical Cold Chain:</strong> Monitor vaccine temperatures and automatically flag deviations for immediate action</li>
-          <li><strong>Asset Tracking:</strong> Verify authenticity and ownership history of luxury goods, art, and valuable equipment</li>
+          <li><strong>Supply Chain Tracking:</strong> Track products from origin to destination</li>
+          <li><strong>Automated Payments:</strong> Smart contracts release payment when conditions are met</li>
+          <li><strong>Maintenance Alerts:</strong> Trigger service requests when equipment needs attention</li>
+          <li><strong>Energy Trading:</strong> Peer-to-peer energy transactions between smart meters</li>
+          <li><strong>Pharmaceutical Cold Chain:</strong> Monitor vaccine temperatures in real-time</li>
         </ul>
         
-        <h3>Technical Architecture Components</h3>
-        <ul>
-          <li><strong>IoT Sensors:</strong> Collect real-world data (temperature, location, motion, etc.)</li>
-          <li><strong>Edge Gateways:</strong> Aggregate and pre-process sensor data</li>
-          <li><strong>Blockchain Nodes:</strong> Record hashed data on distributed ledger</li>
-          <li><strong>Smart Contracts:</strong> Execute automated actions based on conditions</li>
-          <li><strong>Dashboards:</strong> Visualize data and trigger alerts</li>
-        </ul>
+        <h3>Getting Started</h3>
+        <p>Our blockchain and IoT practice offers use case identification, proof-of-concept deployment in 8-12 weeks, integration with existing infrastructure, smart contract development, and training support.</p>
         
-        <h3>Implementation Considerations</h3>
-        <ul>
-          <li><strong>Blockchain Type:</strong> Public (Ethereum) vs. Private (Hyperledger) vs. Hybrid based on trust and scalability needs</li>
-          <li><strong>Data Volume:</strong> Not all IoT data needs to be on-chain; use selective hashing for efficiency</li>
-          <li><strong>Latency Requirements:</strong> Consider edge processing for time-sensitive applications</li>
-          <li><strong>Integration:</strong> Connect blockchain with existing ERP and supply chain systems</li>
-          <li><strong>Cost Analysis:</strong> Evaluate transaction fees vs. business value</li>
-        </ul>
-        
-        <h3>Use Case Deep Dive: Pharmaceutical Supply Chain</h3>
-        <p>A leading pharmaceutical company implemented blockchain + IoT to track vaccine shipments globally. Results included:</p>
-        <ul>
-          <li>📉 95% reduction in counterfeit products</li>
-          <li>⏱️ 80% faster investigation of temperature excursions</li>
-          <li>💰 $10M annual savings in reduced waste</li>
-          <li>✅ 100% regulatory compliance with documentation</li>
-          <li>📊 Real-time visibility for regulators and partners</li>
-        </ul>
-        
-        <h3>Getting Started with MJ & Roberts</h3>
-        <p>Our blockchain and IoT practice offers:</p>
-        <ul>
-          <li>Use case identification and business case development</li>
-          <li>Proof-of-concept deployment in 8-12 weeks</li>
-          <li>Integration with existing IoT infrastructure</li>
-          <li>Smart contract development and auditing</li>
-          <li>Training and change management support</li>
-        </ul>
-        
-        <p><strong>Ready to explore blockchain + IoT for your business?</strong> Contact our emerging tech team for a workshop and pilot planning session.</p>
+        <p><strong>Ready to explore blockchain + IoT for your business?</strong> Contact our emerging tech team for a workshop.</p>
       `
-    }
-  };
+    },
+    'generative-ai': {
+      title: 'Generative AI in Enterprise: Beyond ChatGPT',
+      author: 'Sarah Johnson',
+      role: 'AI Research Lead',
+      date: 'February 28, 2024',
+      readTime: '8 min read',
+      category: 'Artificial Intelligence',
+      tag: 'Trending',
+      image: 'https://images.unsplash.com/photo-1686191128892-3c6f6f5e7b1c?w=800&h=400&fit=crop',
+      excerpt: 'How businesses are leveraging generative AI for content creation, code generation, and creative problem-solving at scale.',
+      content: `
+        <p>Generative AI is revolutionizing how enterprises create content, generate code, and solve complex problems. From automated report writing to AI-assisted software development, organizations are seeing 40-60% productivity gains.</p>
+        
+        <div class="stats-box">
+          <h4>Key Statistics</h4>
+          <ul>
+            <li>🚀 75% of enterprises will adopt generative AI by 2026</li>
+            <li>💡 40-60% productivity gains in creative tasks</li>
+            <li>💰 30% reduction in content creation costs</li>
+            <li>⚡ 50% faster software development cycles</li>
+          </ul>
+        </div>
+        
+        <h3>Key Applications</h3>
+        <ul>
+          <li><strong>Content Creation:</strong> Generate marketing copy, blog posts, and social media content</li>
+          <li><strong>Code Generation:</strong> Accelerate development with AI-powered coding assistants</li>
+          <li><strong>Data Analysis:</strong> Generate insights and summaries from complex datasets</li>
+          <li><strong>Customer Support:</strong> Create personalized responses and support documentation</li>
+        </ul>
+        
+        <h3>Getting Started</h3>
+        <p>Ready to implement generative AI? Contact our team for a strategy workshop and pilot program.</p>
+      `
+    },
 
-  // Additional insights for other IDs
-  const fintechInsight = {
+    // Industry Related
     'fintech-innovation': {
       title: 'Fintech Innovation: Secure Cloud Ledgers and Automated Compliance',
       author: 'James Mwangi',
@@ -263,13 +215,15 @@ const InsightDetail = () => {
           <li><strong>Biometric Authentication:</strong> Enhanced security for digital banking</li>
         </ul>
         
-        <h3>Benefits for Financial Institutions</h3>
-        <ul>
-          <li>💰 40-60% reduction in compliance costs</li>
-          <li>⚡ 10x faster transaction processing</li>
-          <li>🔒 99.99% uptime with multi-region deployment</li>
-          <li>📈 Real-time fraud detection and prevention</li>
-        </ul>
+        <div class="stats-box">
+          <h4>Key Statistics</h4>
+          <ul>
+            <li>💰 40-60% reduction in compliance costs</li>
+            <li>⚡ 10x faster transaction processing</li>
+            <li>🔒 99.99% uptime with multi-region deployment</li>
+            <li>📈 Real-time fraud detection and prevention</li>
+          </ul>
+        </div>
         
         <p><strong>Modernize your financial infrastructure</strong> with our fintech solutions. Contact us for a consultation.</p>
       `
@@ -319,37 +273,80 @@ const InsightDetail = () => {
       content: `
         <p>Data centers account for approximately 1% of global electricity consumption, and that number is growing. Sustainable IT practices help organizations reduce their environmental impact while lowering operational costs.</p>
         
+        <div class="stats-box">
+          <h4>Key Statistics</h4>
+          <ul>
+            <li>🌱 20-30% reduction in carbon emissions</li>
+            <li>💰 20-30% reduction in cloud spending</li>
+            <li>⚡ 15-25% improvement in energy efficiency</li>
+            <li>📊 Real-time sustainability dashboards</li>
+          </ul>
+        </div>
+        
         <h3>Key Optimization Strategies</h3>
         <ul>
           <li><strong>Rightsizing Instances:</strong> Match cloud resources to actual workload needs</li>
-          <li><strong>Scheduling:</strong> Run non-critical workloads during off-peak hours</li>
           <li><strong>Serverless Architectures:</strong> Reduce idle capacity with auto-scaling</li>
           <li><strong>Renewable Regions:</strong> Choose cloud regions powered by clean energy</li>
           <li><strong>Storage Optimization:</strong> Tier data based on access frequency</li>
         </ul>
         
-        <h3>Typical Results</h3>
+        <p><strong>Make your IT operations sustainable.</strong> Contact us for a green IT assessment.</p>
+      `
+    },
+    'manufacturing-40': {
+      title: 'Industry 4.0: Smart Manufacturing and Predictive Maintenance',
+      author: 'Robert Kimathi',
+      role: 'Manufacturing Lead',
+      date: 'February 25, 2024',
+      readTime: '7 min read',
+      category: 'Industry 4.0',
+      tag: 'Industry Focus',
+      image: 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=800&h=400&fit=crop',
+      excerpt: 'How IoT sensors, AI analytics, and cloud platforms are transforming manufacturing operations and supply chains.',
+      content: `
+        <p>Industry 4.0 represents the fourth industrial revolution, combining IoT, AI, and cloud computing to create smart factories. Predictive maintenance alone can reduce machine downtime by 50% and extend equipment life by 20-40%.</p>
+        
+        <div class="stats-box">
+          <h4>Key Statistics</h4>
+          <ul>
+            <li>🏭 50% reduction in machine downtime with predictive maintenance</li>
+            <li>📈 20-40% extended equipment life</li>
+            <li>💰 25% reduction in maintenance costs</li>
+            <li>⚡ 30% improvement in overall equipment effectiveness</li>
+          </ul>
+        </div>
+        
+        <h3>Key Technologies</h3>
         <ul>
-          <li>🌱 20-30% reduction in carbon emissions</li>
-          <li>💰 20-30% reduction in cloud spending</li>
-          <li>⚡ 15-25% improvement in energy efficiency</li>
-          <li>📊 Real-time sustainability dashboards</li>
+          <li><strong>IoT Sensors:</strong> Real-time monitoring of equipment health and performance</li>
+          <li><strong>AI Analytics:</strong> Predictive maintenance and quality control</li>
+          <li><strong>Cloud Platforms:</strong> Centralized data management and analytics</li>
+          <li><strong>Digital Twins:</strong> Virtual replicas for simulation and optimization</li>
         </ul>
         
-        <p><strong>Make your IT operations sustainable.</strong> Contact us for a green IT assessment.</p>
+        <h3>Implementation Benefits</h3>
+        <ul>
+          <li>✅ Real-time production monitoring and optimization</li>
+          <li>✅ Predictive maintenance to prevent breakdowns</li>
+          <li>✅ Quality control with AI-powered visual inspection</li>
+          <li>✅ Supply chain visibility and optimization</li>
+        </ul>
+        
+        <p><strong>Ready to transform your manufacturing operations?</strong> Contact our Industry 4.0 experts for a consultation.</p>
       `
     }
   };
 
-  // Merge all insights
-  const allInsights = { ...insightsData, ...fintechInsight };
-  const insight = allInsights[id] || {
+  // Get the insight data based on the ID from URL
+  const insight = insightsData[id] || {
     title: 'Insight Article',
     author: 'Editorial Team',
     role: 'Content Team',
     date: 'Recent',
     readTime: '5 min read',
     category: 'Technology',
+    tag: 'Insight',
     excerpt: 'Full article content is being prepared. Please check back soon for detailed insights on this topic.',
     content: `
       <p>We're currently developing comprehensive content for this topic. Our team of experts is researching and preparing detailed analysis.</p>
