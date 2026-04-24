@@ -474,7 +474,7 @@ const HomePage = () => {
                 marginBottom: '20px',
                 border: '1px solid rgba(102,126,234,0.3)'
               }}>
-                🚀 Enterprise Technology Solutions
+               
               </Badge>
               <h1 style={{ 
                 fontSize: '4rem', 
