@@ -1,12 +1,11 @@
 // components/SolutionDetail.jsx
-/* eslint-disable no-unused-vars */
-const React = require('react');
-const { useState } = React;
-const { Container, Row, Col, Card, Button, Badge, Accordion } = require('react-bootstrap');
-const { Link, useParams } = require('react-router-dom');
-const { 
-  FaCheckCircle, FaArrowRight, FaPhone, FaEnvelope, FaStar, FaTrophy, FaClock, FaUsers, FaChartLine
-} = require('react-icons/fa');
+import React, { useState } from 'react';
+import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import { 
+  FaCheckCircle, FaArrowLeft, FaStar, FaTrophy, FaClock, FaUsers, FaChartLine,
+  FaPhone, FaEnvelope, FaArrowRight
+} from 'react-icons/fa';
 
 const SolutionDetail = () => {
   const { id } = useParams();
@@ -38,12 +37,6 @@ Whether you're implementing CRM for the first time or optimizing an existing dep
         'Advanced analytics and AI-powered insights',
         'User training and adoption programs'
       ],
-      process: [
-        { step: 'Discovery & Assessment', desc: 'Analyze current processes and define requirements', duration: '2-3 weeks' },
-        { step: 'Solution Design', desc: 'Configure CRM to match your business needs', duration: '3-4 weeks' },
-        { step: 'Implementation', desc: 'Build, test, and deploy customizations', duration: '6-8 weeks' },
-        { step: 'Training & Adoption', desc: 'User training and change management', duration: '2-3 weeks' }
-      ],
       technologies: ['Salesforce', 'Microsoft Dynamics 365', 'HubSpot', 'Zoho', 'Pipedrive'],
       image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop'
     },
@@ -69,12 +62,6 @@ We guide you through the entire ERP journey—from initial consultation and vend
         'Custom module development and integration',
         'Data migration and cleansing services',
         'User training and change management'
-      ],
-      process: [
-        { step: 'Discovery', desc: 'Requirements gathering and gap analysis', duration: '3-4 weeks' },
-        { step: 'Design', desc: 'System architecture and configuration', duration: '4-6 weeks' },
-        { step: 'Build', desc: 'Customization and integration development', duration: '8-12 weeks' },
-        { step: 'Test', desc: 'Quality assurance and user acceptance', duration: '3-4 weeks' }
       ],
       technologies: ['SAP S/4HANA', 'Odoo', 'Oracle NetSuite', 'Microsoft Dynamics 365 Business Central'],
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
@@ -102,12 +89,6 @@ This architecture gives you unprecedented flexibility—you can deliver unique e
         'Personalized product recommendations',
         'Real-time inventory synchronization'
       ],
-      process: [
-        { step: 'Strategy', desc: 'Define commerce requirements and channels', duration: '2-3 weeks' },
-        { step: 'Architecture', desc: 'Design headless architecture', duration: '2-4 weeks' },
-        { step: 'Development', desc: 'Build frontend and integrate backend', duration: '8-12 weeks' },
-        { step: 'Testing', desc: 'Performance and security testing', duration: '2-3 weeks' }
-      ],
       technologies: ['Shopify Plus', 'Magento', 'BigCommerce', 'Commercetools', 'Stripe', 'PayPal'],
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop'
     },
@@ -133,12 +114,6 @@ We implement end-to-end analytics solutions including data integration, warehous
         'Predictive analytics and forecasting',
         'Data warehousing and ETL pipelines',
         'Self-service analytics enablement'
-      ],
-      process: [
-        { step: 'Data Audit', desc: 'Assess data sources and quality', duration: '2-3 weeks' },
-        { step: 'Architecture', desc: 'Design data warehouse and pipelines', duration: '3-4 weeks' },
-        { step: 'Development', desc: 'Build ETL and dashboards', duration: '6-8 weeks' },
-        { step: 'Deployment', desc: 'Launch and user training', duration: '2-3 weeks' }
       ],
       technologies: ['Power BI', 'Tableau', 'Looker', 'Snowflake', 'BigQuery', 'Redshift', 'dbt'],
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
@@ -166,12 +141,6 @@ We develop custom AI solutions including computer vision, natural language proce
         'Computer vision solutions',
         'Intelligent document processing'
       ],
-      process: [
-        { step: 'Discovery', desc: 'Identify automation opportunities', duration: '2-3 weeks' },
-        { step: 'Design', desc: 'Design AI/RPA architecture', duration: '3-4 weeks' },
-        { step: 'Development', desc: 'Build and train models/bots', duration: '8-12 weeks' },
-        { step: 'Deployment', desc: 'Launch and monitor', duration: '2-3 weeks' }
-      ],
       technologies: ['TensorFlow', 'PyTorch', 'UiPath', 'Automation Anywhere', 'Blue Prism', 'OpenAI'],
       image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop'
     },
@@ -198,185 +167,235 @@ We develop custom AR/VR applications for training, visualization, and remote ass
         'Real-time monitoring dashboards',
         'Predictive maintenance systems'
       ],
-      process: [
-        { step: 'Discovery', desc: 'Identify use cases and requirements', duration: '2-3 weeks' },
-        { step: 'Design', desc: 'Design AR/VR/IoT architecture', duration: '3-4 weeks' },
-        { step: 'Development', desc: 'Build applications and integrate sensors', duration: '10-14 weeks' },
-        { step: 'Deployment', desc: 'Install and train users', duration: '2-4 weeks' }
-      ],
       technologies: ['Unity', 'Unreal Engine', 'AWS IoT', 'Azure IoT', 'ThingWorx', 'Vuforia'],
       image: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=600&h=400&fit=crop'
     }
   };
 
-  var solution = solutionsData[id];
+  const solution = solutionsData[id];
 
   if (!solution) {
-    return React.createElement(
-      'div',
-      { style: { paddingTop: '80px', textAlign: 'center', minHeight: '100vh', backgroundColor: '#0a0a0a', color: 'white' } },
-      React.createElement(Container, null,
-        React.createElement('h2', null, 'Solution not found'),
-        React.createElement(Button, { as: Link, to: '/solutions', variant: 'primary', style: { marginTop: '20px' } }, 'Back to Solutions')
-      )
+    return (
+      <div style={{ paddingTop: '100px', textAlign: 'center', minHeight: '100vh', backgroundColor: '#0a0a0a', color: '#ffffff' }}>
+        <Container>
+          <h2 style={{ color: '#ffffff' }}>Solution not found</h2>
+          <Button as={Link} to="/solutions" variant="primary" style={{ marginTop: '20px', borderRadius: '50px' }}>
+            Back to Solutions
+          </Button>
+        </Container>
+      </div>
     );
   }
 
-  return React.createElement(
-    'div',
-    { style: { paddingTop: '80px', backgroundColor: '#0a0a0a', minHeight: '100vh', color: 'white' } },
-    React.createElement('section', { style: { padding: '60px 0', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' } },
-      React.createElement(Container, null,
-        React.createElement(Row, null,
-          React.createElement(Col, { lg: 8, className: 'mx-auto text-center' },
-            React.createElement(Badge, { bg: 'light', text: 'dark', style: { marginBottom: '15px' } },
-              React.createElement(FaStar, { style: { marginRight: '5px', color: '#ffc107' } }),
-              solution.rating, ' ★ (', solution.reviews, ' reviews)'
-            ),
-            React.createElement('h1', { style: { fontSize: '2.5rem', fontWeight: '800', marginBottom: '20px' } }, solution.title),
-            React.createElement('p', { style: { fontSize: '1.2rem', opacity: 0.95 } }, solution.subtitle)
-          )
-        )
-      )
-    ),
-    React.createElement(Container, { style: { padding: '60px 0' } },
-      React.createElement(
-        Row,
-        null,
-        React.createElement(
-          Col,
-          { lg: 7 },
-          React.createElement(
-            'div',
-            { style: { marginBottom: '30px', borderBottom: '1px solid #333', display: 'flex', flexWrap: 'wrap' } },
-            ['overview', 'benefits', 'features', 'technologies'].map(function(tab) {
-              return React.createElement(
-                Button,
-                {
-                  key: tab,
-                  variant: 'link',
-                  onClick: function() { setActiveTab(tab); },
-                  style: {
+  const tabs = ['overview', 'benefits', 'features', 'technologies'];
+
+  return (
+    <div style={{ paddingTop: '100px', backgroundColor: '#0a0a0a', minHeight: '100vh' }}>
+      {/* Hero Section */}
+      <section style={{ padding: '60px 0', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+        <Container>
+          <Button 
+            as={Link} 
+            to="/solutions" 
+            variant="outline-light" 
+            style={{ marginBottom: '30px', borderRadius: '50px' }}
+          >
+            <FaArrowLeft className="me-2" /> Back to Solutions
+          </Button>
+          <Row>
+            <Col lg={8} className="mx-auto text-center">
+              <Badge bg="light" text="dark" style={{ marginBottom: '15px', padding: '8px 16px', borderRadius: '50px' }}>
+                <FaStar style={{ marginRight: '5px', color: '#ffc107' }} />
+                {solution.rating} ★ ({solution.reviews} reviews)
+              </Badge>
+              <h1 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '20px', color: '#ffffff' }}>
+                {solution.title}
+              </h1>
+              <p style={{ fontSize: '1.2rem', opacity: 0.95, color: 'rgba(255,255,255,0.9)' }}>
+                {solution.subtitle}
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* Main Content */}
+      <Container style={{ padding: '60px 0' }}>
+        <Row>
+          <Col lg={7}>
+            {/* Tab Navigation */}
+            <div style={{ 
+              marginBottom: '30px', 
+              borderBottom: '1px solid #333', 
+              display: 'flex', 
+              flexWrap: 'wrap',
+              gap: '10px'
+            }}>
+              {tabs.map((tab) => (
+                <Button
+                  key={tab}
+                  variant="link"
+                  onClick={() => setActiveTab(tab)}
+                  style={{
                     color: activeTab === tab ? '#667eea' : '#aaa',
                     textDecoration: 'none',
-                    marginRight: '20px',
                     padding: '10px 0',
+                    marginRight: '20px',
                     borderBottom: activeTab === tab ? '2px solid #667eea' : 'none',
                     borderRadius: 0
-                  }
-                },
-                tab.charAt(0).toUpperCase() + tab.slice(1)
-              );
-            })
-          ),
-          activeTab === 'overview' && React.createElement(React.Fragment, null,
-            React.createElement('h2', { style: { color: '#667eea', marginBottom: '20px' } }, 'Overview'),
-            React.createElement('p', { style: { fontSize: '1.1rem', lineHeight: '1.8', color: '#ccc', marginBottom: '20px' } }, solution.description),
-            React.createElement('p', { style: { fontSize: '1rem', lineHeight: '1.8', color: '#aaa' } }, solution.fullDescription)
-          ),
-          activeTab === 'benefits' && React.createElement(React.Fragment, null,
-            React.createElement('h2', { style: { color: '#667eea', marginBottom: '20px' } }, 'Key Benefits'),
-            React.createElement(
-              'div',
-              null,
-              solution.benefits.map(function(benefit, idx) {
-                return React.createElement(
-                  'div',
-                  { key: idx, style: { marginBottom: '15px', padding: '12px', backgroundColor: '#1a1a1a', borderRadius: '10px', borderLeft: '4px solid #667eea' } },
-                  React.createElement(FaCheckCircle, { style: { color: '#10b981', marginRight: '10px' } }),
-                  React.createElement('span', { style: { color: '#ccc' } }, benefit)
-                );
-              })
-            )
-          ),
-          activeTab === 'features' && React.createElement(React.Fragment, null,
-            React.createElement('h2', { style: { color: '#667eea', marginBottom: '20px' } }, 'Key Features'),
-            React.createElement(
-              'div',
-              null,
-              solution.features.map(function(feature, idx) {
-                return React.createElement(
-                  'div',
-                  { key: idx, style: { marginBottom: '15px', padding: '12px', backgroundColor: '#1a1a1a', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '10px' } },
-                  React.createElement(FaCheckCircle, { style: { color: '#10b981' } }),
-                  React.createElement('span', { style: { color: '#ccc' } }, feature)
-                );
-              })
-            )
-          ),
-          activeTab === 'technologies' && React.createElement(React.Fragment, null,
-            React.createElement('h2', { style: { color: '#667eea', marginBottom: '20px' } }, 'Technologies We Use'),
-            React.createElement(
-              'div',
-              { style: { display: 'flex', flexWrap: 'wrap', gap: '10px' } },
-              solution.technologies.map(function(tech, idx) {
-                return React.createElement(
-                  'span',
-                  { key: idx, style: { background: '#1a1a1a', padding: '8px 16px', borderRadius: '50px', color: '#667eea', border: '1px solid #667eea', fontSize: '0.9rem' } },
-                  tech
-                );
-              })
-            )
-          )
-        ),
-        React.createElement(
-          Col,
-          { lg: 5 },
-          React.createElement('img', { src: solution.image, alt: solution.title, style: { width: '100%', borderRadius: '15px', marginBottom: '20px' } }),
-          React.createElement(
-            Card,
-            { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '20px' } },
-            React.createElement(
-              Card.Body,
-              null,
-              React.createElement('h4', { style: { marginBottom: '15px' } }, 'Quick Stats'),
-              React.createElement(
-                Row,
-                null,
-                React.createElement(Col, { xs: 6, className: 'text-center mb-3' },
-                  React.createElement(FaTrophy, { style: { fontSize: '1.5rem', color: '#667eea' } }),
-                  React.createElement('div', { style: { fontSize: '1.2rem', fontWeight: '700' } }, '98%'),
-                  React.createElement('div', { style: { fontSize: '0.8rem', color: '#aaa' } }, 'Success Rate')
-                ),
-                React.createElement(Col, { xs: 6, className: 'text-center mb-3' },
-                  React.createElement(FaClock, { style: { fontSize: '1.5rem', color: '#667eea' } }),
-                  React.createElement('div', { style: { fontSize: '1.2rem', fontWeight: '700' } }, '3-6 mo'),
-                  React.createElement('div', { style: { fontSize: '0.8rem', color: '#aaa' } }, 'Avg Timeline')
-                ),
-                React.createElement(Col, { xs: 6, className: 'text-center' },
-                  React.createElement(FaUsers, { style: { fontSize: '1.5rem', color: '#667eea' } }),
-                  React.createElement('div', { style: { fontSize: '1.2rem', fontWeight: '700' } }, solution.reviews, '+'),
-                  React.createElement('div', { style: { fontSize: '0.8rem', color: '#aaa' } }, 'Happy Clients')
-                ),
-                React.createElement(Col, { xs: 6, className: 'text-center' },
-                  React.createElement(FaChartLine, { style: { fontSize: '1.5rem', color: '#667eea' } }),
-                  React.createElement('div', { style: { fontSize: '1.2rem', fontWeight: '700' } }, solution.rating),
-                  React.createElement('div', { style: { fontSize: '0.8rem', color: '#aaa' } }, 'Client Rating')
-                )
-              )
-            )
-          ),
-          React.createElement(
-            Card,
-            { style: { backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px' } },
-            React.createElement(
-              Card.Body,
-              null,
-              React.createElement('h4', { style: { marginBottom: '15px' } }, 'Ready to get started?'),
-              React.createElement('p', { style: { color: '#aaa', marginBottom: '20px', fontSize: '0.9rem' } }, 'Contact our experts to discuss how we can help you implement this solution.'),
-              React.createElement(Button, { as: Link, to: '/contact', variant: 'primary', style: { width: '100%', marginBottom: '10px', borderRadius: '50px' } }, 'Schedule Consultation ', React.createElement(FaArrowRight, null)),
-              React.createElement(
-                'div',
-                { style: { display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '15px' } },
-                React.createElement(FaPhone, { style: { color: '#667eea', cursor: 'pointer' } }),
-                React.createElement(FaEnvelope, { style: { color: '#667eea', cursor: 'pointer' } })
-              )
-            )
-          )
-        )
-      )
-    )
+                  }}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </Button>
+              ))}
+            </div>
+
+            {/* Overview Tab */}
+            {activeTab === 'overview' && (
+              <div>
+                <h3 style={{ color: '#667eea', marginBottom: '20px' }}>Overview</h3>
+                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#cccccc', marginBottom: '20px' }}>
+                  {solution.description}
+                </p>
+                <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#aaaaaa', whiteSpace: 'pre-line' }}>
+                  {solution.fullDescription}
+                </p>
+              </div>
+            )}
+
+            {/* Benefits Tab */}
+            {activeTab === 'benefits' && (
+              <div>
+                <h3 style={{ color: '#667eea', marginBottom: '20px' }}>Key Benefits</h3>
+                {solution.benefits.map((benefit, idx) => (
+                  <div key={idx} style={{ 
+                    marginBottom: '15px', 
+                    padding: '15px', 
+                    backgroundColor: '#1a1a1a', 
+                    borderRadius: '10px', 
+                    borderLeft: `4px solid #667eea`,
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    <FaCheckCircle style={{ color: '#10b981', marginRight: '12px', fontSize: '1rem' }} />
+                    <span style={{ color: '#cccccc' }}>{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Features Tab */}
+            {activeTab === 'features' && (
+              <div>
+                <h3 style={{ color: '#667eea', marginBottom: '20px' }}>Key Features</h3>
+                {solution.features.map((feature, idx) => (
+                  <div key={idx} style={{ 
+                    marginBottom: '15px', 
+                    padding: '15px', 
+                    backgroundColor: '#1a1a1a', 
+                    borderRadius: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px'
+                  }}>
+                    <FaCheckCircle style={{ color: '#10b981', fontSize: '1rem' }} />
+                    <span style={{ color: '#cccccc' }}>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Technologies Tab */}
+            {activeTab === 'technologies' && (
+              <div>
+                <h3 style={{ color: '#667eea', marginBottom: '20px' }}>Technologies We Use</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                  {solution.technologies.map((tech, idx) => (
+                    <span key={idx} style={{ 
+                      background: '#1a1a1a', 
+                      padding: '8px 16px', 
+                      borderRadius: '50px', 
+                      color: '#667eea', 
+                      border: `1px solid #667eea`,
+                      fontSize: '0.9rem'
+                    }}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </Col>
+
+          <Col lg={5}>
+            {/* Image */}
+            <img 
+              src={solution.image} 
+              alt={solution.title} 
+              style={{ width: '100%', borderRadius: '15px', marginBottom: '20px' }} 
+            />
+
+            {/* Quick Stats Card */}
+            <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px', marginBottom: '20px' }}>
+              <Card.Body style={{ padding: '25px' }}>
+                <h4 style={{ marginBottom: '20px', color: '#ffffff' }}>Quick Stats</h4>
+                <Row>
+                  <Col xs={6} className="text-center mb-3">
+                    <FaTrophy style={{ fontSize: '1.5rem', color: '#667eea' }} />
+                    <div style={{ fontSize: '1.2rem', fontWeight: '700', color: '#ffffff' }}>98%</div>
+                    <div style={{ fontSize: '0.8rem', color: '#aaa' }}>Success Rate</div>
+                  </Col>
+                  <Col xs={6} className="text-center mb-3">
+                    <FaClock style={{ fontSize: '1.5rem', color: '#667eea' }} />
+                    <div style={{ fontSize: '1.2rem', fontWeight: '700', color: '#ffffff' }}>3-6 mo</div>
+                    <div style={{ fontSize: '0.8rem', color: '#aaa' }}>Avg Timeline</div>
+                  </Col>
+                  <Col xs={6} className="text-center">
+                    <FaUsers style={{ fontSize: '1.5rem', color: '#667eea' }} />
+                    <div style={{ fontSize: '1.2rem', fontWeight: '700', color: '#ffffff' }}>{solution.reviews}+</div>
+                    <div style={{ fontSize: '0.8rem', color: '#aaa' }}>Happy Clients</div>
+                  </Col>
+                  <Col xs={6} className="text-center">
+                    <FaChartLine style={{ fontSize: '1.5rem', color: '#667eea' }} />
+                    <div style={{ fontSize: '1.2rem', fontWeight: '700', color: '#ffffff' }}>{solution.rating}</div>
+                    <div style={{ fontSize: '0.8rem', color: '#aaa' }}>Client Rating</div>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
+
+            {/* CTA Card */}
+            <Card style={{ backgroundColor: '#1a1a1a', border: 'none', borderRadius: '15px' }}>
+              <Card.Body style={{ padding: '25px', textAlign: 'center' }}>
+                <h4 style={{ marginBottom: '15px', color: '#ffffff' }}>Ready to get started?</h4>
+                <p style={{ color: '#aaa', marginBottom: '20px', fontSize: '0.9rem' }}>
+                  Contact our experts to discuss how we can help you implement this solution.
+                </p>
+                <Button 
+                  as={Link} 
+                  to="/contact" 
+                  variant="primary" 
+                  style={{ 
+                    width: '100%', 
+                    marginBottom: '10px', 
+                    borderRadius: '50px',
+                    background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                    border: 'none'
+                  }}
+                >
+                  Schedule Consultation <FaArrowRight style={{ marginLeft: '8px' }} />
+                </Button>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '15px' }}>
+                  <FaPhone style={{ color: '#667eea', cursor: 'pointer', fontSize: '1.2rem' }} />
+                  <FaEnvelope style={{ color: '#667eea', cursor: 'pointer', fontSize: '1.2rem' }} />
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
-module.exports = SolutionDetail;
+export default SolutionDetail;
