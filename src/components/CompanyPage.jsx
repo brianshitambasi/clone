@@ -6,40 +6,40 @@ import {
   FaUserTie, FaEnvelope, FaWhatsapp, FaPhone,
   FaLinkedin, FaTwitter, FaUserPlus, FaEdit, FaTrash,
   FaChartLine, FaGlobe, FaAward, FaClock, FaCalendarAlt,
-  FaQuoteLeft
+  FaQuoteLeft, FaMapMarkerAlt
 } from 'react-icons/fa';
 
 const CompanyPage = () => {
   const [showOwnerModal, setShowOwnerModal] = useState(false);
   const [editingOwner, setEditingOwner] = useState(null);
   
-  // Website Owners/Administrators state using your actual photos
+  // Real founders with correct image mapping
   const [owners, setOwners] = useState([
     {
       id: 1,
-      name: "John Roberts",
-      title: "Founder & CEO",
-      email: "john.roberts@mjroberts.com",
+      name: "Mohamed Jeylani Sayed",
+      title: "Co-Founder & CEO",
+      email: "mohamed@mjroberts.com",
       phone: "+254723156066",
       whatsapp: "254723156066",
-      bio: "15+ years experience in business consulting and enterprise architecture. Specializes in digital transformation and strategic innovation.",
-      avatar: "/image/static/h26.jpeg",
+      bio: "15+ years of experience in enterprise technology and digital transformation. Visionary leader driving MJ&Roberts' mission to bridge the innovation-infrastructure gap.",
+      avatar: "/image/static/h23.jpeg",
       social: { linkedin: "#", twitter: "#" },
-      joinedDate: "2024-01-15",
-      expertise: ["Business Strategy", "Digital Transformation", "Leadership", "Enterprise Architecture"]
+      joinedDate: "2020-01-15",
+      expertise: ["Business Strategy", "Digital Transformation", "Enterprise Architecture", "Leadership"]
     },
     {
       id: 2,
-      name: "Mary Jane",
-      title: "Senior Consultant",
-      email: "mary.jane@mjroberts.com",
-      phone: "+254712345678",
-      whatsapp: "254712345678",
-      bio: "Expert in strategic planning, operations, and digital transformation. Helps organizations achieve operational excellence.",
-      avatar: "/image/static/h22.jpeg",
+      name: "Roberts Vildon Elisha",
+      title: "Co-Founder & CTO",
+      email: "roberts@mjroberts.com",
+      phone: "+254723156066",
+      whatsapp: "254723156066",
+      bio: "Technology architect with deep expertise in cloud, AI, and resilient system design. Leads engineering teams to deliver scalable, secure solutions for global enterprises.",
+      avatar: "/image/static/h26.jpeg",
       social: { linkedin: "#", twitter: "#" },
-      joinedDate: "2024-02-20",
-      expertise: ["Strategic Planning", "Operations", "Change Management", "Process Optimization"]
+      joinedDate: "2020-01-15",
+      expertise: ["Cloud Architecture", "AI/ML", "Resilient Systems", "DevOps"]
     }
   ]);
 
@@ -52,20 +52,21 @@ const CompanyPage = () => {
     bio: ''
   });
 
-  // Company statistics
+  // Company statistics (updated to match real data)
   const stats = [
-    { icon: <FaChartLine />, value: '100+', label: 'Projects Completed' },
-    { icon: <FaGlobe />, value: '10+', label: 'Countries Served' },
+    { icon: <FaChartLine />, value: '500+', label: 'Projects Completed' },
+    { icon: <FaGlobe />, value: '15+', label: 'Countries Served' },
     { icon: <FaAward />, value: '98%', label: 'Client Satisfaction' },
-    { icon: <FaUsers />, value: '50+', label: 'Expert Team' }
+    { icon: <FaUsers />, value: '250+', label: 'Expert Engineers' }
   ];
 
-  // Company timeline
+  // Company timeline (founded 2020)
   const timeline = [
-    { year: '2024', title: 'Global Expansion', description: 'Expanded operations to 10+ countries worldwide' },
-    { year: '2023', title: 'AWS Premier Partner', description: 'Achieved AWS Premier Consulting Partner status' },
-    { year: '2022', title: 'Salesforce Platinum', description: 'Became Salesforce Platinum Implementation Partner' },
-    { year: '2021', title: 'Company Founded', description: 'MJ & Roberts Consulting established' }
+    { year: '2020', title: 'Company Founded', description: 'MJ&Roberts established by Mohamed Jeylani Sayed and Roberts Vildon Elisha' },
+    { year: '2021', title: 'First Enterprise Client', description: 'Secured first Fortune 500 client for cloud transformation' },
+    { year: '2022', title: 'AI Practice Launch', description: 'Launched dedicated AI and machine learning practice' },
+    { year: '2023', title: 'Global Expansion', description: 'Expanded to 3 continents with 200+ certified engineers' },
+    { year: '2024', title: 'Agentic AI Platform', description: 'Released proprietary Agentic AI orchestration platform' }
   ];
 
   const handleShowModal = (owner = null) => {
@@ -92,7 +93,7 @@ const CompanyPage = () => {
     if (editingOwner) {
       setOwners(owners.map(owner => 
         owner.id === editingOwner.id 
-          ? { ...formData, id: owner.id, avatar: editingOwner.avatar, joinedDate: owner.joinedDate, expertise: owner.expertise }
+          ? { ...formData, id: owner.id, avatar: editingOwner.avatar, joinedDate: owner.joinedDate, expertise: owner.expertise, social: owner.social }
           : owner
       ));
     } else {
@@ -110,7 +111,7 @@ const CompanyPage = () => {
   };
 
   const handleDeleteOwner = (id) => {
-    if (window.confirm('Are you sure you want to remove this owner?')) {
+    if (window.confirm('Are you sure you want to remove this team member?')) {
       setOwners(owners.filter(owner => owner.id !== id));
     }
   };
@@ -119,7 +120,7 @@ const CompanyPage = () => {
     <div style={{ paddingTop: '100px', backgroundColor: '#0a0a0a', minHeight: '100vh', color: 'white' }}>
       {/* Hero Section with Overlay */}
       <section style={{ 
-        padding: '100px 0', 
+        padding: '80px 0', 
         background: 'linear-gradient(135deg, rgba(102,126,234,0.95) 0%, rgba(118,75,162,0.95) 100%), url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -129,14 +130,18 @@ const CompanyPage = () => {
           <Row className="text-center">
             <Col>
               <Badge style={{ backgroundColor: 'rgba(255,255,255,0.2)', marginBottom: '20px', padding: '10px 20px', fontSize: '1rem' }}>
-                Established 2021
+                Established 2020
               </Badge>
-              <h1 style={{ fontSize: '4rem', fontWeight: '800', marginBottom: '20px' }}>
+              <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '20px' }}>
                 MJ & Roberts Consulting
               </h1>
-              <p style={{ fontSize: '1.3rem', opacity: 0.95, maxWidth: '700px', margin: '0 auto' }}>
-                Building the future of enterprise technology through innovation and excellence
+              <p style={{ fontSize: '1.2rem', opacity: 0.95, maxWidth: '700px', margin: '0 auto' }}>
+                Engineering Resilience into the Global Enterprise
               </p>
+              <div style={{ marginTop: '30px' }}>
+                <FaMapMarkerAlt style={{ marginRight: '8px' }} />
+                <span>14 Hennessy Road, Edmonton, London N9 0XQ, United Kingdom</span>
+              </div>
             </Col>
           </Row>
         </Container>
@@ -242,6 +247,8 @@ const CompanyPage = () => {
               <h3 style={{ marginBottom: '15px' }}>Join Our Team</h3>
               <p style={{ color: '#aaa', marginBottom: '20px' }}>We're hiring top talent in AI, Cloud Architecture, and Platform Engineering</p>
               <Button 
+                as="a"
+                href="/jobs"
                 variant="outline-primary" 
                 style={{ borderRadius: '50px', padding: '10px 30px' }}
               >
@@ -263,7 +270,7 @@ const CompanyPage = () => {
         </div>
         <Row>
           {timeline.map((item, index) => (
-            <Col md={3} key={index} className="mb-4">
+            <Col md={3} sm={6} key={index} className="mb-4">
               <Card style={{ 
                 backgroundColor: '#1a1a1a', 
                 border: 'none', 
@@ -285,26 +292,26 @@ const CompanyPage = () => {
                   <FaCalendarAlt style={{ fontSize: '1.5rem', color: 'white' }} />
                 </div>
                 <h3 style={{ color: '#667eea', marginBottom: '10px' }}>{item.year}</h3>
-                <h5 style={{ marginBottom: '10px' }}>{item.title}</h5>
-                <p style={{ color: '#aaa', fontSize: '0.9rem', margin: 0 }}>{item.description}</p>
+                <h5 style={{ marginBottom: '10px', fontSize: '1rem' }}>{item.title}</h5>
+                <p style={{ color: '#aaa', fontSize: '0.85rem', margin: 0 }}>{item.description}</p>
               </Card>
             </Col>
           ))}
         </Row>
       </Container>
 
-      {/* Leadership Team Section with Photos */}
+      {/* Leadership Team Section with Real Founders */}
       <Container style={{ padding: '40px 0 80px 0' }}>
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '20px' }}>
             <FaUserTie style={{ marginRight: '15px', color: '#667eea' }} />
-            Our Leadership Team
+            Our Founders & Leadership
           </h2>
           <p style={{ fontSize: '1.1rem', color: '#aaa', maxWidth: '600px', margin: '0 auto' }}>
-            Meet the experienced professionals driving innovation and excellence at MJ & Roberts Consulting
+            Meet the visionaries behind MJ&Roberts Consulting
           </p>
           
-          {/* Admin Controls - Add Owner Button */}
+          {/* Admin Controls - Add Team Member Button */}
           <Button 
             variant="primary" 
             onClick={() => handleShowModal()}
@@ -352,7 +359,7 @@ const CompanyPage = () => {
                   </Col>
                   <Col md={7}>
                     <Card.Body style={{ padding: '35px', height: '100%' }}>
-                      <Card.Title style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '5px', color: 'white' }}>
+                      <Card.Title style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '5px', color: 'white' }}>
                         {owner.name}
                       </Card.Title>
                       <Badge style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)', marginBottom: '15px', padding: '8px 16px' }}>
@@ -365,7 +372,7 @@ const CompanyPage = () => {
                       
                       {/* Expertise Tags */}
                       <div style={{ marginBottom: '20px' }}>
-                        {owner.expertise && owner.expertise.slice(0, 3).map((skill, idx) => (
+                        {owner.expertise && owner.expertise.map((skill, idx) => (
                           <Badge 
                             key={idx}
                             style={{ 
@@ -446,7 +453,7 @@ const CompanyPage = () => {
         </Row>
       </Container>
 
-      {/* Add/Edit Owner Modal */}
+      {/* Add/Edit Team Member Modal */}
       <Modal show={showOwnerModal} onHide={handleCloseModal} centered size="lg">
         <Modal.Header closeButton style={{ backgroundColor: '#1a1a1a', color: 'white', borderBottom: '1px solid #333' }}>
           <Modal.Title>

@@ -21,39 +21,29 @@ const ContactPage = () => {
 
   // Check for pending job application on component mount
   useEffect(() => {
-    // Check URL params for application pending
     const urlParams = new URLSearchParams(window.location.search);
     const hasApplication = urlParams.get('application') === 'pending';
-    
-    // Check localStorage for pending application
     const pendingApp = localStorage.getItem('pendingApplication');
     
     if (hasApplication && pendingApp) {
       try {
         const application = JSON.parse(pendingApp);
-        
-        // Extract name from subject or message
         let applicantName = '';
         let applicantEmail = '';
         let applicantPhone = '';
         let jobTitle = '';
         
-        // Parse the application data
         if (application.message) {
           const nameMatch = application.message.match(/Full Name: ([^\n]+)/);
           if (nameMatch) applicantName = nameMatch[1];
-          
           const emailMatch = application.message.match(/Email: ([^\n]+)/);
           if (emailMatch) applicantEmail = emailMatch[1];
-          
           const phoneMatch = application.message.match(/Phone: ([^\n]+)/);
           if (phoneMatch) applicantPhone = phoneMatch[1];
-          
           const jobMatch = application.message.match(/Position: ([^\n]+)/);
           if (jobMatch) jobTitle = jobMatch[1];
         }
         
-        // Pre-fill the form with application data
         setFormData({
           name: applicantName || '',
           email: applicantEmail || '',
@@ -61,13 +51,8 @@ const ContactPage = () => {
           subject: application.subject || `Job Application: ${jobTitle}`,
           message: application.message || ''
         });
-        
         setApplicationDetected(true);
-        
-        // Clear the pending application
         localStorage.removeItem('pendingApplication');
-        
-        // Show success message
         setTimeout(() => {
           setSubmitted(true);
           setTimeout(() => setSubmitted(false), 8000);
@@ -78,37 +63,37 @@ const ContactPage = () => {
     }
   }, []);
 
-  // WhatsApp configuration with number +254 723 156066
+  // WhatsApp configuration
   const whatsappNumber = '254723156066';
   const whatsappMessage = encodeURIComponent('Hello! I would like to get more information about your services.');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   const whatsappCallLink = `https://wa.me/${whatsappNumber}`;
 
-  // Website Owners/Administrators with correct image paths
+  // Real founders/owners with correct image mapping
   const owners = [
     {
       id: 1,
-      name: "John Roberts",
-      title: "Founder & CEO",
-      email: "john.roberts@mjroberts.com",
+      name: "Mohamed Jeylani Sayed",
+      title: "Co-Founder & CEO",
+      email: "mohamed@mjroberts.com",
       phone: "+254723156066",
       whatsapp: "254723156066",
-      bio: "15+ years experience in business consulting and enterprise architecture",
-      avatar: "/image/static/h26.jpeg",
+      bio: "15+ years of experience in enterprise technology and digital transformation. Visionary leader driving MJ&Roberts' mission to bridge the innovation-infrastructure gap.",
+      avatar: "/image/static/h23.jpeg",
       social: { linkedin: "#", twitter: "#" },
-      expertise: ["Business Strategy", "Digital Transformation", "Leadership"]
+      expertise: ["Business Strategy", "Digital Transformation", "Enterprise Architecture", "Leadership"]
     },
     {
       id: 2,
-      name: "Mary Jane",
-      title: "Senior Consultant",
-      email: "mary.jane@mjroberts.com",
-      phone: "+254712345678",
-      whatsapp: "254712345678",
-      bio: "Expert in strategic planning, operations, and digital transformation",
-      avatar: "/image/static/h23.jpeg",
+      name: "Roberts Vildon Elisha",
+      title: "Co-Founder & CTO",
+      email: "roberts@mjroberts.com",
+      phone: "+254723156066",
+      whatsapp: "254723156066",
+      bio: "Technology architect with deep expertise in cloud, AI, and resilient system design. Leads engineering teams to deliver scalable, secure solutions for global enterprises.",
+      avatar: "/image/static/h26.jpeg",
       social: { linkedin: "#", twitter: "#" },
-      expertise: ["Strategic Planning", "Operations", "Change Management"]
+      expertise: ["Cloud Architecture", "AI/ML", "Resilient Systems", "DevOps"]
     }
   ];
 
@@ -128,11 +113,7 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Get recipient email from localStorage if job application, otherwise use default
     const recipientEmail = localStorage.getItem('applicationRecipient') || 'brianshitambasi270@gmail.com';
-    
-    // Create email content
     const emailSubject = formData.subject;
     const emailBody = `
 Name: ${formData.name}
@@ -147,20 +128,11 @@ ${formData.message}
 Sent from MJ & Roberts Consulting Contact Form
 WhatsApp: +254 723 156066
     `;
-    
-    // Open email client with pre-filled details
     const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     
-    // Simulate sending email
     setTimeout(() => {
-      // Log the form data
       console.log('Form submitted:', formData);
-      console.log('Application type:', applicationDetected ? 'Job Application' : 'General Inquiry');
-      console.log('Sending to:', recipientEmail);
-      
-      // Open email client (in production, you'd use an API)
       window.location.href = mailtoLink;
-      
       setSubmitted(true);
       setApplicationDetected(false);
       localStorage.removeItem('applicationRecipient');
@@ -173,20 +145,12 @@ WhatsApp: +254 723 156066
   return (
     <div style={{ paddingTop: '100px', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', minHeight: '100vh' }}>
       {/* Hero Section */}
-      <div style={{ 
-        background: 'linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5))',
-        padding: '80px 0',
-        marginBottom: '60px'
-      }}>
+      <div style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5))', padding: '80px 0', marginBottom: '60px' }}>
         <Container>
           <Row className="text-center text-white">
             <Col>
-              <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '20px' }}>
-                Contact MJ & Roberts Consulting
-              </h1>
-              <p style={{ fontSize: '1.2rem', opacity: 0.95, maxWidth: '600px', margin: '0 auto' }}>
-                Let's work together to transform your business
-              </p>
+              <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '20px' }}>Contact MJ & Roberts Consulting</h1>
+              <p style={{ fontSize: '1.2rem', opacity: 0.95, maxWidth: '600px', margin: '0 auto' }}>Let's work together to transform your business</p>
             </Col>
           </Row>
         </Container>
@@ -196,12 +160,7 @@ WhatsApp: +254 723 156066
         {/* Main Contact Section */}
         <Row className="mb-5">
           <Col lg={4} className="mb-4">
-            <Card style={{ 
-              borderRadius: '15px', 
-              overflow: 'hidden',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-              height: '100%'
-            }}>
+            <Card style={{ borderRadius: '15px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', height: '100%' }}>
               <Card.Body style={{ padding: '30px' }}>
                 <h4 style={{ fontWeight: '700', marginBottom: '20px', color: '#333' }}>
                   <FaHeadset className="me-2" style={{ color: '#667eea' }} />
@@ -246,7 +205,7 @@ WhatsApp: +254 723 156066
                     </div>
                     <div>
                       <small style={{ color: '#999' }}>Visit Us</small>
-                      <p style={{ margin: 0, fontWeight: '600' }}>Nairobi, Kenya</p>
+                      <p style={{ margin: 0, fontWeight: '600' }}>14 Hennessy Road, Edmonton, London N9 0XQ, United Kingdom</p>
                     </div>
                   </div>
                 </div>
@@ -254,7 +213,7 @@ WhatsApp: +254 723 156066
                 <div className="mb-4">
                   <h6 style={{ fontWeight: '700', marginBottom: '15px' }}>Office Hours</h6>
                   <div style={{ fontSize: '0.9rem' }}>
-                    <p className="mb-2"><FaClock className="me-2" style={{ color: '#667eea' }} /> Mon-Fri: 9:00 AM - 6:00 PM</p>
+                    <p className="mb-2"><FaClock className="me-2" style={{ color: '#667eea' }} /> Mon-Fri: 9:00 AM - 6:00 PM (GMT)</p>
                     <p className="mb-2"><FaClock className="me-2" style={{ color: '#667eea' }} /> Saturday: 10:00 AM - 2:00 PM</p>
                     <p><FaClock className="me-2" style={{ color: '#667eea' }} /> Sunday: Closed</p>
                   </div>
@@ -262,15 +221,7 @@ WhatsApp: +254 723 156066
 
                 <div>
                   <a href={whatsappLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                    <Button style={{ 
-                      backgroundColor: '#25D366', 
-                      border: 'none', 
-                      width: '100%',
-                      marginBottom: '10px',
-                      padding: '12px',
-                      borderRadius: '10px',
-                      fontWeight: '600'
-                    }}>
+                    <Button style={{ backgroundColor: '#25D366', border: 'none', width: '100%', marginBottom: '10px', padding: '12px', borderRadius: '10px', fontWeight: '600' }}>
                       <FaWhatsapp className="me-2" /> Chat on WhatsApp
                     </Button>
                   </a>
@@ -297,7 +248,6 @@ WhatsApp: +254 723 156066
                     : 'Fill out the form below and we\'ll get back to you within 24 hours'}
                 </p>
                 
-                {/* WhatsApp Contact Alert */}
                 <Alert variant="success" style={{ backgroundColor: '#25D366', color: '#fff', borderRadius: '10px', marginBottom: '20px', border: 'none' }}>
                   <FaWhatsapp className="me-2" />
                   <strong>Quick Support:</strong> Chat with us on WhatsApp at <strong>+254 723 156066</strong> for immediate assistance
@@ -337,7 +287,7 @@ WhatsApp: +254 723 156066
                           value={formData.email} 
                           onChange={handleChange} 
                           required 
-                          placeholder="Enter your email"
+                          placeholder="your.email@example.com"
                           style={{ padding: '12px', borderRadius: '8px', border: '1px solid #ddd' }} 
                         />
                       </Form.Group>
@@ -441,10 +391,10 @@ WhatsApp: +254 723 156066
             <div style={{ textAlign: 'center', marginBottom: '40px' }}>
               <h2 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '15px', color: 'white' }}>
                 <FaUserTie style={{ marginRight: '15px' }} />
-                Meet Our Leadership Team
+                Meet Our Founders
               </h2>
               <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.9)', maxWidth: '600px', margin: '0 auto' }}>
-                Our experienced administrators are here to help you succeed
+                The visionaries behind MJ&Roberts Consulting
               </p>
             </div>
           </Col>
@@ -481,7 +431,7 @@ WhatsApp: +254 723 156066
                   </Col>
                   <Col md={7}>
                     <Card.Body style={{ padding: '35px', height: '100%' }}>
-                      <Card.Title style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '5px', color: '#333' }}>
+                      <Card.Title style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '5px', color: '#333' }}>
                         {owner.name}
                       </Card.Title>
                       <Badge style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)', marginBottom: '15px', padding: '8px 16px' }}>
@@ -551,21 +501,21 @@ WhatsApp: +254 723 156066
           <Col md={3} className="mb-3">
             <Card style={{ textAlign: 'center', padding: '30px', borderRadius: '15px', backgroundColor: 'white' }}>
               <FaUsers size={40} style={{ color: '#667eea', marginBottom: '15px' }} />
-              <h3 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '5px' }}>100+</h3>
-              <p style={{ color: '#666', margin: 0 }}>Happy Clients</p>
+              <h3 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '5px' }}>300+</h3>
+              <p style={{ color: '#666', margin: 0 }}>Enterprise Clients</p>
             </Card>
           </Col>
           <Col md={3} className="mb-3">
             <Card style={{ textAlign: 'center', padding: '30px', borderRadius: '15px', backgroundColor: 'white' }}>
               <FaAward size={40} style={{ color: '#667eea', marginBottom: '15px' }} />
-              <h3 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '5px' }}>50+</h3>
+              <h3 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '5px' }}>500+</h3>
               <p style={{ color: '#666', margin: 0 }}>Projects Completed</p>
             </Card>
           </Col>
           <Col md={3} className="mb-3">
             <Card style={{ textAlign: 'center', padding: '30px', borderRadius: '15px', backgroundColor: 'white' }}>
               <FaGlobe size={40} style={{ color: '#667eea', marginBottom: '15px' }} />
-              <h3 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '5px' }}>10+</h3>
+              <h3 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '5px' }}>15+</h3>
               <p style={{ color: '#666', margin: 0 }}>Countries Served</p>
             </Card>
           </Col>
